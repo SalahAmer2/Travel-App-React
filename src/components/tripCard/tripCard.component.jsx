@@ -1,56 +1,35 @@
 import React from "react";
 
-//You should later make each div a component in their respective folders like;
-//Button, CityPhoto, TodaysDate, etc. 
+import { Button } from './components-of-tripCard/button/button.component';
+import { CityPhoto } from './components-of-tripCard/cityPhoto/cityPhoto.component';
+import { TodaysDate } from './components-of-tripCard/todaysDate/todaysDate.component';
+import { Country } from './components-of-tripCard/country/country.component';
+import { DepDate } from './components-of-tripCard/depDate/depDate.component';
+import { RetDate } from './components-of-tripCard/retDate/retDate.component';
+import { DaysLeft } from './components-of-tripCard/daysLeft/daysLeft.component';
+import { Weather } from './components-of-tripCard/weather/weather.component';
+import { Low_Temp } from './components-of-tripCard/low_temp/low_temp.component';
+import { Max_Temp } from './components-of-tripCard/max_temp/max_temp.component';
+import { Temp } from './components-of-tripCard/temp/temp.component';
 
 export const TripCard = (props) => (
     <div className='entryHolder' id={props.id}>
-        <button className='deleteXbtn' onClick={deleteTrip(props.id)}>X</button>
-        <br/>
-        <div>
-            <img src={props.tripData.cityPhoto} alt="City Photo"/>
-        </div>
-        <div className='date'>
-            <div className='entry-name'>Today's date: </div>
-            <div className='entry-value'>{props.tripData.date}</div>
-        </div>
-        <div className='country'>
-            <div className='entry-name'>Country of Destination: </div>
-            <div className='entry-value'>{props.tripData.country}</div>
-        </div>
-        <div className='depDate'>
-            <div className='entry-name'>Departure date: </div>
-            <div className='entry-value'>{props.tripData.depDate}</div>
-        </div>
-        <div className='retDate'>
-            <div className='entry-name'>Return date: </div>
-            <div className='entry-value'>{props.tripData.retDate}</div>
-        </div>
-        <div className='daysLeft'>
-            <div className='entry-name'>Days left: </div>
-            <div className='entry-value'>{props.tripData.daysLeft}</div>
-        </div>
-        <div className='weather'>
-            <div className='entry-name'>Weather Description: </div>
-            <div className='entry-value'>{props.tripData.weather}</div>
-        </div>
+        <Button id={props.id}/>
+        <CityPhoto cityPhoto={props.tripData.cityPhoto}/>
+        <TodaysDate date={props.tripData.date}/>
+        <Country country={props.tripData.country}/>
+        <DepDate depdate={props.tripData.depDate}/>
+        <RetDate retDate={props.tripData.retDate}/>
+        <DaysLeft daysLeft={props.tripData.daysLeft}/>
+        <Weather weather={props.tripData.weather}/>
         {
             props.tripData.trueOrFalse?
-                <React.Fragment>    
-                    <div className='low_temp'>
-                        <div className='entry-name'>Lowest Temperature Forecasted: </div>
-                        <div className='entry-value'>{props.tripData.low_temp} + &#8451;</div>
-                    </div>
-                    <div className='max_temp'>
-                        <div className='entry-name'>Highest Temperature Forecasted: </div>
-                        <div className='entry-value'>{props.tripData.max_temp} + &#8451;</div>
-                    </div>
+                <React.Fragment>
+                    <Low_Temp low_temp={props.tripData.low_temp}/>
+                    <Max_Temp max_temp={props.tripData.max_temp}/>
                 </React.Fragment>
                 :
-                <div className='temp'>
-                    <div className='entry-name'>Temperature: </div>
-                    <div className='entry-value'>{props.tripData.temp} + &#8451;</div>
-                </div>
+                <Temp temp={props.tripData.temp}/>
         }
     </div>
 )
