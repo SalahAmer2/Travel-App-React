@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { render } from '@testing-library/react';
 
+import { MyTripsHolder } from "./components/myTripsHolder/myTripsHolder.component";
+
 import { timeDiff } from "./timeDiff";
 
 import { createTrip } from "./createTrip";
@@ -111,10 +113,13 @@ class App extends Component {
   }
 
   render(){
-    const createUI = async (projectData) => { // Start with this, make a myTripsHolder component in the components folder,
-                                              // pass projectData as the props
 
-      const tripDataArray = Object.values(projectData); // Do this with the props
+    const tripDataArray = Object.values(projectData);
+
+    const createUI = async (projectData) => { // Start with this, make a myTripsHolder component in the components folder,
+                                              // pass xprojectDatax tripDataArray as the props
+
+      const tripDataArray = Object.values(projectData); // Do this xwith the propsx here
 
       // console.log(tripDataArray);
 
@@ -251,10 +256,13 @@ class App extends Component {
 
     document.getElementById("savetripBtn").addEventListener("click", performAction);
 
-    }
-    // return(
+    return (
+      <div className='App'>
+        <MyTripsHolder tripDataArray={tripDataArray}/>
+      </div>
+    );
 
-    // );
+    }    
 }
 
 
