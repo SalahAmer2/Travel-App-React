@@ -3,7 +3,6 @@ import logo from './logo.svg';
 import './App.css';
 import { render } from '@testing-library/react';
 
-import { MyTripsHolder } from "./components/myTripsHolder/myTripsHolder.component";
 
 import { timeDiff } from "./timeDiff";
 
@@ -106,12 +105,14 @@ class App extends Component {
       }
     };
 
+  }
+
+  handleGetFunc = () => {
     getFunc().then(projectData => {
       this.setState(projectData);
     });
-
   }
-
+  
   render(){
 
     const tripDataArray = Object.values(projectData);
@@ -264,7 +265,7 @@ class App extends Component {
         <div class="bg">
           <label id="app">
             
-            <BodyOfApp />
+            <BodyOfApp tripDataArray={tripDataArray} handleGetFunc={this.handleGetFunc}/>
           </label>
           <footer>Background Photo by David Marcu on Unsplash</footer>
         </div>
