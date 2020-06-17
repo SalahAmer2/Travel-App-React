@@ -256,13 +256,22 @@ class App extends Component {
 
     document.getElementById("savetripBtn").addEventListener("click", performAction);
 
-    return (
+    return ( //Now put the components that'll make the html here //BodyOfApp is done wrong so far //For now make the BodyOfApp in its component 
       <div className='App'>
-        <MyTripsHolder tripDataArray={tripDataArray}/>
+        <Pop_Up_1 />
+        <Pop_Up_2 />
+        <Pop_Up_3 />
+        <div class="bg">
+          <label id="app">
+            
+            <BodyOfApp />
+          </label>
+          <footer>Background Photo by David Marcu on Unsplash</footer>
+        </div>
       </div>
     );
 
-    }    
+  }    
 }
 
 
