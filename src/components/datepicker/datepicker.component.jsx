@@ -6,25 +6,9 @@ import "react-datepicker/dist/react-datepicker.css";
 // CSS Modules, react-datepicker-cssmodules.css
 // import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 
-class Datepicker extends React.Component {
-    state = {
-        startDate: new Date()
-    };
-
-    handleChange = date => {
-        this.setState({
-            startDate: date
-        });
-    };
-
-    render() {
-        return (
-            <DatePicker
-                selected={this.state.startDate}
-                onChange={this.handleChange}
-            />
-        );
-    }
-}
-
-export default Datepicker;
+export const Datepicker = ({ startDate, handleChange, typeOfDate}) => {
+    //const [startDate, setStartDate] = useState(new Date());
+    return (
+        <DatePicker selected={startDate} onChange={date => handleChange(typeOfDate, date)} />
+    );
+};
