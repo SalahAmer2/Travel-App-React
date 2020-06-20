@@ -16,12 +16,10 @@ class App extends Component {
     this.state = {
       projectDataState: {},
       inputs: {},
-      startDate: new Date()
+      startDate: new Date(),
+      submittingOrNot: false,
+      pop_up_3_state: false
     };
-  }
-
-  componentDidMount() {
-
   }
 
   handleChange = (typeOfInput, e) => {
@@ -31,14 +29,24 @@ class App extends Component {
   }
 
   handleGetFunc = () => {
+    this.setState({ submittingOrNot: true });
+
     getFunc().then(projectData => {
-      this.setState({ projectDataState: projectData});
+      if(projectData){
+        this.setState({ projectDataState: projectData });
+        this.setState({ submittingOrNot: false });
+      } else {
+        console.log("handleGetFunc else statement triggered");
+        this.setState({ pop_up_3_state: true }); //turn it back to false with onClick of X of pop-up
+      }
+      
     });
   }
   
   render(){
 
-    const tripDataArray = Object.values(projectData);
+    const tripDataArray = Object.values(this.state.projectDataState);
+    const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
 
     //   if ($(".entryHolder")[0]) {
     //     // Display My Trips title if there are any trip cards
@@ -99,30 +107,31 @@ class App extends Component {
     //   const depDateFromUser = document.getElementById("departureDate").value;
     //   const returnDateFromUser = document.getElementById("returnDate").value;
 
-      const pop_up_1 = document.getElementById("pop-up-1");
-      const pop_up_2 = document.getElementById("pop-up-2");
-      const pop_up_3 = document.getElementById("pop-up-3");
+    //   const pop_up_1 = document.getElementById("pop-up-1");
+    //   const pop_up_2 = document.getElementById("pop-up-2");
+    //   const pop_up_3 = document.getElementById("pop-up-3");
 
-    if ( //I will make conditionals (ternary operator) for the pop-ups here in App.js in return() but first we need to handle/configure the inputs (city, depDateFromUser, returnDateFromUser, etc) in bodyOfApp 
-        (city === "" || city === null) ||
-        (depDateFromUser === "" || depDateFromUser === null) ||
-        (returnDateFromUser === "" || returnDateFromUser === null)
-      ) {
-        pop_up_2.classList.remove("pop-up-swing");
-        pop_up_2.style.display = 'block';
-      } else {
+    // if ( //I will make conditionals (ternary operator) for the pop-ups here in App.js in return() <-(do this) (done)->but first we need to handle/configure the inputs (city, depDateFromUser, returnDateFromUser, etc) in bodyOfApp 
+    //      // I'll start with either rendering or not rendering the pop-up component based on the conditional, I'll handle pop-up-swing, later, in the pop-up component itself with an onClick event probably
+    //     (city === "" || city === null) ||
+    //     (depDateFromUser === "" || depDateFromUser === null) ||
+    //     (returnDateFromUser === "" || returnDateFromUser === null)
+    //   ) {
+    //     pop_up_2.classList.remove("pop-up-swing");
+    //     pop_up_2.style.display = 'block';
+    //   } else {
 
-        const savetripBtn = document.getElementById("savetripBtn");
+    //     const savetripBtn = document.getElementById("savetripBtn");
 
-        const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+    //     const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
 
-        if (daysLeft === "Error: invalid dates") {
-          pop_up_1.classList.remove("pop-up-swing");
-          pop_up_1.style.display = 'block';
-          return;
-        }
+    //     if (daysLeft === "Error: invalid dates") {
+    //       pop_up_1.classList.remove("pop-up-swing");
+    //       pop_up_1.style.display = 'block';
+    //       return;
+    //     }
 
-        savetripBtn.textContent = "Fetching data. Please wait...";
+    //     savetripBtn.textContent = "Fetching data. Please wait...";
 
         // postData('/postAndGetFunc', {
         //   baseURLGeo: baseURLGeo,
@@ -145,13 +154,38 @@ class App extends Component {
         //     pop_up_3.style.display = 'block';
         //   }
         // });
-      }
-    }
+    //   }
+    // }
 
-    document.getElementById("savetripBtn").addEventListener("click", performAction);
+    //document.getElementById("savetripBtn").addEventListener("click", performAction);
 
     return ( //Now put the components that'll make the html here //BodyOfApp is done wrong so far //For now make the BodyOfApp in its component 
       <div className='App'>
+        {
+          this.state.submittingOrNot ?
+          (
+              (
+                (city === "" || city === null) ||
+                (depDateFromUser === "" || depDateFromUser === null) ||
+                (returnDateFromUser === "" || returnDateFromUser === null)
+              ) ? 
+              <Pop_Up_2 /> 
+              : 
+              (
+                (daysLeft === "Error: invalid dates") ? 
+                <Pop_Up_1 />
+                :
+                null
+              )
+
+              (this.state.pop_up_3_state) ?
+              <Pop_Up_3 />
+              :
+              null
+          )
+          :
+          null
+        }
         <Pop_Up_1 />
         <Pop_Up_2 />
         <Pop_Up_3 />
@@ -159,10 +193,10 @@ class App extends Component {
           <label id="app">
             
           <BodyOfApp 
-          tripDataArray={tripDataArray} 
-          handleGetFunc={this.handleGetFunc} 
-          handleChange={this.handleChange} 
-          startDate={this.state.startDate}
+            tripDataArray={tripDataArray} 
+            handleGetFunc={this.handleGetFunc} 
+            handleChange={this.handleChange} 
+            startDate={this.state.startDate}
           />
           </label>
           <footer>Background Photo by David Marcu on Unsplash</footer>
