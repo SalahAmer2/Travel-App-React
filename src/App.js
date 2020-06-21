@@ -202,7 +202,7 @@ class App extends Component {
           :
           null
         }
-        <div class="bg">
+        <div className="bg">
           <label id="app">
             
           <BodyOfApp 

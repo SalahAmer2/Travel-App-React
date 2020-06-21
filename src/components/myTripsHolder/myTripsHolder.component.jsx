@@ -3,7 +3,7 @@ import React from "react";
 export const MyTripsHolder = (props) => (
     <div>
         {props.children ? 
-        <div class="title centerTitle">My Trips</div>
+        <div className="title centerTitle">My Trips</div>
         :
         null
         }
