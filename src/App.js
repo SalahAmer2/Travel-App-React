@@ -18,7 +18,8 @@ class App extends Component {
       inputs: {},
       startDate: new Date(),
       submittingOrNot: false,
-      pop_up_3_state: false
+      pop_up_3_state: false,
+      pop_up_exit: false
     };
   }
 
@@ -31,16 +32,31 @@ class App extends Component {
   handleGetFunc = () => {
     this.setState({ submittingOrNot: true });
 
-    getFunc().then(projectData => {
-      if(projectData){
-        this.setState({ projectDataState: projectData });
-        this.setState({ submittingOrNot: false });
-      } else {
-        console.log("handleGetFunc else statement triggered");
-        this.setState({ pop_up_3_state: true }); //turn it back to false with onClick of X of pop-up
-      }
-      
-    });
+    if 
+    (
+      !(
+        (city === "" || city === null) ||
+        (depDateFromUser === "" || depDateFromUser === null) ||
+        (returnDateFromUser === "" || returnDateFromUser === null)
+      ) 
+      || 
+      !(daysLeft === "Error: invalid dates")
+    )
+    {
+      getFunc().then(projectData => {
+        if(projectData){
+          this.setState({ projectDataState: projectData });
+          this.setState({ submittingOrNot: false });
+        } else {
+          console.log("handleGetFunc else statement triggered");
+          this.setState({ pop_up_3_state: true }); //turn it back to false with onClick of X of pop-up
+        }
+      });
+    }
+  }
+
+  handleExit = () => {
+    this.setState({ pop_up_exit: true });
   }
   
   render(){
@@ -169,26 +185,23 @@ class App extends Component {
                 (depDateFromUser === "" || depDateFromUser === null) ||
                 (returnDateFromUser === "" || returnDateFromUser === null)
               ) ? 
-              <Pop_Up_2 /> 
+                <Pop_Up_2 handleExit={handleExit} pop_up_swing={this.state.pop_up_exit ? "pop-up-swing" : null}/> 
               : 
               (
                 (daysLeft === "Error: invalid dates") ? 
-                <Pop_Up_1 />
+                <Pop_Up_1 handleExit={handleExit} pop_up_swing={this.state.pop_up_exit ? "pop-up-swing" : null}/>
                 :
-                null
+                (
+                  (this.state.pop_up_3_state) ?
+                  <Pop_Up_3 handleExit={handleExit} pop_up_swing={this.state.pop_up_exit ? "pop-up-swing" : null}/>
+                  :
+                  null
+                )
               )
-
-              (this.state.pop_up_3_state) ?
-              <Pop_Up_3 />
-              :
-              null
           )
           :
           null
         }
-        <Pop_Up_1 />
-        <Pop_Up_2 />
-        <Pop_Up_3 />
         <div class="bg">
           <label id="app">
             
