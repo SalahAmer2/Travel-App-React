@@ -1,6 +1,6 @@
 let projectData = {};
 
-const city = document.getElementById('city').value;
+export const city = document.getElementById('city').value;
 
 const baseURLGeo = "http://api.geonames.org/searchJSON?q=";
 const baseURLWeatherCurrent = "https://api.weatherbit.io/v2.0/current?";
@@ -9,10 +9,10 @@ const baseURLPixabay = "https://pixabay.com/api/?";
 
 // Create a new date instance dynamically with JS
 const d = new Date(); //changed it from let to const
-const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear(); //changed it from let to const
+export const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear(); //changed it from let to const
 
-const depDateFromUser = document.getElementById("departureDate").value;
-const returnDateFromUser = document.getElementById("returnDate").value;
+export const depDateFromUser = document.getElementById("departureDate").value;//Now we have to figure out how to do it without getElementById
+export const returnDateFromUser = document.getElementById("returnDate").value;
 
 const username = 'salah_2';
 const weatherbitAPIKey = '2f3e278d4be24ab6b4e423bc8173692e';
