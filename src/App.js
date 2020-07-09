@@ -273,6 +273,7 @@ class App extends Component {
 
     return ( //USE REDUX TO SOLVE THE POP-UP PROBLEM, YOU'LL HAVE STATE AVAILABLE IN ALL COMPONENTS//I need to restructure the app into individual components and have all the states and functions in their own components instead of here
       <div className='App'>
+        {/* <All_Pop_Ups /> */}
         {
           this.state.submittedOrNot ?
           (
