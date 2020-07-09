@@ -14,10 +14,10 @@ class App extends Component {
     super();
 
     this.state = {
-      projectDataState: {},
-      inputs: {},
+      projectDataState: {},//This is for the fetched data
+      inputs: {},//This is for the inputs; city, dates 
       startDate: new Date(),
-      submittingOrNot: false,
+      submittedOrNot: false,
       pop_up_3_state: false,
       pop_up_exit: false
     };
@@ -30,7 +30,7 @@ class App extends Component {
   }
 
   handleGetFunc = () => {
-    this.setState({ submittingOrNot: true });
+    this.setState({ submittedOrNot: true });
 
     const city = this.state.inputs.city;
     const depDateFromUser = this.state.inputs.depDate;
@@ -54,7 +54,7 @@ class App extends Component {
       getFunc().then(projectData => {
         if(projectData){
           this.setState({ projectDataState: projectData });
-          this.setState({ submittingOrNot: false });
+          this.setState({ submittedOrNot: false });
         } else {
           console.log("handleGetFunc else statement triggered");
           this.setState({ pop_up_3_state: true }); //turn it back to false with onClick of X of pop-up
@@ -271,10 +271,10 @@ class App extends Component {
 
     //document.getElementById("savetripBtn").addEventListener("click", performAction);
 
-    return ( //Now put the components that'll make the html here //BodyOfApp is done wrong so far //For now make the BodyOfApp in its component 
+    return ( //USE REDUX TO SOLVE THE POP-UP PROBLEM, YOU'LL HAVE STATE AVAILABLE IN ALL COMPONENTS//I need to restructure the app into individual components and have all the states and functions in their own components instead of here
       <div className='App'>
         {
-          this.state.submittingOrNot ?
+          this.state.submittedOrNot ?
           (
             (
               (city === "" || city === null || city === undefined) ||

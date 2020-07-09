@@ -41,3 +41,5 @@ class Pop_Up_1 extends Component {
         )
     }
 }
+
+export default Pop_Up_1;
