@@ -33,6 +33,8 @@ export const Pop_Up_1 = ({ handleExit }) => {
     )
 }
 
+//mapStateToProps-> data, mapDispatchToProps-> action (function)
+
 const mapStateToProps = state => ({
     showPopUp: state.popUp.showPopUp,
     pop_up_exit: state.popUp.pop_up_exit

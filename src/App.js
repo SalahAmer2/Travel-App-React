@@ -3,6 +3,8 @@ import logo from './logo.svg';
 import './App.css';
 import { render } from '@testing-library/react';
 
+import { connect } from "react-redux";
+
 //import getFunc, { newDate, depDateFromUser, returnDateFromUser, city} from "./fetchData";
 
 import { timeDiff } from "./timeDiff";
@@ -80,7 +82,7 @@ class App extends Component {
     //   savetripBtn.textContent = "Save trip";
     // }
 
-    function deleteTrip(tripId) {
+    function deleteTrip(tripId) { //DELETE WITH MAPDISPATCHTOPROPS //That payload is the ID of the post we want to delete // Refer to Net Ninja video
       //1. Delete the trip from the server using the "/deleteTrip"
       //2. Fetch new trip data from the server
       //3. update the UI calling the above createUI() function
@@ -275,14 +277,14 @@ class App extends Component {
       <div className='App'>
         {/* <All_Pop_Ups /> */}
         {
-          this.state.submittedOrNot ?
+          this.props.submittedOrNot ?
           (
             (
               (city === "" || city === null || city === undefined) ||
               (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
               (returnDateFromUser === "" || returnDateFromUser === null || returnDateFromUser === undefined)
             ) ? 
-              <Pop_Up_2 handleExit={handleExit} pop_up_swing={this.state.pop_up_exit ? "pop-up-swing" : null}/> 
+                <Pop_Up_2 handleExit={handleExit} pop_up_swing={this.state.pop_up_exit ? "pop-up-swing" : null} /> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component  
             : 
             (
               (daysLeft === "Error: invalid dates") ? 
@@ -317,8 +319,18 @@ class App extends Component {
   }    
 }
 
+const mapStateToProps = state => ({
+  submittedOrNot: state.popUp.submittedOrNot
+});
 
-export default App;
+// const mapDispatchToProps = dispatch => ({
+//   toggleShowPopUp: popUp => dispatch(toggleShowPopUp(popUp)),
+//   togglePopUpExit: popUp => dispatch(togglePopUpExit(popUp))
+// })
+
+export default connect(mapStateToProps)(App);
+
+// export default App;
 
 
 
