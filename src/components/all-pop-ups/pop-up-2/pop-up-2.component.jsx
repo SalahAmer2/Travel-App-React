@@ -25,7 +25,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-    togglePopUpExit: popUp => dispatch(togglePopUpExit(popUp))
+    togglePopUpExit: () => dispatch(togglePopUpExit())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pop_Up_2);
