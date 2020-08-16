@@ -284,7 +284,7 @@ class App extends Component {
               (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
               (returnDateFromUser === "" || returnDateFromUser === null || returnDateFromUser === undefined)
             ) ? 
-                <Pop_Up_2 handleExit={handleExit} pop_up_swing={this.state.pop_up_exit ? "pop-up-swing" : null} /> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component  
+                <Pop_Up_2 /> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component  
             : 
             (
               (daysLeft === "Error: invalid dates") ? 
