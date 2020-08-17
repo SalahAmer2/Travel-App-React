@@ -2,15 +2,29 @@ import React from "react";
 import { connect } from "react-redux";
 import { togglePopUpExit } from "../../../redux/pop-up/pop-up.actions";
 
-const Pop_Up_2 = ({ togglePopUpExit, pop_up_exit }) => (
-    <div id="pop-up-2" className={`pop-up pop-up-drop ${pop_up_exit ? "pop-up-swing" : ""}`}>
-        <div className="container">
-            <div className="exit" onClick={togglePopUpExit}>x</div>
-            <h1>Empty city name / dates</h1>
+const Pop_Up_2 = ({ togglePopUpExit, pop_up_exit }) => {
+    const handleExit = () => {
+        // this.setState({ pop_up_exit: true });
+        // setTimeout(() => {
+        //     this.setState({ showPopUp: false });
+        //     this.setState({ pop_up_exit: false });
+        // }, 1000);
+        togglePopUpExit();
+        setTimeout(() => {
+            toggleShowPopUp();
+            togglePopUpExit();
+        }, 1000)
+    }
+    
+    return (
+        <div id="pop-up-2" className={`pop-up pop-up-drop ${pop_up_exit ? "pop-up-swing" : ""}`}>
+            <div className="container">
+                <div className="exit" onClick={togglePopUpExit}>x</div>
+                <h1>Empty city name / dates</h1>
+            </div>
         </div>
-    </div>
-)
-
+    )
+}
 const mapStateToProps = state => ({
     pop_up_exit: state.popUp.pop_up_exit
 });

@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { toggleShowPopUp, togglePopUpExit } from "../../../redux/pop-up/pop-up.actions";
+import { toggleShowPopUp, togglePopUpExit } from "../../redux/pop-up/pop-up.actions";
 
 // export const Pop_Up_1 = ({ handleExit }) => (
 //     <div id="pop-up-1" className={`pop-up pop-up-drop ${pop_up_swing}`}>
@@ -11,7 +11,7 @@ import { toggleShowPopUp, togglePopUpExit } from "../../../redux/pop-up/pop-up.a
 //     </div>
 // )
 
-export const Pop_Up_1 = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp }) => {
+const Pop_Up = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp, popUpMessage }) => {
 
     const handleExit = () => {
         // this.setState({ pop_up_exit: true });
@@ -26,13 +26,13 @@ export const Pop_Up_1 = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPo
         }, 1000)
     }
 
-    const style = showPopUp ? { display: 'block' } : { display: 'none'};
+    const style = showPopUp ? { display: 'block' } : { display: 'none' };
 
-    return(
+    return (
         <div id="pop-up-1" style={style} className={`pop-up pop-up-drop ${pop_up_exit ? "pop-up-swing" : ""}`}>
             <div className="container">
                 <div className="exit" onClick={handleExit}>x</div>
-                <h1>Invalid Dates</h1>
+                <h1>{popUpMessage}</h1>
             </div>
         </div>
     )
@@ -50,4 +50,4 @@ const mapDispatchToProps = dispatch => ({
     togglePopUpExit: () => dispatch(togglePopUpExit())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Pop_Up_1);
+export default connect(mapStateToProps, mapDispatchToProps)(Pop_Up);

@@ -11,6 +11,9 @@ import { timeDiff } from "./timeDiff";
 
 import { createTrip } from "./createTrip";
 
+import Pop_Up from "./components/pop-up/pop-up.component";
+import { BodyOfApp } from "./components/bodyOfApp/bodyOfApp.component";
+
 class App extends Component {
   constructor() {
     super();
@@ -284,15 +287,15 @@ class App extends Component {
               (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
               (returnDateFromUser === "" || returnDateFromUser === null || returnDateFromUser === undefined)
             ) ? 
-                <Pop_Up_2 /> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component  
+                <Pop_Up popUpMessage="Empty city name / dates"/> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component  
             : 
             (
               (daysLeft === "Error: invalid dates") ? 
-              <Pop_Up_1 handleExit={handleExit} pop_up_swing={this.state.pop_up_exit ? "pop-up-swing" : null}/>
+                <Pop_Up popUpMessage="Invalid Dates"/>//Now (Next) is this, Pop_Up_1
               :
               (
                 (this.state.pop_up_3_state) ?
-                <Pop_Up_3 handleExit={handleExit} pop_up_swing={this.state.pop_up_exit ? "pop-up-swing" : null}/>
+                  <Pop_Up popUpMessage="Check city name"/>
                 :
                 null
               )
