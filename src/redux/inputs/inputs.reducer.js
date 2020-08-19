@@ -1,10 +1,12 @@
+import { PopUpActionTypess } from "../pop-up/pop-up.types";
+
 const INITIAL_STATE = {
     inputs: {}
 }
 
 const inputsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case popUpActionTypes.SET_INPUTS:
+        case PopUpActionTypess.SET_INPUTS:
             return {
                 ...state,
                 inputs: action.payload

@@ -1,4 +1,4 @@
-export const PopUpActionTypes = {
+export const PopUpActionTypess = {
     TOGGLE_SHOW_POP_UP: 'TOGGLE_SHOW_POP_UP',
     TOGGLE_POP_UP_EXIT: 'TOGGLE_POP_UP_EXIT',
     TOGGLE_POP_UP_3_STATE: 'TOGGLE_POP_UP_3_STATE',

@@ -1,4 +1,5 @@
 import React from "react";
+import { TripCard } from "../tripCard/tripCard.component";
 
 export const MyTripsHolder = (props) => (
     <div>

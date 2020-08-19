@@ -26,7 +26,7 @@ export const BodyOfApp = ({ tripDataArray, handleGetFunc, handleChange, startDat
                 <button id="savetripBtn" onClick={handleGetFunc}>Save Trip</button>
             </div>                
         </div>       
-        <MyTripsHolder tripDataArray={tripDataArray} />
+        {/* <MyTripsHolder tripDataArray={tripDataArray} /> */}
     </div>
 )
 
