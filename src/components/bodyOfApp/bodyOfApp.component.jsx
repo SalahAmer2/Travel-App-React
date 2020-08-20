@@ -19,29 +19,27 @@ export const BodyOfApp = ({ tripDataArray, handleGetFunc, handleChange, startDat
                 <h2 className="centerTitle">Trip date</h2>
             </div>
             <div className="row">
-                <div className='col-sm-6'>
-                    <form autoComplete="off">
-                        <div className="form-group">
-                            <div className="enterTitleColor centerTitle">Enter Departure Date</div>
-                            <div className='input-group date datepicker'>
-                                <input type='text' width="100" name="dateValue" className="form-control" id="departureDate" />
-                                    <span className="input-group-addon">
-                                    <span className="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
-                            <div className="enterTitleColor centerTitle">Enter Return Date</div>
-                            <div className='input-group date datepicker'>
-                                <input type='text' width="100" name="dateValue" className="form-control" id="returnDate" />
-                                <span className="input-group-addon">
-                                    <span className="glyphicon glyphicon-calendar"></span>
-                                </span>
-                            </div>
+                <form autoComplete="off">
+                    <div className="form-group">
+                        <div className="enterTitleColor centerTitle">Enter Departure Date</div>
+                        <div className='input-group date datepicker'>
+                            <input type='text' width="100" name="dateValue" className="form-control" id="departureDate" />
+                            <span className="input-group-addon">
+                                <span className="glyphicon glyphicon-calendar"></span>
+                            </span>
                         </div>
-                        <div className="holder feel centerBtn">
-                            <button id="savetripBtn">Save Trip</button>
+                        <div className="enterTitleColor centerTitle">Enter Return Date</div>
+                        <div className='input-group date datepicker'>
+                            <input type='text' width="100" name="dateValue" className="form-control" id="returnDate" />
+                            <span className="input-group-addon">
+                                <span className="glyphicon glyphicon-calendar"></span>
+                            </span>
                         </div>
-                    </form>
-                </div>
+                    </div>
+                    <div className="holder feel centerBtn">
+                        <button id="savetripBtn">Save Trip</button>
+                    </div>
+                </form>
             </div>
         </div>       
         {/* <MyTripsHolder tripDataArray={tripDataArray} /> */}

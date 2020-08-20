@@ -1,5 +1,6 @@
 //Variables
 $titleColor: rgb(240, 212, 72);
+$transparentBlueBGcolor: rgba(25, 70, 100, .4);
 //
 .centerTitle {
     text-align: center;
@@ -20,6 +21,16 @@ $titleColor: rgb(240, 212, 72);
     column-gap: 30px;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+
+.entryHolder {
+    background: $transparentBlueBGcolor;
+    // padding-bottom: 500px;
+    // padding: 10%;
+    // margin: 5% 5% 5% 0%;
+    padding: 10px;
+    width: min-content;
     margin-bottom: 20px;
 }
 

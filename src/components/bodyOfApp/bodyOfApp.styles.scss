@@ -15,6 +15,7 @@ $transparentBlueBGcolor: rgba(25, 70, 100, .4);
     background-color: $transparentBlueBGcolor;
     border-radius: 10px;
     padding: 0 5px 0 5px;
+    margin: auto;
 }
 
 .container {
@@ -23,6 +24,11 @@ $transparentBlueBGcolor: rgba(25, 70, 100, .4);
     top: 13%;
     width: 100%;
     box-sizing: border-box;
+}
+
+form {
+    margin-left: 25%;
+    margin-right: 25%;
 }
 
 .row h2 {
@@ -40,4 +46,6 @@ $transparentBlueBGcolor: rgba(25, 70, 100, .4);
 
 .input-group-addon {
     min-width: 37px;
+    position: relative;
+    right: 10px;
 }
