@@ -287,15 +287,15 @@ class App extends Component {
               (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
               (returnDateFromUser === "" || returnDateFromUser === null || returnDateFromUser === undefined)
             ) ? 
-                <Pop_Up popUpMessage="Empty city name / dates"/> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component  
+                <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component
             : 
             (
               (daysLeft === "Error: invalid dates") ? 
-                <Pop_Up popUpMessage="Invalid Dates"/>//Now (Next) is this, Pop_Up_1
+                <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>//Now (Next) is this, Pop_Up_1
               :
               (
                 (this.state.pop_up_3_state) ?
-                  <Pop_Up popUpMessage="Check city name"/>
+                  <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3"/>
                 :
                 null
               )

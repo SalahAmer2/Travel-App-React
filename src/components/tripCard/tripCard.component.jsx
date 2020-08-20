@@ -12,6 +12,8 @@ import { Low_Temp } from './components-of-tripCard/low_temp/low_temp.component';
 import { Max_Temp } from './components-of-tripCard/max_temp/max_temp.component';
 import { Temp } from './components-of-tripCard/temp/temp.component';
 
+import './tripCard.styles.scss'
+
 export const TripCard = (props) => (
     <div className='entryHolder' id={props.id}>
         <Button id={props.id}/>

@@ -1,6 +1,8 @@
 import React from "react";
 import { TripCard } from "../tripCard/tripCard.component";
 
+import './myTripsHolder.styles.scss';
+
 export const MyTripsHolder = (props) => (
     <div>
         {props.children ? 

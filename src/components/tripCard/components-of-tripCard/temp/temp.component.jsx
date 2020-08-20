@@ -1,5 +1,7 @@
 import React from 'react';
 
+import './temp.styles.scss'
+
 export const Temp = (props) => (
     <div className='temp'>
         <div className='entry-name'>Temperature: </div>

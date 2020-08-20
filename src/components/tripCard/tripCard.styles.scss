@@ -1,0 +1,9 @@
+//Variables
+$transparentBlueBGcolor: rgba(25, 70, 100, .4);
+//
+.entryHolder {
+    background: $transparentBlueBGcolor;
+    padding: 10px;
+    width: min-content;
+    margin-bottom: 20px;
+}

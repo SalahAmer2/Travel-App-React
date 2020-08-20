@@ -2,6 +2,8 @@ import React from "react";
 import { connect } from "react-redux";
 import { toggleShowPopUp, togglePopUpExit } from "../../redux/pop-up/pop-up.actions";
 
+import './pop-up.styles.scss'
+
 // export const Pop_Up_1 = ({ handleExit }) => (
 //     <div id="pop-up-1" className={`pop-up pop-up-drop ${pop_up_swing}`}>
 //         <div className="container">
@@ -11,7 +13,7 @@ import { toggleShowPopUp, togglePopUpExit } from "../../redux/pop-up/pop-up.acti
 //     </div>
 // )
 
-const Pop_Up = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp, popUpMessage }) => {
+const Pop_Up = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp, popUpMessage, popUpNumberID }) => {
 
     const handleExit = () => {
         // this.setState({ pop_up_exit: true });
@@ -29,7 +31,7 @@ const Pop_Up = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp, popU
     const style = showPopUp ? { display: 'block' } : { display: 'none' };
 
     return (
-        <div id="pop-up-1" style={style} className={`pop-up pop-up-drop ${pop_up_exit ? "pop-up-swing" : ""}`}>
+        <div id={popUpNumberID} style={style} className={`pop-up pop-up-drop ${pop_up_exit ? "pop-up-swing" : ""}`}>
             <div className="container">
                 <div className="exit" onClick={handleExit}>x</div>
                 <h1>{popUpMessage}</h1>

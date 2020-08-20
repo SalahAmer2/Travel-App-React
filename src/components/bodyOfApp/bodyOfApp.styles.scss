@@ -1,0 +1,39 @@
+//Variables
+$titleColor: rgb(240, 212, 72);
+$transparentBlueBGcolor: rgba(25, 70, 100, .4);
+//
+.centerTitle {
+    text-align: center;
+}
+
+.headline {
+    font-size: 2em;
+    color: darken($titleColor, 10);
+}
+
+#city {
+    background-color: $transparentBlueBGcolor;
+    border-radius: 10px;
+    padding: 0 5px 0 5px;
+}
+
+.container {
+    background: #f0e4d4;
+    padding: 10%;
+    top: 13%;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.row h2 {
+    color: darken($titleColor, 10);
+}
+
+.enterTitleColor {
+    color: darken($titleColor, 10);
+}
+
+.centerBtn {
+    display: flex;
+    justify-content: center;
+}

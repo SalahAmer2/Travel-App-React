@@ -1,0 +1,18 @@
+.daysLeft {
+    display: flex;
+    flex-direction: row;
+    column-gap: 10px;
+    padding: 8px;
+    justify-content: space-between;
+}
+
+.entry-name {
+    text-align: left;
+    float: left;
+    font-weight: bold;
+}
+
+.entry-value {
+    text-align: right;
+    float: right;
+}
