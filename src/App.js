@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
-import './App.css';
+import './App.scss';
 import { render } from '@testing-library/react';
 
 import { connect } from "react-redux";

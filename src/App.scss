@@ -1,0 +1,44 @@
+//Variables
+$titleColor: rgb(240, 212, 72);
+$transparentBlueBGcolor: rgba(25, 70, 100, .4);
+//
+.bg {
+    background-image: url('./images/david-marcu-78A265wPiO4-unsplash.jpg');
+    background-size: 100% 100%;
+    min-height: 100%;
+    position: relative;
+    padding-bottom: 50px;
+}
+
+footer {
+    background-color: #303036;
+    text-align: center;
+    color: #d3d3d3;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    // position: fixed;
+    // position: static;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+    width: 100%;
+}
+
+#app {
+    // display: grid;
+    // grid-auto-rows: minmax(50px, auto);
+    /* grid-template-columns:  */
+    // height: 100vh;
+    /* background: #f23557; */
+    // grid-template-columns: auto;
+    color: #f0d43a;
+    // justify-content: center;
+    // grid-gap: 1em;
+    font-size: 20px;
+    font-family: 'Oswald', sans-serif;
+    min-height: 100%;
+}
+
+label {
+    color: darken($titleColor, 10);
+}
