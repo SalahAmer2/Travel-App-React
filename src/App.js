@@ -330,7 +330,8 @@ class App extends Component {
             <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2" />
        ) : null} */}
 
-        {/* <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2" /> */}
+        <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2" />
+        <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1" />
 
         {/* <div id="pop-up-1" className="pop-up pop-up-drop">
           <div className="container">

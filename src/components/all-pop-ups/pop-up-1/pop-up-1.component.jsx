@@ -11,14 +11,20 @@ import { toggleShowPopUp, togglePopUpExit } from "../../../redux/pop-up/pop-up.a
 //     </div>
 // )
 
-export const Pop_Up_1 = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp }) => {
+class Pop_Up_1 extends React.Component {
 
-    const handleExit = () => {
+    // const Pop_Up = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp, popUpMessage, popUpNumberID }) => {
+
+    handleExit = () => {
         // this.setState({ pop_up_exit: true });
         // setTimeout(() => {
         //     this.setState({ showPopUp: false });
         //     this.setState({ pop_up_exit: false });
         // }, 1000);
+
+        const { toggleShowPopUp } = this.props;
+        const { togglePopUpExit } = this.props;
+
         togglePopUpExit();
         setTimeout(() => {
             toggleShowPopUp();
@@ -26,19 +32,19 @@ export const Pop_Up_1 = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPo
         }, 1000)
     }
 
-    const style = showPopUp ? { display: 'block' } : { display: 'none'};
+    render() {
+        const style = this.props.showPopUp ? { display: 'block' } : { display: 'none' };
 
-    return(
-        <div id="pop-up-1" style={style} className={`pop-up pop-up-drop ${pop_up_exit ? "pop-up-swing" : ""}`}>
-            <div className="container">
-                <div className="exit" onClick={handleExit}>x</div>
-                <h1>Invalid Dates</h1>
+        return (
+            <div id="pop-up-1" style={style} className={`pop-up pop-up-drop ${this.props.pop_up_exit ? "pop-up-swing" : ""}`}>
+                <div className="container">
+                    <div className="exit" onClick={this.handleExit}>x</div>
+                    <h1>Invalid Dates</h1>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
-
-//mapStateToProps-> data, mapDispatchToProps-> action (function)
 
 const mapStateToProps = state => ({
     showPopUp: state.popUp.showPopUp,
