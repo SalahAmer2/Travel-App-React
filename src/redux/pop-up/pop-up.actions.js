@@ -14,6 +14,7 @@ export const togglePopUp3State = () => ({
     type: PopUpActionTypes.TOGGLE_POP_UP_3_STATE
 })
 
-export const toggleSubmittedOrNot = () => ({
-    type: PopUpActionTypes.TOGGLE_SUBMITTED_OR_NOT
+export const toggleSubmittedOrNot = popUp => ({
+    type: PopUpActionTypes.TOGGLE_SUBMITTED_OR_NOT,
+    payload: popUp
 })

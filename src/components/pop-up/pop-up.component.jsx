@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import { toggleShowPopUp, togglePopUpExit } from "../../redux/pop-up/pop-up.actions";
+import { toggleShowPopUp, togglePopUpExit, toggleSubmittedOrNot } from "../../redux/pop-up/pop-up.actions";
 
 import './pop-up.styles.scss'
 
@@ -26,12 +26,19 @@ class Pop_Up extends React.Component {
 
         const { toggleShowPopUp } = this.props;
         const { togglePopUpExit } = this.props;
+        const { toggleSubmittedOrNot } = this.props;
 
         togglePopUpExit();
         setTimeout(() => {
             toggleShowPopUp();
             togglePopUpExit();
+            toggleSubmittedOrNot({
+                submittedOrNot: false
+            });
         }, 1000)
+
+        // const { submittedOrNot } = this.props;
+        // submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
     }
 
     render() {
@@ -51,12 +58,14 @@ class Pop_Up extends React.Component {
 
 const mapStateToProps = state => ({
     showPopUp: state.popUp.showPopUp,
-    pop_up_exit: state.popUp.pop_up_exit
+    pop_up_exit: state.popUp.pop_up_exit,
+    submittedOrNot: state.popUp.submittedOrNot
 });
 
 const mapDispatchToProps = dispatch => ({
     toggleShowPopUp: () => dispatch(toggleShowPopUp()),
-    togglePopUpExit: () => dispatch(togglePopUpExit())
+    togglePopUpExit: () => dispatch(togglePopUpExit()),
+    toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pop_Up);

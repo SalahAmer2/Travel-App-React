@@ -124,7 +124,9 @@ class BodyOfApp extends React.Component {
 
         const { toggleSubmittedOrNot } = this.props;
 
-        toggleSubmittedOrNot();
+        toggleSubmittedOrNot({
+            submittedOrNot: true
+        });
 
         const { currentInputs } = this.props;
 
@@ -202,7 +204,7 @@ class BodyOfApp extends React.Component {
 }
 const mapDispatchToProps = dispatch => ({
     currentInputs: inputs => dispatch(currentInputs(inputs)),
-    toggleSubmittedOrNot: () => dispatch(toggleSubmittedOrNot()),
+    toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp)),
     toggleShowPopUp: () => dispatch(toggleShowPopUp())
 })
 

@@ -290,7 +290,7 @@ class App extends Component {
         {
           this.props.submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
         }
-        {
+        {//This ternary conditional is working, but only once, because the second time submittedOrNot becomes false 
           this.props.submittedOrNot ?
           (
             (
@@ -298,21 +298,21 @@ class App extends Component {
               (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
               (returnDateFromUser === "" || returnDateFromUser === null || returnDateFromUser === undefined)
             ) ? (
-                  this.props.toggleShowPopUp(),
+                  //this.props.toggleShowPopUp(),
                   <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component
                 )
               : 
             (
               (daysLeft === "Error: invalid dates") ? 
                 (
-                  this.props.toggleShowPopUp(),
+                  //this.props.toggleShowPopUp(),
                   <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>//Now (Next) is this, Pop_Up_1
                 )
               :
               (
                 (this.props.pop_up_3_state) ?
                   ( 
-                    this.props.toggleShowPopUp(),
+                    //this.props.toggleShowPopUp(),
                     <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3"/>
                   )
                 :
@@ -330,8 +330,8 @@ class App extends Component {
             <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2" />
        ) : null} */}
 
-        <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2" />
-        <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1" />
+        {/* <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2" />
+        <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1" /> */}
 
         {/* <div id="pop-up-1" className="pop-up pop-up-drop">
           <div className="container">

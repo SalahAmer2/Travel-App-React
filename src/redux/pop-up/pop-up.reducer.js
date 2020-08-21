@@ -27,7 +27,7 @@ const popUpReducer = (state = INITIAL_STATE, action) => {
         case PopUpActionTypes.TOGGLE_SUBMITTED_OR_NOT:
             return {
                 ...state,
-                submittedOrNot: !state.submittedOrNot
+                submittedOrNot: action.payload
             }
         default:
             return state;
