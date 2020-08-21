@@ -278,7 +278,7 @@ class App extends Component {
 
     //document.getElementById("savetripBtn").addEventListener("click", performAction);
 
-    const daysLeft = "Error: invalid dates";
+    const daysLeft = "Error: invalid dates";//THIS IS HARD CODED FOR THE PREVIOUS DEBUGGING, MUST REMOVE THIS LATER
     
     const city = this.props.currentInputs.city;
     const depDateFromUser = this.props.currentInputs.depDateFromUser;
@@ -290,7 +290,7 @@ class App extends Component {
         {
           this.props.submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
         }
-        {//This ternary conditional is working, but only once, because the second time submittedOrNot becomes false 
+        {
           this.props.submittedOrNot ?
           (
             (
