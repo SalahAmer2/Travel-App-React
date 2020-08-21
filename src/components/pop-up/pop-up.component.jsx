@@ -13,14 +13,20 @@ import './pop-up.styles.scss'
 //     </div>
 // )
 
-const Pop_Up = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp, popUpMessage, popUpNumberID }) => {
+class Pop_Up extends React.Component {
 
-    const handleExit = () => {
+// const Pop_Up = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp, popUpMessage, popUpNumberID }) => {
+
+    handleExit = () => {
         // this.setState({ pop_up_exit: true });
         // setTimeout(() => {
         //     this.setState({ showPopUp: false });
         //     this.setState({ pop_up_exit: false });
         // }, 1000);
+
+        const { toggleShowPopUp } = this.props;
+        const { togglePopUpExit } = this.props;
+
         togglePopUpExit();
         setTimeout(() => {
             toggleShowPopUp();
@@ -28,18 +34,19 @@ const Pop_Up = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp, popU
         }, 1000)
     }
 
-    const style = showPopUp ? { display: 'block' } : { display: 'none' };
+    render() {
+        const style = this.props.showPopUp ? { display: 'block' } : { display: 'none' };
 
-    return (
-        <div id={popUpNumberID} style={style} className={`pop-up pop-up-drop ${pop_up_exit ? "pop-up-swing" : ""}`}>
-            <div className="container">
-                <div className="exit" onClick={handleExit}>x</div>
-                <h1>{popUpMessage}</h1>
+        return (
+            <div id={this.props.popUpNumberID} style={style} className={`pop-up pop-up-drop ${this.props.pop_up_exit ? "pop-up-swing" : ""}`}>
+                <div className="container">
+                    <div className="exit" onClick={this.handleExit}>x</div>
+                    <h1>{this.props.popUpMessage}</h1>
+                </div>
             </div>
-        </div>
-    )
+        )
+    }
 }
-
 //mapStateToProps-> data, mapDispatchToProps-> action (function)
 
 const mapStateToProps = state => ({

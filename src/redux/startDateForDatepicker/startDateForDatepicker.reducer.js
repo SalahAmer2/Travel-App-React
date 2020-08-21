@@ -1,4 +1,4 @@
-import { PopUpActionTypess } from "../pop-up/pop-up.types";
+import { PopUpActionTypes } from "../pop-up/pop-up.types";
 
 const INITIAL_STATE = {
     startDateForDatepicker: {}
@@ -6,7 +6,7 @@ const INITIAL_STATE = {
 
 const startDateForDatepicker_Reducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case PopUpActionTypess.SET_START_DATE_FOR_DATEPICKER:
+        case PopUpActionTypes.SET_START_DATE_FOR_DATEPICKER:
             return {
                 ...state,
                 startDateForDatepicker: action.payload

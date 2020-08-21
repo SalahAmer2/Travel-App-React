@@ -11,8 +11,10 @@ import { timeDiff } from "./timeDiff";
 
 import { createTrip } from "./createTrip";
 
+import { toggleShowPopUp } from "./redux/pop-up/pop-up.actions";
+
 import Pop_Up from "./components/pop-up/pop-up.component";
-import { BodyOfApp } from "./components/bodyOfApp/bodyOfApp.component";
+import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
 
 class App extends Component {
   constructor() {
@@ -276,26 +278,43 @@ class App extends Component {
 
     //document.getElementById("savetripBtn").addEventListener("click", performAction);
 
+    const daysLeft = "Error: invalid dates";
+    
+    const city = this.props.currentInputs.city;
+    const depDateFromUser = this.props.currentInputs.depDateFromUser;
+    const returnDateFromUser = this.props.currentInputs.returnDateFromUser; 
+
     return ( //USE REDUX TO SOLVE THE POP-UP PROBLEM, YOU'LL HAVE STATE AVAILABLE IN ALL COMPONENTS//I need to restructure the app into individual components and have all the states and functions in their own components instead of here
       <div className='App'>
         {/* <All_Pop_Ups /> */}
-        {/* {
+        {
+          this.props.submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
+        }
+        {
           this.props.submittedOrNot ?
           (
             (
               (city === "" || city === null || city === undefined) ||
               (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
               (returnDateFromUser === "" || returnDateFromUser === null || returnDateFromUser === undefined)
-            ) ? 
-                <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component
-            : 
+            ) ? (
+                  this.props.toggleShowPopUp(),
+                  <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component
+                )
+              : 
             (
               (daysLeft === "Error: invalid dates") ? 
-                <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>//Now (Next) is this, Pop_Up_1
+                (
+                  this.props.toggleShowPopUp(),
+                  <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>//Now (Next) is this, Pop_Up_1
+                )
               :
               (
-                (this.state.pop_up_3_state) ?
-                  <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3"/>
+                (this.props.pop_up_3_state) ?
+                  ( 
+                    this.props.toggleShowPopUp(),
+                    <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3"/>
+                  )
                 :
                 null
               )
@@ -303,7 +322,35 @@ class App extends Component {
           )
           :
           null
-        } */}
+        }
+
+      {/* {this.props.submittedOrNot ?
+       (
+         this.props.toggleShowPopUp(),
+            <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2" />
+       ) : null} */}
+
+        {/* <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2" /> */}
+
+        {/* <div id="pop-up-1" className="pop-up pop-up-drop">
+          <div className="container">
+            <div className="exit">x</div>
+            <h1>Invalid Dates</h1>
+          </div>
+        </div> */}
+        {/* <div id="pop-up-2" class="pop-up pop-up-drop">
+          <div class="container">
+            <div class="exit">x</div>
+            <h1>Empty city name / dates</h1>
+          </div>
+        </div>
+        <div id="pop-up-3" class="pop-up pop-up-drop">
+          <div class="container">
+            <div class="exit">x</div>
+            <h1>Check city name</h1>
+          </div>
+        </div> */}
+
         <div className="bg">
           <label id="app">
             
@@ -323,15 +370,21 @@ class App extends Component {
 }
 
 const mapStateToProps = state => ({
-  submittedOrNot: state.popUp.submittedOrNot
+  submittedOrNot: state.popUp.submittedOrNot,
+  pop_up_3_state: state.popUp.pop_up_3_state,
+  currentInputs: state.inputs.currentInputs
 });
+
+const mapDispatchToProps = dispatch => ({
+  toggleShowPopUp: () => dispatch(toggleShowPopUp())
+})
 
 // const mapDispatchToProps = dispatch => ({
 //   toggleShowPopUp: popUp => dispatch(toggleShowPopUp(popUp)),
 //   togglePopUpExit: popUp => dispatch(togglePopUpExit(popUp))
 // })
 
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
 
 // export default App;
 
