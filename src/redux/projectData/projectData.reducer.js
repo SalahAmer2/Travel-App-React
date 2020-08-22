@@ -1,15 +1,15 @@
-import { PopUpActionTypes } from "../pop-up/pop-up.types";
+import { ProjectDataActionTypes } from "./projectData.types";
 
 const INITIAL_STATE = {
-    projectDataState: {}
+    currentProjectData: {}
 }
 
 const projectDataReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
-        case PopUpActionTypes.SET_PROJECT_DATA:
+        case ProjectDataActionTypes.CURRENT_PROJECT_DATA:
             return {
                 ...state,
-                projectDataState: action.payload
+                currentProjectData: action.payload
             }
         default:
             return state;
