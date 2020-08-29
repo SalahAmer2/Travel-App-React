@@ -13,6 +13,10 @@ const createTrip = (
     tripId
 ) => {
 
+    //Create a React component for the trip cards and export it to the myTripsHolder component and put it in the ternary operator conditional
+
+    //const entryHolder = React.createElement('div', { className: 'entryHolder', id: tripId });
+
     const entryHolder = document.createElement("div");
     entryHolder.classList.add("entryHolder");
     entryHolder.setAttribute("id", tripId);

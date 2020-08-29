@@ -237,7 +237,7 @@ class App extends Component {
     //   return uuid;
     // }
 
-    // const tripDataArray = Object.values(this.state.currentProjectData);
+    // const tripDataArray = Object.values(this.props.currentProjectData);
     // const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
 
     
@@ -404,7 +404,9 @@ class App extends Component {
             // startDate={this.state.startDate}
           />
           </label>
-          <footer>Background Photo by David Marcu on Unsplash</footer>
+          {/* <footer>
+            Background Photo by David Marcu on Unsplash
+          </footer> */}
         </div>
       </div>
     );
@@ -415,7 +417,8 @@ class App extends Component {
 const mapStateToProps = state => ({
   submittedOrNot: state.popUp.submittedOrNot,
   pop_up_3_state: state.popUp.pop_up_3_state,
-  currentInputs: state.inputs.currentInputs
+  currentInputs: state.inputs.currentInputs,
+  currentProjectData: state.inputs.currentProjectData
 });
 
 const mapDispatchToProps = dispatch => ({
