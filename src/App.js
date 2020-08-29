@@ -13,6 +13,7 @@ import { createTrip } from "./createTrip";
 
 import { toggleShowPopUp } from "./redux/pop-up/pop-up.actions";
 import { currentProjectData } from "./redux/projectData/projectData.actions";
+import { createTripCardsOrNot } from "./redux/createTripCards/createTripCards.actions";
 
 import Pop_Up from "./components/pop-up/pop-up.component";
 import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
@@ -165,6 +166,12 @@ class App extends Component {
   //   this.setState({ pop_up_exit: true });
   // }
   
+  createTripCardsOrNotFunc = () => {
+    this.props.createTripCardsOrNot({
+      createTripCardsOrNot: true
+    })
+  }
+
   render(){
 
     //   if ($(".entryHolder")[0]) {
@@ -363,7 +370,10 @@ class App extends Component {
             )
           )
           :
-          null
+            // this.props.createTripCardsOrNot({
+            //   createTripCardsOrNot: true
+            // })
+            this.createTripCardsOrNotFunc()
         }
 
       {/* {this.props.submittedOrNot ?
@@ -422,7 +432,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  toggleShowPopUp: () => dispatch(toggleShowPopUp())
+  toggleShowPopUp: () => dispatch(toggleShowPopUp()),
+  createTripCardsOrNot: (tripCard) => dispatch(createTripCardsOrNot(tripCard))
   //currentProjectData: projectData => dispatch(currentProjectData(projectData))
 });
 
