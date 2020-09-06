@@ -166,11 +166,11 @@ class App extends Component {
   //   this.setState({ pop_up_exit: true });
   // }
   
-  createTripCardsOrNotFunc = () => {
-    this.props.createTripCardsOrNot({
-      createTripCardsOrNot: true
-    })
-  }
+  // createTripCardsOrNotFunc = () => {
+  //   this.props.createTripCardsOrNot({
+  //     createTripCardsOrNot: true
+  //   });
+  // }
 
   render(){
 
@@ -340,7 +340,8 @@ class App extends Component {
           this.props.submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
         }
         {
-          this.props.submittedOrNot ?
+          this.props.submittedOrNot 
+          ?
           (
             (
               (city === "" || city === null || city === undefined) ||
@@ -352,28 +353,31 @@ class App extends Component {
                 )
               : 
             (
-              (daysLeft === "Error: invalid dates") ? 
+              (daysLeft === "Error: invalid dates") 
+              ? 
                 (
                   //this.props.toggleShowPopUp(),
                   <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>//Now (Next) is this, Pop_Up_1
                 )
               :
               (
-                (this.props.pop_up_3_state) ?
+                (this.props.pop_up_3_state) 
+                ?
                   ( 
                     //this.props.toggleShowPopUp(),
                     <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3"/>
                   )
                 :
-                null
+                  // this.props.createTripCardsOrNot({
+                  //   createTripCardsOrNot: true
+                  // })
+                  // this.createTripCardsOrNotFunc()
+                  null
               )
             )
           )
           :
-            // this.props.createTripCardsOrNot({
-            //   createTripCardsOrNot: true
-            // })
-            this.createTripCardsOrNotFunc()
+            null
         }
 
       {/* {this.props.submittedOrNot ?
