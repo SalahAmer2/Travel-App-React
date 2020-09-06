@@ -247,9 +247,9 @@ class BodyOfApp extends React.Component {
         };
 
         getFunc().then((dataOfTripCard) => {
-            this.props.currentProjectData({
+            this.props.currentProjectData([
                 dataOfTripCard
-            })
+            ])
         });
 
         // const funcFor_DataOfTripCard_InitState = (dataOfTripCard = []) => {

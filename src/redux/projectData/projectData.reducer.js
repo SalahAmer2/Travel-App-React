@@ -1,7 +1,7 @@
 import { ProjectDataActionTypes } from "./projectData.types";
 
 const INITIAL_STATE = {
-    currentProjectData: {}
+    currentProjectData: []
 }
 
 const projectDataReducer = (state = INITIAL_STATE, action) => {
