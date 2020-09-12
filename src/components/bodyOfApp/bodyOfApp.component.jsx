@@ -95,6 +95,14 @@ import './bodyOfApp.styles.scss'
 //     }
 
 class BodyOfApp extends React.Component {
+    constructor() {
+        super();
+
+        this.city = React.createRef();
+        this.departureDate = React.createRef();
+        this.returnDate = React.createRef();
+    }
+
     // constructor({ tripDataArray, handleGetFunc, handleChange, startDate }) {
     //     super({ tripDataArray, handleGetFunc, handleChange, startDate });
 
@@ -138,9 +146,9 @@ class BodyOfApp extends React.Component {
         const { currentInputs } = this.props;
 
         currentInputs({
-            city: this.refs.city.value,
-            depDateFromUser: this.refs.departureDate.value,
-            returnDateFromUser: this.refs.returnDate.value
+            city: this.city.current.value,
+            depDateFromUser: this.departureDate.current.value,
+            returnDateFromUser: this.returnDate.current.value
         })
 
         
@@ -173,9 +181,9 @@ class BodyOfApp extends React.Component {
             // const depDateFromUser = this.props.currentInputs.depDateFromUser;
             // const returnDateFromUser = this.props.currentInputs.returnDateFromUser;
 
-            const city = this.refs.city.value;
-            const depDateFromUser = this.refs.departureDate.value;
-            const returnDateFromUser = this.refs.returnDate.value;
+            const city = this.city.current.value;
+            const depDateFromUser = this.departureDate.current.value;
+            const returnDateFromUser = this.returnDate.current.value;
 
             // Create a new date instance dynamically with JS
             const d = new Date();
@@ -449,7 +457,7 @@ class BodyOfApp extends React.Component {
                 </div><br />
                 <div className="city">
                     <label htmlFor="city" className="centerTitle">Destinations</label>
-                    <input ref='city' type="text" id="city" placeholder="enter city name here" />
+                    <input ref={this.city} type="text" id="city" placeholder="enter city name here" />
                 </div>
                 <div className="container">
                     <div className="row">
@@ -460,21 +468,22 @@ class BodyOfApp extends React.Component {
                             <div className="form-group">
                                 <div className="enterTitleColor centerTitle">Enter Departure Date</div>
                                 <div className='input-group date datepicker'>
-                                    <input ref='departureDate' type='text' width="100" name="dateValue" className="form-control" id="departureDate" />
+                                    <input ref={this.departureDate} type='text' width="100" name="dateValue" className="form-control" id="departureDate" />
                                     <span className="input-group-addon">
                                         <span className="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
                                 <div className="enterTitleColor centerTitle">Enter Return Date</div>
                                 <div className='input-group date datepicker'>
-                                    <input ref='returnDate' type='text' width="100" name="dateValue" className="form-control" id="returnDate" />
+                                    <input ref={this.returnDate} type='text' width="100" name="dateValue" className="form-control" id="returnDate" />
                                     <span className="input-group-addon">
                                         <span className="glyphicon glyphicon-calendar"></span>
                                     </span>
                                 </div>
                             </div>
                             <div className="holder feel centerBtn">
-                                <button ref='savetripBtn' id="savetripBtn" onClick={this.performAction}>Save Trip</button>
+                                <button id="savetripBtn" onClick={this.performAction}>Save Trip</button>
+                                {/* <button ref='savetripBtn' id="savetripBtn" onClick={this.performAction}>Save Trip</button> */}
                             </div>
                         </form>
                     </div>
@@ -493,14 +502,16 @@ class BodyOfApp extends React.Component {
                             // : null
 
                             //(this.props.submittedOrNot && this.props.createTripCardsOrNot) ?
-                            // (this.props.submittedOrNot) ?
+                            (this.props.submittedOrNot) ?
                             // (this.props.currentProjectData) ?
                             // (this.props.createTripCardsOrNot) ?
-                            (this.props.currentProjectData.dataOfTripCard) ?
-                                (this.props.currentProjectData.dataOfTripCard).map((tripDataItem, index) => (
-                                    // <TripCard key={tripData.id} id={tripData.id} tripData={tripData} />,
-                                    <p>{tripDataItem + ""}</p>
-                                ))
+                            // (this.props.currentProjectData[0]) ?
+                                // (this.props.currentProjectData.dataOfTripCard).map((tripDataItem, index) => (
+                                //     // <TripCard key={tripData.id} id={tripData.id} tripData={tripData} />,
+                                //     <p>{tripDataItem + ""}</p>
+                                // ))
+                                <p> {this.props.currentProjectData[0] + ""}</p>
+                                // console.log(this.props.currentProjectData[0] + "") 
                                 : null    
 
                                 // ((this.props.currentProjectData.dataOfTripCard).map(tripDataIDKey => (
@@ -565,3 +576,62 @@ export default connect(mapStateToProps, mapDispatchToProps)(BodyOfApp);
 //     </div>
 // )
 
+{/* <div>
+    {this.props.submittedOrNot ?
+        <div className="title centerTitle">My Trips</div>
+        :
+        null
+    }
+    <div id="allEntryHolders">
+        {
+            (this.props.currentProjectData[0].country) ?
+                // (this.props.currentProjectData.dataOfTripCard).map((tripDataItem, index) => (
+                //     // <TripCard key={index} id={tripDataItem.id} tripData={tripDataItem} />,
+                //     <p>{tripDataItem + ""}</p>
+                // ))
+                <p> {this.props.currentProjectData[0].country + ""}</p>
+                : null
+        }
+    </div>
+</div> */}
+
+// render() {
+
+//     return (
+//         <div>
+//             {this.props.submittedOrNot ?
+//                 <div className="title centerTitle">My Trips</div>
+//                 :
+//                 null
+//             }
+//             <div id="allEntryHolders">
+//                 {
+//                     (this.props.currentProjectData[0].country) ?
+//                         // (this.props.currentProjectData.dataOfTripCard).map((tripDataItem, index) => (
+//                         //     // <TripCard key={index} id={tripDataItem.id} tripData={tripDataItem} />,
+//                         //     <p>{tripDataItem + ""}</p>
+//                         // ))
+//                         <p> {this.props.currentProjectData[0].country + ""}</p>
+//                         : null
+//                 }
+//             </div>
+//         </div>
+//     )
+// }
+
+// const mapStateToProps = state => ({
+//     currentProjectData: state.inputs.currentProjectData,
+//     submittedOrNot: state.popUp.submittedOrNot
+// });
+
+// const mapDispatchToProps = dispatch => ({
+//     currentInputs: inputs => dispatch(currentInputs(inputs)),
+//     toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp)),
+//     currentProjectData: projectData => dispatch(currentProjectData(projectData))
+// })
+
+// export default connect(mapStateToProps, mapDispatchToProps)(BodyOfApp);
+
+// (this.props.currentProjectData.dataOfTripCard) ?
+// console.log(this.props.currentProjectData[0].country + "")
+// : null
