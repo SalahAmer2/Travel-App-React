@@ -235,13 +235,14 @@ class BodyOfApp extends React.Component {
                 };
 
                 //dataOfTripCard[currentId] = tripData;
-                let dataOfTripCard = [tripData];
+                // let dataOfTripCard = [tripData];
 
                 // this.props.currentProjectData({
                 //     currentProjectData: "dataOfTripCard"
                 // })
 
-                return dataOfTripCard;
+                // return dataOfTripCard;
+                return tripData
 
             } catch (error) {
                 console.log("error", error);
@@ -254,9 +255,9 @@ class BodyOfApp extends React.Component {
         
         };
 
-        getFunc().then((dataOfTripCard) => {
-            this.props.currentProjectData([
-                dataOfTripCard
+        getFunc().then((tripData) => {
+            this.props.currentProjectData_Action([
+                tripData
             ])
         });
 
@@ -502,15 +503,15 @@ class BodyOfApp extends React.Component {
                             // : null
 
                             //(this.props.submittedOrNot && this.props.createTripCardsOrNot) ?
-                            (this.props.submittedOrNot) ?
-                            // (this.props.currentProjectData) ?
+                            // (this.props.submittedOrNot) ?
+                            (this.props.currentProjectData) ?
                             // (this.props.createTripCardsOrNot) ?
                             // (this.props.currentProjectData[0]) ?
                                 // (this.props.currentProjectData.dataOfTripCard).map((tripDataItem, index) => (
                                 //     // <TripCard key={tripData.id} id={tripData.id} tripData={tripData} />,
                                 //     <p>{tripDataItem + ""}</p>
                                 // ))
-                                <p> {this.props.currentProjectData[0] + ""}</p>
+                                <p> {this.props.currentProjectData[0].country  + ""}</p>
                                 // console.log(this.props.currentProjectData[0] + "") 
                                 : null    
 
@@ -543,7 +544,7 @@ const mapDispatchToProps = dispatch => ({
     currentInputs: inputs => dispatch(currentInputs(inputs)),
     toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp)),
     toggleShowPopUp: () => dispatch(toggleShowPopUp()),
-    currentProjectData: projectData => dispatch(currentProjectData(projectData)),
+    currentProjectData_Action: projectData => dispatch(currentProjectData(projectData)),
     createTripCardsOrNot: tripCards => dispatch(createTripCardsOrNot(tripCards))
 })
 
