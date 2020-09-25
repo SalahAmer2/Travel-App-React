@@ -12,7 +12,7 @@ const d = new Date(); //changed it from let to const
 export const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear(); //changed it from let to const
 
 export const depDateFromUser = document.getElementById("departureDate").value;//Now we have to figure out how to do it without getElementById
-export const returnDateFromUser = document.getElementById("returnDate").value;
+export const retDateFromUser = document.getElementById("returnDate").value;
 
 const username = 'salah_2';
 const weatherbitAPIKey = '2f3e278d4be24ab6b4e423bc8173692e';
@@ -36,7 +36,7 @@ const getFunc = async () => {
         const countryName = data.geonames[0].countryName;
         const latitude = data.geonames[0].lat;
         const longitude = data.geonames[0].lng;
-        const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+        const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
         const resWeather = await fetch(
             ((daysLeft > 7) ? baseURLWeatherForecast : baseURLWeatherCurrent) + "key=" + weatherbitAPIKey + "&lat=" + latitude + "&lon=" + longitude
@@ -58,7 +58,7 @@ const getFunc = async () => {
             country: countryName,
             date: newDate,
             depDate: depDateFromUser,
-            retDate: returnDateFromUser,
+            retDate: retDateFromUser,
             daysLeft: daysLeft,
             weather: weather,
             temp: (daysLeft > 7) ? {

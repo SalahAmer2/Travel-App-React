@@ -35,7 +35,7 @@ import './bodyOfApp.styles.scss'
 //     const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear(); //changed it from let to const
 
 //     const depDateFromUser = refs.departureDate.value;
-//     const returnDateFromUser = refs.returnDate.value;
+//     const retDateFromUser = refs.returnDate.value;
 
     // const pop_up_1 = document.getElementById("pop-up-1");
     // const pop_up_2 = document.getElementById("pop-up-2");
@@ -44,7 +44,7 @@ import './bodyOfApp.styles.scss'
     // if (
     //     (city === "" || city === null) ||
     //     (depDateFromUser === "" || depDateFromUser === null) ||
-    //     (returnDateFromUser === "" || returnDateFromUser === null)
+    //     (retDateFromUser === "" || retDateFromUser === null)
     // ) {
     //     pop_up_2.classList.remove("pop-up-swing");
     //     pop_up_2.style.display = 'block';
@@ -52,7 +52,7 @@ import './bodyOfApp.styles.scss'
 
     //     const savetripBtn = document.getElementById("savetripBtn");
 
-    //     const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+    //     const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
     //     if (daysLeft === "Error: invalid dates") {
     //         pop_up_1.classList.remove("pop-up-swing");
@@ -70,7 +70,7 @@ import './bodyOfApp.styles.scss'
     //         newDate: newDate,
     //         city: city,
     //         depDateFromUser: depDateFromUser,
-    //         returnDateFromUser: returnDateFromUser
+    //         retDateFromUser: retDateFromUser
     //     }).then(projectData => {
     //         if (projectData) {
     //             createUI(projectData);
@@ -125,7 +125,7 @@ class BodyOfApp extends React.Component {
         // currentInputs({
         //     city: refs.city.value,
         //     depDateFromUser: refs.departureDate.value,
-        //     returnDateFromUser: refs.returnDate.value
+        //     retDateFromUser: refs.returnDate.value
         // })
     // } 
     performAction = (e) => {
@@ -148,7 +148,7 @@ class BodyOfApp extends React.Component {
         currentInputs({
             city: this.city.current.value,
             depDateFromUser: this.departureDate.current.value,
-            returnDateFromUser: this.returnDate.current.value
+            retDateFromUser: this.returnDate.current.value
         })
 
         
@@ -179,11 +179,11 @@ class BodyOfApp extends React.Component {
 
             // const city = this.props.currentInputs.city;
             // const depDateFromUser = this.props.currentInputs.depDateFromUser;
-            // const returnDateFromUser = this.props.currentInputs.returnDateFromUser;
+            // const retDateFromUser = this.props.currentInputs.retDateFromUser;
 
             const city = this.city.current.value;
             const depDateFromUser = this.departureDate.current.value;
-            const returnDateFromUser = this.returnDate.current.value;
+            const retDateFromUser = this.returnDate.current.value;
 
             // Create a new date instance dynamically with JS
             const d = new Date();
@@ -196,7 +196,7 @@ class BodyOfApp extends React.Component {
                 const countryName = data.geonames[0].countryName;
                 const latitude = data.geonames[0].lat;
                 const longitude = data.geonames[0].lng;
-                const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+                const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
                 const resWeather = await fetch(
                     ((daysLeft > 7) ? baseURLWeatherForecast : baseURLWeatherCurrent) + "key=" + weatherbitAPIKey + "&lat=" + latitude + "&lon=" + longitude
@@ -204,6 +204,10 @@ class BodyOfApp extends React.Component {
 
                 const data2 = await resWeather.json();
                 const weather = data2.data[0].weather.description;
+                
+                const low_temp = data2.data[0].low_temp;
+                const max_temp = data2.data[0].max_temp;
+                const temp = data2.data[0].temp;
 
                 const resPixabayPhoto = await fetch(baseURLPixabay + "key=" + pixabayAPIKey + "&q=" + encodeURI(city) + "+tourism&image_type=photo");
 
@@ -218,15 +222,15 @@ class BodyOfApp extends React.Component {
                     country: countryName,
                     date: newDate,
                     depDate: depDateFromUser,
-                    retDate: returnDateFromUser,
+                    retDate: retDateFromUser,
                     daysLeft: daysLeft,
                     weather: weather,
                     temp: (daysLeft > 7) ? {
-                        low_temp: data2.data[0].low_temp,
-                        max_temp: data2.data[0].max_temp,
+                        low_temp: low_temp,
+                        max_temp: max_temp,
                         trueOrFalse: true //For the if statement in updateUI in the client side
                     } : {
-                            temp: data2.data[0].temp,
+                            temp: temp,
                             trueOrFalse: false //For the if statement in updateUI in the client side
                         },
                     lat: latitude,
@@ -242,7 +246,7 @@ class BodyOfApp extends React.Component {
                 // })
 
                 // return dataOfTripCard;
-                return tripData
+                return tripData;
 
             } catch (error) {
                 console.log("error", error);
@@ -287,7 +291,7 @@ class BodyOfApp extends React.Component {
         // if (
         //     (city === "" || city === null) ||
         //     (depDateFromUser === "" || depDateFromUser === null) ||
-        //     (returnDateFromUser === "" || returnDateFromUser === null)
+        //     (retDateFromUser === "" || retDateFromUser === null)
         // ) {
         //     pop_up_2.classList.remove("pop-up-swing");
         //     pop_up_2.style.display = 'block';
@@ -295,7 +299,7 @@ class BodyOfApp extends React.Component {
 
         //     const savetripBtn = document.getElementById("savetripBtn");
 
-        //     const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+        //     const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
         //     if (daysLeft === "Error: invalid dates") {
         //         pop_up_1.classList.remove("pop-up-swing");
@@ -332,11 +336,11 @@ class BodyOfApp extends React.Component {
 
     //     // const city = this.props.currentInputs.city;
     //     // const depDateFromUser = this.props.currentInputs.depDateFromUser;
-    //     // const returnDateFromUser = this.props.currentInputs.returnDateFromUser;
+    //     // const retDateFromUser = this.props.currentInputs.retDateFromUser;
 
     //     const city = this.refs.city.value;
     //     const depDateFromUser = this.refs.departureDate.value;
-    //     const returnDateFromUser = this.refs.returnDate.value;
+    //     const retDateFromUser = this.refs.returnDate.value;
 
     //     // Create a new date instance dynamically with JS
     //     const d = new Date();
@@ -349,7 +353,7 @@ class BodyOfApp extends React.Component {
     //         const countryName = data.geonames[0].countryName;
     //         const latitude = data.geonames[0].lat;
     //         const longitude = data.geonames[0].lng;
-    //         const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+    //         const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
     //         const resWeather = await fetch(
     //             ((daysLeft > 7) ? baseURLWeatherForecast : baseURLWeatherCurrent) + "key=" + weatherbitAPIKey + "&lat=" + latitude + "&lon=" + longitude
@@ -371,7 +375,7 @@ class BodyOfApp extends React.Component {
     //             country: countryName,
     //             date: newDate,
     //             depDate: depDateFromUser,
-    //             retDate: returnDateFromUser,
+    //             retDate: retDateFromUser,
     //             daysLeft: daysLeft,
     //             weather: weather,
     //             temp: (daysLeft > 7) ? {
@@ -504,15 +508,18 @@ class BodyOfApp extends React.Component {
 
                             //(this.props.submittedOrNot && this.props.createTripCardsOrNot) ?
                             // (this.props.submittedOrNot) ?
-                            (this.props.currentProjectData) ?
+                            (this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
                             // (this.props.createTripCardsOrNot) ?
                             // (this.props.currentProjectData[0]) ?
-                                // (this.props.currentProjectData.dataOfTripCard).map((tripDataItem, index) => (
-                                //     // <TripCard key={tripData.id} id={tripData.id} tripData={tripData} />,
-                                //     <p>{tripDataItem + ""}</p>
-                                // ))
-                                <p> {this.props.currentProjectData[0].country  + ""}</p>
-                                // console.log(this.props.currentProjectData[0] + "") 
+                                (this.props.currentProjectData).map((tripDataItem, index) => (
+                                    <TripCard key={index} id={tripDataItem.id} tripData={tripDataItem} />
+                                    // <p>{tripDataItem + ""}</p>
+                                ))
+                                // <p> {this.props.currentProjectData[0].country  + ""}</p>
+                                // <div className="">
+                                //    { console.log("currentProjectData:" + this.props.currentProjectData[0])} 
+                                // </div>   
+                                // : <p>not found</p>
                                 : null    
 
                                 // ((this.props.currentProjectData.dataOfTripCard).map(tripDataIDKey => (
@@ -535,7 +542,8 @@ class BodyOfApp extends React.Component {
 }
 
 const mapStateToProps = state => ({
-    currentProjectData: state.inputs.currentProjectData,
+    currentProjectData: state.projectData.currentProjectData,
+    // currentProjectData: state.inputs.currentProjectData,
     submittedOrNot: state.popUp.submittedOrNot,
     createTripCardsOrNot: state.tripCards.createTripCardsOrNot
 });

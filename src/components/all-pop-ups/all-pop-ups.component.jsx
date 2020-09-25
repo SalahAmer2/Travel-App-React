@@ -14,7 +14,7 @@ const All_Pop_Ups = ({ pop_up_3_state, pop_up_exit, submittedOrNot }) => (
                     (
                         (city === "" || city === null || city === undefined) ||
                         (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
-                        (returnDateFromUser === "" || returnDateFromUser === null || returnDateFromUser === undefined)
+                        (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
                     ) ?
                         <Pop_Up_2 handleExit={handleExit} pop_up_swing={pop_up_exit ? "pop-up-swing" : null} />
                         :

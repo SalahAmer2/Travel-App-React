@@ -35,11 +35,11 @@ const getFunc = async () => {
 
     const city = this.props.currentInputs.city;
     const depDateFromUser = this.props.currentInputs.depDateFromUser;
-    const returnDateFromUser = this.props.currentInputs.returnDateFromUser;
+    const retDateFromUser = this.props.currentInputs.retDateFromUser;
 
     // const city = this.refs.city.value;
     // const depDateFromUser = this.refs.departureDate.value;
-    // const returnDateFromUser = this.refs.returnDate.value;
+    // const retDateFromUser = this.refs.returnDate.value;
 
     // Create a new date instance dynamically with JS
     const d = new Date();
@@ -52,7 +52,7 @@ const getFunc = async () => {
         const countryName = data.geonames[0].countryName;
         const latitude = data.geonames[0].lat;
         const longitude = data.geonames[0].lng;
-        const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+        const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
         const resWeather = await fetch(
             ((daysLeft > 7) ? baseURLWeatherForecast : baseURLWeatherCurrent) + "key=" + weatherbitAPIKey + "&lat=" + latitude + "&lon=" + longitude
@@ -74,7 +74,7 @@ const getFunc = async () => {
             country: countryName,
             date: newDate,
             depDate: depDateFromUser,
-            retDate: returnDateFromUser,
+            retDate: retDateFromUser,
             daysLeft: daysLeft,
             weather: weather,
             temp: (daysLeft > 7) ? {

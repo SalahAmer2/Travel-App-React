@@ -14,24 +14,29 @@ import { Temp } from './components-of-tripCard/temp/temp.component';
 
 import './tripCard.styles.scss'
 
-export const TripCard = (props) => (
-    <div className='entryHolder' id={props.id}>
-        <Button id={props.id}/>
-        <CityPhoto cityPhoto={props.tripData.cityPhoto}/>
-        <TodaysDate date={props.tripData.date}/>
-        <Country country={props.tripData.country}/>
-        <DepDate depdate={props.tripData.depDate}/>
-        <RetDate retDate={props.tripData.retDate}/>
-        <DaysLeft daysLeft={props.tripData.daysLeft}/>
-        <Weather weather={props.tripData.weather}/>
-        {
-            props.tripData.trueOrFalse?
-                <React.Fragment>
-                    <Low_Temp low_temp={props.tripData.low_temp}/>
-                    <Max_Temp max_temp={props.tripData.max_temp}/>
-                </React.Fragment>
-                :
-                <Temp temp={props.tripData.temp}/>
-        }
-    </div>
-)
+export const TripCard = ({tripData, id}) => {
+
+    const trueOrFalse = tripData.temp.trueOrFalse;
+
+    return(
+        <div className='entryHolder' id={id}>
+            <Button id={id}/>
+            <CityPhoto cityPhoto={tripData.cityPhoto}/>
+            <TodaysDate date={tripData.date}/>
+            <Country country={tripData.country}/>
+            <DepDate depdate={tripData.depDate}/>
+            <RetDate retDate={tripData.retDate}/>
+            <DaysLeft daysLeft={tripData.daysLeft}/>
+            <Weather weather={tripData.weather}/>
+            {
+                trueOrFalse?
+                    <React.Fragment>
+                        <Low_Temp low_temp={tripData.temp.low_temp}/>
+                        <Max_Temp max_temp={tripData.temp.max_temp}/>
+                    </React.Fragment>
+                    :
+                    <Temp temp={tripData.temp.temp}/>
+            }
+        </div>
+    )
+}

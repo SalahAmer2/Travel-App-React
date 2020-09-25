@@ -5,7 +5,7 @@ import { render } from '@testing-library/react';
 
 import { connect } from "react-redux";
 
-//import getFunc, { newDate, depDateFromUser, returnDateFromUser, city} from "./fetchData";
+//import getFunc, { newDate, depDateFromUser, retDateFromUser, city} from "./fetchData";
 
 import timeDiff from "./timeDiff";
 
@@ -57,7 +57,7 @@ class App extends Component {
 
   //   const city = this.props.currentInputs.city;
   //   const depDateFromUser = this.props.currentInputs.depDateFromUser;
-  //   const returnDateFromUser = this.props.currentInputs.returnDateFromUser;
+  //   const retDateFromUser = this.props.currentInputs.retDateFromUser;
 
   //   // Create a new date instance dynamically with JS
   //   const d = new Date();
@@ -70,7 +70,7 @@ class App extends Component {
   //     const countryName = data.geonames[0].countryName;
   //     const latitude = data.geonames[0].lat;
   //     const longitude = data.geonames[0].lng;
-  //     const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+  //     const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
   //     const resWeather = await fetch(
   //       ((daysLeft > 7) ? baseURLWeatherForecast : baseURLWeatherCurrent) + "key=" + weatherbitAPIKey + "&lat=" + latitude + "&lon=" + longitude
@@ -92,7 +92,7 @@ class App extends Component {
   //       country: countryName,
   //       date: newDate,
   //       depDate: depDateFromUser,
-  //       retDate: returnDateFromUser,
+  //       retDate: retDateFromUser,
   //       daysLeft: daysLeft,
   //       weather: weather,
   //       temp: (daysLeft > 7) ? {
@@ -133,18 +133,18 @@ class App extends Component {
 
   //   const city = this.state.inputs.city;
   //   const depDateFromUser = this.state.inputs.depDate;
-  //   const returnDateFromUser = this.state.inputs.retDate;
+  //   const retDateFromUser = this.state.inputs.retDate;
 
   //   const d = new Date(); //changed it from let to const
   //   const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear(); //changed it from let to const
 
-  //   const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+  //   const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
   //   if 
   //   (
   //     !(
   //       (city === "" || city === null || city === undefined) ||
   //       (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
-  //       (returnDateFromUser === "" || returnDateFromUser === null || returnDateFromUser === undefined)
+  //       (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
   //     ) 
   //     || 
   //     !(daysLeft === "Error: invalid dates")
@@ -224,7 +224,7 @@ class App extends Component {
 
     // const city = this.state.inputs.city;
     // const depDateFromUser = this.state.inputs.depDate;
-    // const returnDateFromUser = this.state.inputs.retDate;
+    // const retDateFromUser = this.state.inputs.retDate;
 
     // // Create a new date instance dynamically with JS
     // const d = new Date(); //changed it from let to const
@@ -245,7 +245,7 @@ class App extends Component {
     // }
 
     // const tripDataArray = Object.values(this.props.currentProjectData);
-    // const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+    // const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
     
 
@@ -267,17 +267,17 @@ class App extends Component {
       // const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear(); 
 
     //   const depDateFromUser = document.getElementById("departureDate").value;
-    //   const returnDateFromUser = document.getElementById("returnDate").value;
+    //   const retDateFromUser = document.getElementById("returnDate").value;
 
     //   const pop_up_1 = document.getElementById("pop-up-1");
     //   const pop_up_2 = document.getElementById("pop-up-2");
     //   const pop_up_3 = document.getElementById("pop-up-3");
 
-    // if ( //I will make conditionals (ternary operator) for the pop-ups here in App.js in return() <-(do this) (done)->but first we need to handle/configure the inputs (city, depDateFromUser, returnDateFromUser, etc) in bodyOfApp 
+    // if ( //I will make conditionals (ternary operator) for the pop-ups here in App.js in return() <-(do this) (done)->but first we need to handle/configure the inputs (city, depDateFromUser, retDateFromUser, etc) in bodyOfApp 
     //      // I'll start with either rendering or not rendering the pop-up component based on the conditional, I'll handle pop-up-swing, later, in the pop-up component itself with an onClick event probably
     //     (city === "" || city === null) ||
     //     (depDateFromUser === "" || depDateFromUser === null) ||
-    //     (returnDateFromUser === "" || returnDateFromUser === null)
+    //     (retDateFromUser === "" || retDateFromUser === null)
     //   ) {
     //     pop_up_2.classList.remove("pop-up-swing");
     //     pop_up_2.style.display = 'block';
@@ -285,7 +285,7 @@ class App extends Component {
 
     //     const savetripBtn = document.getElementById("savetripBtn");
 
-    //     const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+    //     const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
     //     if (daysLeft === "Error: invalid dates") {
     //       pop_up_1.classList.remove("pop-up-swing");
@@ -303,7 +303,7 @@ class App extends Component {
         //   newDate: newDate,
         //   city: city,
         //   depDateFromUser: depDateFromUser,
-        //   returnDateFromUser: returnDateFromUser
+        //   retDateFromUser: retDateFromUser
         // }).then(projectData => {
         //   if (projectData) {
         //     createUI(projectData);
@@ -325,13 +325,13 @@ class App extends Component {
     
     const city = this.props.currentInputs.city;
     const depDateFromUser = this.props.currentInputs.depDateFromUser;
-    const returnDateFromUser = this.props.currentInputs.returnDateFromUser; 
+    const retDateFromUser = this.props.currentInputs.retDateFromUser; 
 
     // Create a new date instance dynamically with JS
     const d = new Date();
     const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
 
-    const daysLeft = timeDiff(newDate, depDateFromUser, returnDateFromUser);
+    const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
     return ( //USE REDUX TO SOLVE THE POP-UP PROBLEM, YOU'LL HAVE STATE AVAILABLE IN ALL COMPONENTS//I need to restructure the app into individual components and have all the states and functions in their own components instead of here
       <div className='App'>
@@ -340,13 +340,16 @@ class App extends Component {
           this.props.submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
         }
         {
+          this.props.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
+        }
+        {
           this.props.submittedOrNot 
           ?
           (
             (
               (city === "" || city === null || city === undefined) ||
               (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
-              (returnDateFromUser === "" || returnDateFromUser === null || returnDateFromUser === undefined)
+              (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
             ) ? (
                   //this.props.toggleShowPopUp(),
                   <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component
