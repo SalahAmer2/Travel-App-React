@@ -24,7 +24,7 @@ export const TripCard = ({tripData, id}) => {
             <CityPhoto cityPhoto={tripData.cityPhoto}/>
             <TodaysDate date={tripData.date}/>
             <Country country={tripData.country}/>
-            <DepDate depdate={tripData.depDate}/>
+            <DepDate depDate={tripData.depDate}/>
             <RetDate retDate={tripData.retDate}/>
             <DaysLeft daysLeft={tripData.daysLeft}/>
             <Weather weather={tripData.weather}/>
