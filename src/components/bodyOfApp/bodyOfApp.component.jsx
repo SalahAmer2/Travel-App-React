@@ -261,7 +261,7 @@ class BodyOfApp extends React.Component {
 
         getFunc().then((tripData) => {
             this.props.currentProjectData_Action([
-                tripData
+                ...tripData
             ])
         });
 
