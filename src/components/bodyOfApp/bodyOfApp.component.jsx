@@ -151,7 +151,10 @@ class BodyOfApp extends React.Component {
             retDateFromUser: this.returnDate.current.value
         })
 
+        // let dataOfTripCard = [];
         
+        let dataOfTripCard = {};
+
         //GETFUNC USED TO BE HERE
        
         const getFunc = async () => {
@@ -238,15 +241,17 @@ class BodyOfApp extends React.Component {
                     tripId: currentId
                 };
 
-                //dataOfTripCard[currentId] = tripData;
-                // let dataOfTripCard = [tripData];
+                dataOfTripCard[currentId] = tripData;
+                // let dataOfTripCard = [];
+
+                //dataOfTripCard.push(tripData);
 
                 // this.props.currentProjectData({
                 //     currentProjectData: "dataOfTripCard"
                 // })
 
-                // return dataOfTripCard;
-                return tripData;
+                return dataOfTripCard;
+                // return Object.values(dataOfTripCard);
 
             } catch (error) {
                 console.log("error", error);
@@ -259,11 +264,21 @@ class BodyOfApp extends React.Component {
         
         };
 
-        getFunc().then((tripData) => {
-            this.props.currentProjectData_Action([
-                ...tripData
-            ])
+        getFunc().then((dataOfTripCard) => {
+            this.props.currentProjectData_Action(
+                [
+                    ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
+                    {...dataOfTripCard}
+                ]
+            )
         });
+
+        // getFunc().then((dataOfTripCard_ObjectValues) => {
+        //     this.props.currentProjectData_Action(
+        //         // ...dataOfTripCard_ObjectValues
+        //         dataOfTripCard_ObjectValues
+        //     )
+        // });
 
         // const funcFor_DataOfTripCard_InitState = (dataOfTripCard = []) => {
         //     this.props.currentProjectData({
@@ -555,6 +570,8 @@ const mapDispatchToProps = dispatch => ({
     currentProjectData_Action: projectData => dispatch(currentProjectData(projectData)),
     createTripCardsOrNot: tripCards => dispatch(createTripCardsOrNot(tripCards))
 })
+
+//Notice that referring to the state with mapStateToProps is light BLUE and updating the state with mapDispatchToProps is YELLOW
 
 export default connect(mapStateToProps, mapDispatchToProps)(BodyOfApp);
 

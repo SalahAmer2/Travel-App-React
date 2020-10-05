@@ -435,7 +435,7 @@ const mapStateToProps = state => ({
   submittedOrNot: state.popUp.submittedOrNot,
   pop_up_3_state: state.popUp.pop_up_3_state,
   currentInputs: state.inputs.currentInputs,
-  currentProjectData: state.inputs.currentProjectData
+  //currentProjectData: state.projectData.currentProjectData
 });
 
 const mapDispatchToProps = dispatch => ({
