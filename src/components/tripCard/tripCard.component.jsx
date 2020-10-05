@@ -16,7 +16,7 @@ import './tripCard.styles.scss'
 
 export const TripCard = ({tripData, id}) => {
 
-    const trueOrFalse = tripData.temp.trueOrFalse;
+    // const trueOrFalse = tripData.temp.trueOrFalse;
 
     return(
         <div className='entryHolder' id={id}>
@@ -28,7 +28,7 @@ export const TripCard = ({tripData, id}) => {
             <RetDate retDate={tripData.retDate}/>
             <DaysLeft daysLeft={tripData.daysLeft}/>
             <Weather weather={tripData.weather}/>
-            {
+            {/* {
                 trueOrFalse?
                     <React.Fragment>
                         <Low_Temp low_temp={tripData.temp.low_temp}/>
@@ -36,7 +36,7 @@ export const TripCard = ({tripData, id}) => {
                     </React.Fragment>
                     :
                     <Temp temp={tripData.temp.temp}/>
-            }
+            } */}
         </div>
     )
 }
