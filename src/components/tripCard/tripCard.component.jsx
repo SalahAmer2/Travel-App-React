@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Button } from './components-of-tripCard/button/button.component';
+import Button from './components-of-tripCard/button/button.component';
 import { CityPhoto } from './components-of-tripCard/cityPhoto/cityPhoto.component';
 import { TodaysDate } from './components-of-tripCard/todaysDate/todaysDate.component';
 import { Country } from './components-of-tripCard/country/country.component';
@@ -14,13 +14,13 @@ import { Temp } from './components-of-tripCard/temp/temp.component';
 
 import './tripCard.styles.scss'
 
-export const TripCard = ({tripData, id}) => {
+export const TripCard = ({ tripData, id, onDelete}) => {
 
-    // const trueOrFalse = tripData.temp.trueOrFalse;
+    const trueOrFalse = tripData.temp.trueOrFalse;
 
     return(
         <div className='entryHolder' id={id}>
-            <Button id={id}/>
+            <Button onDelete={onDelete} id={id}/>
             <CityPhoto cityPhoto={tripData.cityPhoto}/>
             <TodaysDate date={tripData.date}/>
             <Country country={tripData.country}/>
@@ -28,7 +28,7 @@ export const TripCard = ({tripData, id}) => {
             <RetDate retDate={tripData.retDate}/>
             <DaysLeft daysLeft={tripData.daysLeft}/>
             <Weather weather={tripData.weather}/>
-            {/* {
+            {
                 trueOrFalse?
                     <React.Fragment>
                         <Low_Temp low_temp={tripData.temp.low_temp}/>
@@ -36,7 +36,7 @@ export const TripCard = ({tripData, id}) => {
                     </React.Fragment>
                     :
                     <Temp temp={tripData.temp.temp}/>
-            } */}
+            }
         </div>
     )
 }

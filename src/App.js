@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import logo from './logo.svg';
 import './App.scss';
 import { render } from '@testing-library/react';
@@ -18,7 +18,7 @@ import { createTripCardsOrNot } from "./redux/createTripCards/createTripCards.ac
 import Pop_Up from "./components/pop-up/pop-up.component";
 import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
 
-class App extends Component {
+class App extends React.Component {
   constructor() {
     super();
 

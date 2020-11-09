@@ -128,6 +128,25 @@ class BodyOfApp extends React.Component {
         //     retDateFromUser: refs.returnDate.value
         // })
     // } 
+
+    deleteTrip = (id) => {
+        this.props.currentProjectData_Action(
+            this.props.currentProjectData.filter((tripDataItem, index) => {
+                return index !== id;
+            })
+        )
+    };
+
+    // componentWillUnmount(){
+    //     deleteTrip = (id) => {
+    //         this.props.currentProjectData_Action(
+    //             this.props.currentProjectData.filter((tripDataItem, index) => {
+    //                 return index !== id;
+    //             })
+    //         )
+    //     };
+    // }
+
     performAction = (e) => {
         e.preventDefault();
         
@@ -239,6 +258,7 @@ class BodyOfApp extends React.Component {
                     lat: latitude,
                     lng: longitude,
                     //tripId: currentId
+                    tripId: null
                 };
 
                 ///dataOfTripCard[currentId] = tripData;
@@ -527,11 +547,45 @@ class BodyOfApp extends React.Component {
                             (this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
                             // (this.props.createTripCardsOrNot) ?
                             // (this.props.currentProjectData[0]) ?
-                                (this.props.currentProjectData).map((tripDataItem, index) => (
+                                (this.props.currentProjectData).map((tripDataItem, index) => {
                                     // <TripCard key={index} id={tripDataItem.id} tripData={tripDataItem} />
-                                    <TripCard key={index} id={index} tripData={tripDataItem} />
+
+                                    // this.props.currentProjectData_Action(    
+                                    //     this.props.currentProjectData[index].tripId = index
+                                    // )
+
+                                    return <TripCard key={index} id={index} tripData={tripDataItem}
+                                        // onDelete={this.deleteTrip(index)}
+                                        onDelete={setTimeout(this.deleteTrip(index), 100)}
+                                    // onDelete={
+                                    //     deleteTrip = (index) => {//We need to figure out how to use the id from here (index), inside deleteTrip 
+                                    //         this.props.currentProjectData_Action(
+                                    //             this.props.currentProjectData.filter((tripDataItem, index) => {
+                                    //                 return index !== id;
+                                    //             })
+                                    //         )
+                                    //     }
+                                    // } 
+                                    />
                                     // <p>{tripDataItem + ""}</p>
-                                ))
+                                })
+                                // (this.props.currentProjectData).map((tripDataItem, index) => (
+                                //     // <TripCard key={index} id={tripDataItem.id} tripData={tripDataItem} />
+                                //     <TripCard key={index} id={index} tripData={tripDataItem} 
+                                //         // onDelete={this.deleteTrip(index)}
+                                //         onDelete={setTimeout(this.deleteTrip(index), 100)}
+                                //         // onDelete={
+                                //         //     deleteTrip = (index) => {//We need to figure out how to use the id from here (index), inside deleteTrip 
+                                //         //         this.props.currentProjectData_Action(
+                                //         //             this.props.currentProjectData.filter((tripDataItem, index) => {
+                                //         //                 return index !== id;
+                                //         //             })
+                                //         //         )
+                                //         //     }
+                                //         // } 
+                                //     />
+                                //     // <p>{tripDataItem + ""}</p>
+                                // ))
                                 // <p> {this.props.currentProjectData[0].country  + ""}</p>
                                 // <div className="">
                                 //    { console.log("currentProjectData:" + this.props.currentProjectData[0])} 
