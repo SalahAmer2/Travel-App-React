@@ -1,6 +1,5 @@
 import React from "react";
 
-import Button from './components-of-tripCard/button/button.component';
 import { CityPhoto } from './components-of-tripCard/cityPhoto/cityPhoto.component';
 import { TodaysDate } from './components-of-tripCard/todaysDate/todaysDate.component';
 import { Country } from './components-of-tripCard/country/country.component';
@@ -20,7 +19,6 @@ export const TripCard = ({ tripData, id, onDelete}) => {
 
     return(
         <div className='entryHolder' id={id}>
-            <Button onDelete={onDelete} id={id}/>
             <CityPhoto cityPhoto={tripData.cityPhoto}/>
             <TodaysDate date={tripData.date}/>
             <Country country={tripData.country}/>

@@ -4,26 +4,9 @@ import { toggleShowPopUp, togglePopUpExit, toggleSubmittedOrNot } from "../../re
 
 import './pop-up.styles.scss'
 
-// export const Pop_Up_1 = ({ handleExit }) => (
-//     <div id="pop-up-1" className={`pop-up pop-up-drop ${pop_up_swing}`}>
-//         <div className="container">
-//             <div className="exit" onClick={handleExit}>x</div>
-//             <h1>Invalid Dates</h1>
-//         </div>
-//     </div>
-// )
-
 class Pop_Up extends React.Component {
 
-// const Pop_Up = ({ toggleShowPopUp, togglePopUpExit, pop_up_exit, showPopUp, popUpMessage, popUpNumberID }) => {
-
     handleExit = () => {
-        // this.setState({ pop_up_exit: true });
-        // setTimeout(() => {
-        //     this.setState({ showPopUp: false });
-        //     this.setState({ pop_up_exit: false });
-        // }, 1000);
-
         const { toggleShowPopUp } = this.props;
         const { togglePopUpExit } = this.props;
         const { toggleSubmittedOrNot } = this.props;
@@ -36,9 +19,6 @@ class Pop_Up extends React.Component {
                 submittedOrNot: false
             });
         }, 1000)
-
-        // const { submittedOrNot } = this.props;
-        // submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
     }
 
     render() {
@@ -54,7 +34,6 @@ class Pop_Up extends React.Component {
         )
     }
 }
-//mapStateToProps-> data, mapDispatchToProps-> action (function)
 
 const mapStateToProps = state => ({
     showPopUp: state.popUp.showPopUp,

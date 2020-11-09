@@ -11,8 +11,6 @@ class MyTripsHolder extends React.Component {
     }
 
     render() {
-        //const tripDataArray = Object.values(this.props.currentProjectData);
-
         return (
             <div>
                 {this.props.children ?
@@ -33,26 +31,9 @@ class MyTripsHolder extends React.Component {
                     }
                 </div>
             </div>
-            // React.createElement('div', { className: 'entryHolder', id: 'tripId' })
         )
-    }//NOT WORKING BECAUSE IT'S ASYNCHRONOUS
-
+    }
 }
-
-// export const MyTripsHolder = (props) => (
-//     <div>
-//         {props.children ? 
-//         <div className="title centerTitle">My Trips</div>
-//         :
-//         null
-//         }
-//         <div id="allEntryHolders">
-//             {props.tripDataArray.map(tripData => (
-//                 <TripCard key={tripData.id} id={tripData.id} tripData={tripData}/>
-//             ))}
-//         </div>
-//     </div>
-// )
 
 const mapStateToProps = state => ({
     currentProjectData: state.inputs.currentProjectData

@@ -6,7 +6,7 @@ const INITIAL_STATE = {
     pop_up_3_state: false,
     submittedOrNot: false
 }
-//These are true and false so no need for payload just !
+
 const popUpReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case PopUpActionTypes.TOGGLE_SHOW_POP_UP:

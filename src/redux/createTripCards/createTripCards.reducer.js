@@ -3,7 +3,6 @@ import { CreateTripCardsTypes } from "./createTripCards.types";
 const INITIAL_STATE = {
     createTripCardsOrNot: false,
 }
-//These are true and false so no need for payload just !
 const createTripCardsReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case CreateTripCardsTypes.CREATE_TRIP_CARDS_OR_NOT:
