@@ -59,7 +59,7 @@ class BodyOfApp extends React.Component {
             const weatherbitAPIKey = "2f3e278d4be24ab6b4e423bc8173692e";
             const pixabayAPIKey = "16218326-43ea96121b489407a6f95ba78";
 
-            const baseURLGeo = "https://api.geonames.org/searchJSON?q=";
+            const baseURLGeo = "http://api.geonames.org/searchJSON?q=";
             const baseURLWeatherCurrent = "https://api.weatherbit.io/v2.0/current?";
             const baseURLWeatherForecast = "https://api.weatherbit.io/v2.0/forecast/daily?";
             const baseURLPixabay = "https://pixabay.com/api/?";
