@@ -26,4 +26,6 @@ const timeDiff = (timeNow, timeDepart, timeReturn) => {
 
 }
 
+// module.exports = { timeDiff };
+
 export default timeDiff;

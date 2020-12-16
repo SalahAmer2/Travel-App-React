@@ -11,7 +11,7 @@ class MyTripsHolder extends React.Component {
     }
 
     render() {
-        return (
+       return (
             <div>
                 {this.props.children ?
                     <div className="title centerTitle">My Trips</div>

@@ -1,0 +1,13 @@
+.deleteXbtn {
+    font-weight: bold;
+    width: 27px;
+    text-align: center;
+    border-radius: 11px;
+    margin-bottom: 5px;
+    font-size: 10px;
+    font-family: sans-serif;
+    padding: 5px 5px 3px 5px;
+    &:hover {
+        cursor: pointer;
+    }
+}

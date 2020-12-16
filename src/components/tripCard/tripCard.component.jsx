@@ -1,5 +1,6 @@
-import React from "react";
+import React, {useState} from "react";
 
+import Button from './components-of-tripCard/button/button.component';
 import { CityPhoto } from './components-of-tripCard/cityPhoto/cityPhoto.component';
 import { TodaysDate } from './components-of-tripCard/todaysDate/todaysDate.component';
 import { Country } from './components-of-tripCard/country/country.component';
@@ -13,12 +14,21 @@ import { Temp } from './components-of-tripCard/temp/temp.component';
 
 import './tripCard.styles.scss'
 
-export const TripCard = ({ tripData, id, onDelete}) => {
+export const TripCard = ({ tripData, trip_id, onDelete}) => {
+
+    const [item, setItem] = useState(false);
 
     const trueOrFalse = tripData.temp.trueOrFalse;
 
+    // let deleteTripTrueOrFalseValue = false;
+
+    const deleteTripTrueOrFalse = () => {
+        setItem(true)
+    }
+
     return(
-        <div className='entryHolder' id={id}>
+        <div className={`entryHolder${item ? ' entryHolder-drop' : ''}`} id={`${trip_id}`}>
+            <Button onDelete={onDelete} trip_id={trip_id} deleteTripTrueOrFalse={() => { deleteTripTrueOrFalse() }}/>
             <CityPhoto cityPhoto={tripData.cityPhoto}/>
             <TodaysDate date={tripData.date}/>
             <Country country={tripData.country}/>

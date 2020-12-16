@@ -1,10 +1,18 @@
 import React from 'react';
+import logo from './logo.svg';
 import './App.scss';
+import { render } from '@testing-library/react';
+
 import { connect } from "react-redux";
+
+//import getFunc, { newDate, depDateFromUser, retDateFromUser, city} from "./fetchData";
 
 import timeDiff from "./timeDiff";
 
+// import { createTrip } from "./createTrip";
+
 import { toggleShowPopUp } from "./redux/pop-up/pop-up.actions";
+// import { currentProjectData } from "./redux/projectData/projectData.actions";
 import { createTripCardsOrNot } from "./redux/createTripCards/createTripCards.actions";
 
 import Pop_Up from "./components/pop-up/pop-up.component";
@@ -16,6 +24,7 @@ class App extends React.Component {
   }
 
   render(){
+    
     const city = this.props.currentInputs.city;
     const depDateFromUser = this.props.currentInputs.depDateFromUser;
     const retDateFromUser = this.props.currentInputs.retDateFromUser; 
@@ -26,7 +35,7 @@ class App extends React.Component {
 
     const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
-    return (
+    return ( 
       <div className='App'>
         {
           this.props.submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
@@ -43,20 +52,20 @@ class App extends React.Component {
               (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
               (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
             ) ? (
-                  <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/> //This->this.state.pop_up_exit should be made in mapStateToProps in its own component
+                  <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/>
                 )
               : 
             (
               (daysLeft === "Error: invalid dates") 
               ? 
                 (
-                  <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>//Now (Next) is this, Pop_Up_1
+                  <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>
                 )
               :
               (
                 (this.props.pop_up_3_state) 
                 ?
-                  ( 
+                  (
                     <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3"/>
                   )
                 :
@@ -73,6 +82,9 @@ class App extends React.Component {
             
           <BodyOfApp />
           </label>
+          {/* <footer>
+            Background Photo by David Marcu on Unsplash
+          </footer> */}
         </div>
       </div>
     );
