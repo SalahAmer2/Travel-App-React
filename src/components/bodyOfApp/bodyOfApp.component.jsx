@@ -9,6 +9,8 @@ import { currentProjectData_Update } from "../../redux/projectData/projectData.a
 import { currentProjectData_Delete } from "../../redux/projectData/projectData.actions";
 import { createTripCardsOrNot } from "../../redux/createTripCards/createTripCards.actions";
 
+import Pop_Up from "../pop-up/pop-up.component";
+
 import { TripCard } from "../tripCard/tripCard.component";
 
 import timeDiff from "../../timeDiff";
@@ -22,22 +24,15 @@ class BodyOfApp extends React.Component {
         this.city = React.createRef();
         this.departureDate = React.createRef();
         this.returnDate = React.createRef();
-        // this.currentTripCard = React.forwardRef();
     }
     
     deleteTrip = (trip_id) => {
-        // document.getElementById(trip_id).classList.add("entryHolder-drop");
-        // this.currentTripCard.current.classList.add("entryHolder-drop");
-        // this.currentTripCard.current.style.visibility = "hidden";
-        // this.currentTripCard.current.getElementById(trip_id).classList.add("entryHolder-drop");
-        // this.currentTripCard.current.classList.add("entryHolder-drop");
-        // this.deleteTripTrueOrFalse()
         setTimeout(() => { this.props.currentProjectData_Delete_Action(trip_id) }, 400); 
     };
 
     performAction = (e) => {
         e.preventDefault();
-        
+
         const { toggleShowPopUp } = this.props;
 
         toggleShowPopUp();
@@ -48,16 +43,56 @@ class BodyOfApp extends React.Component {
             submittedOrNot: true
         });
 
+        // const city = this.props.currentInputs.city;
+        // const depDateFromUser = this.props.currentInputs.depDateFromUser;
+        // const retDateFromUser = this.props.currentInputs.retDateFromUser;
+
+        const city = this.city.current.value
+        const depDateFromUser = this.departureDate.current.value
+        const retDateFromUser = this.returnDate.current.value
+
         const { currentInputs } = this.props;
 
+        // currentInputs({
+        //     city: this.city.current.value,
+        //     depDateFromUser: this.departureDate.current.value,
+        //     retDateFromUser: this.returnDate.current.value
+        // })
+
         currentInputs({
-            city: this.city.current.value,
-            depDateFromUser: this.departureDate.current.value,
-            retDateFromUser: this.returnDate.current.value
+            city: city,
+            depDateFromUser: depDateFromUser,
+            retDateFromUser: retDateFromUser
         })
+
+        // Create a new date instance dynamically with JS
+        const d = new Date();
+        const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
+
+        const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
+
+        // if(
+        //     (city === "" || city === null || city === undefined) ||
+        //     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+        //     (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
+        //     (daysLeft === "Error: invalid dates") ||
+        //     (this.props.pop_up_3_state)
+        // ) {
+        //     return;
+        // }
+
+        // const { toggleShowPopUp } = this.props;
+
+        // toggleShowPopUp();
+
+        // const { toggleSubmittedOrNot } = this.props;
+
+        // toggleSubmittedOrNot({
+        //     submittedOrNot: true
+        // });
         
         // let dataOfTripCard = {};
-       
+    
         const getFunc = async () => {
 
             const create_UUID = () => {
@@ -145,6 +180,17 @@ class BodyOfApp extends React.Component {
             }        
         };
 
+        if (
+            (city === "" || city === null || city === undefined) ||
+            (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+            (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
+            (daysLeft === "Error: invalid dates") ||
+            (this.props.pop_up_3_state)
+        ) {
+            return;
+        }
+
+
         getFunc().then((dataOfTripCard) => {
             this.props.currentProjectData_Update_Action(
                 [
@@ -164,61 +210,158 @@ class BodyOfApp extends React.Component {
         //     setTimeout(this.props.currentProjectData_Delete_Action(trip_id), 100);
         // };
 
+        // const city = this.props.currentInputs.city;
+        // const depDateFromUser = this.props.currentInputs.depDateFromUser;
+        // const retDateFromUser = this.props.currentInputs.retDateFromUser;
+
+        // const city = this.city.current.value;
+        // const depDateFromUser = this.departureDate.current.value;
+        // const retDateFromUser = this.returnDate.current.value;
+
+        // // Create a new date instance dynamically with JS
+        // const d = new Date();
+        // const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
+
+        // const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
+
         return (
             <div>
-                <div className="headline centerTitle">
-                    Travel App
-                </div><br />
-                <div className="city">
-                    <label htmlFor="city" className="centerTitle">Destinations</label>
-                    <input ref={this.city} type="text" id="city" placeholder="enter city name here" />
-                </div>
-                <div className="container">
-                    <div className="row">
-                        <h2 className="centerTitle">Trip date</h2>
-                    </div>
-                    <div className="row">
-                        <form autoComplete="off">
-                            <div className="form-group">
-                                <div className="enterTitleColor centerTitle">Enter Departure Date</div>
-                                <div className='input-group date datepicker'>
-                                    <input ref={this.departureDate} type='text' width="100" name="dateValue" className="form-control" id="departureDate" />
-                                    <span className="input-group-addon">
-                                        <span className="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                                <div className="enterTitleColor centerTitle">Enter Return Date</div>
-                                <div className='input-group date datepicker'>
-                                    <input ref={this.returnDate} type='text' width="100" name="dateValue" className="form-control" id="returnDate" />
-                                    <span className="input-group-addon">
-                                        <span className="glyphicon glyphicon-calendar"></span>
-                                    </span>
-                                </div>
-                            </div>
-                            <div className="holder feel centerBtn">
-                                <button id="savetripBtn" onClick={this.performAction}>Save Trip</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>       
-                <div>
-                    {   this.props.submittedOrNot ?
-                        <div className="title centerTitle">My Trips</div>
+                {/* {
+                    this.props.submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
+                }
+                {
+                    this.props.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
+                }
+                {
+                    this.props.submittedOrNot
+                        ?
+                        (
+                            (
+                                (city === "" || city === null || city === undefined) ||
+                                (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+                                (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
+                            ) ? (
+                                    <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2" />
+                                )
+                                :
+                                (
+                                    (daysLeft === "Error: invalid dates")
+                                        ?
+                                        (
+                                            <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1" />
+                                        )
+                                        :
+                                        (
+                                            (this.props.pop_up_3_state)
+                                                ?
+                                                (
+                                                    <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
+                                                )
+                                                :
+                                                null
+                                        )
+                                )
+                        )
                         :
                         null
+                } */}
+
+                {/* <Pop_Up
+                    className={
+                        (
+                            (city === "" || city === null || city === undefined) ||
+                            (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+                            (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
+                        )
+                        ? '' 
+                        : 'hidden'
+                    } 
+                    popUpMessage="Empty city name / dates" 
+                    popUpNumberID="pop-up-2" 
+                />
+                <Pop_Up 
+                    className={
+                        (
+                            (daysLeft === "Error: invalid dates")
+                        )
+                        ? ''
+                        : 'hidden'
                     }
-                    <div id="allEntryHolders">
-                        {
-                            (this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
-                                (this.props.currentProjectData).map((tripDataItem, index) => {
-                                    return <TripCard key={index} trip_id={tripDataItem.trip_id} tripData={tripDataItem}
-                                        onDelete={() => { this.deleteTrip(tripDataItem.trip_id) }}
-                                        // ref={this.currentTripCard}
-                                        />
-                                })
-                                : null    
-                        }
-                    </div>
+                    popUpMessage="Invalid Dates" 
+                    popUpNumberID="pop-up-1" 
+                />
+                <Pop_Up 
+                    className={
+                        (
+                            (this.props.pop_up_3_state)
+                        )
+                        ? ''
+                        : 'hidden'
+                    }
+                    popUpMessage="Check city name" 
+                    popUpNumberID="pop-up-3" 
+                /> */}
+
+                <div className="bg">
+                    <label id="app">
+                        <div className="headline centerTitle">
+                            Travel App
+                        </div><br />
+                        <div className="city">
+                            <label htmlFor="city" className="centerTitle">Destinations</label>
+                            <input ref={this.city} type="text" id="city" placeholder="enter city name here" />
+                        </div>
+                        <div className="container">
+                            <div className="row">
+                                <h2 className="centerTitle">Trip date</h2>
+                            </div>
+                            <div className="row">
+                                <form autoComplete="off">
+                                    <div className="form-group">
+                                        <div className="enterTitleColor centerTitle">Enter Departure Date</div>
+                                        <div className='input-group date datepicker'>
+                                            <input ref={this.departureDate} type='text' width="100" name="dateValue" className="form-control" id="departureDate" />
+                                            <span className="input-group-addon">
+                                                <span className="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                        <div className="enterTitleColor centerTitle">Enter Return Date</div>
+                                        <div className='input-group date datepicker'>
+                                            <input ref={this.returnDate} type='text' width="100" name="dateValue" className="form-control" id="returnDate" />
+                                            <span className="input-group-addon">
+                                                <span className="glyphicon glyphicon-calendar"></span>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div className="holder feel centerBtn">
+                                        <button id="savetripBtn" onClick={this.performAction}>Save Trip</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>       
+                        <div>
+                            {   this.props.submittedOrNot ?
+                                <div className="title centerTitle">My Trips</div>
+                                :
+                                null
+                            }
+                            <div id="allEntryHolders">
+                                {
+                                    (this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
+                                        (this.props.currentProjectData).map((tripDataItem, index) => {
+                                            return <TripCard key={index} trip_id={tripDataItem.trip_id} tripData={tripDataItem}
+                                                onDelete={() => { this.deleteTrip(tripDataItem.trip_id) }}
+                                                // ref={this.currentTripCard}
+                                                />
+                                        })
+                                        : null    
+                                }
+                            </div>
+                        </div>
+                    </label>
+                    {/* <footer>
+                        Background Photo by David Marcu on Unsplash
+                    </footer> */}
                 </div>
             </div>
         )
@@ -228,7 +371,9 @@ class BodyOfApp extends React.Component {
 const mapStateToProps = state => ({
     currentProjectData: state.projectData.currentProjectData,
     submittedOrNot: state.popUp.submittedOrNot,
-    createTripCardsOrNot: state.tripCards.createTripCardsOrNot
+    createTripCardsOrNot: state.tripCards.createTripCardsOrNot,
+    currentInputs: state.inputs.currentInputs,
+    pop_up_3_state: state.popUp.pop_up_3_state
 });
 
 const mapDispatchToProps = dispatch => ({

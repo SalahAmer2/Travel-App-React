@@ -15,6 +15,8 @@ const timeDiff = (timeNow, timeDepart, timeReturn) => {
         return timeDiffInDays;
     }
 
+    // const timeDiffInDays = calculateTimeDiff(timeDepartDateInMilliSec, timeNowDateInMilliSec);
+
     if (
         timeDepartDateInMilliSec < timeNowDateInMilliSec || //Ensuring that the departure date is greater than or equal to the date today
         timeDepartDateInMilliSec >= timeReturnDateInMilliSec//Ensuring that the departure date is less than and not equal to the return date
@@ -24,6 +26,25 @@ const timeDiff = (timeNow, timeDepart, timeReturn) => {
         return calculateTimeDiff(timeDepartDateInMilliSec, timeNowDateInMilliSec);
     }
 
+    // if (
+    //     timeDepartDateInMilliSec >= timeNowDateInMilliSec || //Ensuring that the departure date is greater than or equal to the date today
+    //     timeDepartDateInMilliSec < timeReturnDateInMilliSec//Ensuring that the departure date is less than and not equal to the return date
+    // ) {
+    //     return calculateTimeDiff(timeDepartDateInMilliSec, timeNowDateInMilliSec);
+    // } else {
+    //     return "Error: invalid dates";
+    // }
+
+    // if (
+    //     timeDiffInDays >= 0
+    // ) {
+    //     return timeDiffInDays
+    // } else if (
+    //     timeDepartDateInMilliSec < timeReturnDateInMilliSec
+    // ) {
+
+    // }
+    // return "Error: invalid dates";
 }
 
 // module.exports = { timeDiff };

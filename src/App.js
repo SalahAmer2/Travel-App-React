@@ -37,6 +37,47 @@ class App extends React.Component {
 
     return ( 
       <div className='App'>
+        {/* {
+          this.props.submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
+        }
+        {
+          this.props.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
+        }
+        <Pop_Up
+          className={
+            (
+              (city === "" || city === null || city === undefined) ||
+              (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+              (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
+            )
+              ? ''
+              : 'hidden'
+          }
+          popUpMessage="Empty city name / dates"
+          popUpNumberID="pop-up-2"
+        />
+        <Pop_Up
+          className={
+            (
+              (daysLeft === "Error: invalid dates")
+            )
+              ? ''
+              : 'hidden'
+          }
+          popUpMessage="Invalid Dates"
+          popUpNumberID="pop-up-1"
+        />
+        <Pop_Up
+          className={
+            (
+              (this.props.pop_up_3_state)
+            )
+              ? ''
+              : 'hidden'
+          }
+          popUpMessage="Check city name"
+          popUpNumberID="pop-up-3"
+        /> */}
         {
           this.props.submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
         }
@@ -77,15 +118,15 @@ class App extends React.Component {
             null
         }
 
-        <div className="bg">
-          <label id="app">
+        {/* <div className="bg">
+          <label id="app"> */}
             
           <BodyOfApp />
-          </label>
-          {/* <footer>
+          {/* </label>
+          <footer>
             Background Photo by David Marcu on Unsplash
-          </footer> */}
-        </div>
+          </footer> 
+        </div> */}
       </div>
     );
 
@@ -100,7 +141,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   toggleShowPopUp: () => dispatch(toggleShowPopUp()),
-  createTripCardsOrNot: (tripCard) => dispatch(createTripCardsOrNot(tripCard))
+  //createTripCardsOrNot: (tripCard) => dispatch(createTripCardsOrNot(tripCard))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
