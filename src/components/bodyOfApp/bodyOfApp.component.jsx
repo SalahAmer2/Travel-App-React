@@ -5,6 +5,7 @@ import { connect } from "react-redux";
 import { currentInputs } from "../../redux/inputs/inputs.actions";
 import { toggleSubmittedOrNot } from "../../redux/pop-up/pop-up.actions";
 import { toggleShowPopUp } from "../../redux/pop-up/pop-up.actions";
+import { togglePopUp3State } from "../../redux/pop-up/pop-up.actions";
 import { currentProjectData_Update } from "../../redux/projectData/projectData.actions";
 import { currentProjectData_Delete } from "../../redux/projectData/projectData.actions";
 import { createTripCardsOrNot } from "../../redux/createTripCards/createTripCards.actions";
@@ -24,14 +25,33 @@ class BodyOfApp extends React.Component {
         this.city = React.createRef();
         this.departureDate = React.createRef();
         this.returnDate = React.createRef();
+        // this.showPopUp3 = false;
+        // this.state = {
+        //     showPopUp3: false
+        // }
+        // this.state = { popUp3Display: false };
     }
     
+    // togglePopUp3 = () => {
+    //     this.setState({
+    //         showPopUp3: !this.state.showPopUp3
+    //     })
+    // }
+
     deleteTrip = (trip_id) => {
         setTimeout(() => { this.props.currentProjectData_Delete_Action(trip_id) }, 400); 
     };
 
     performAction = (e) => {
         e.preventDefault();
+
+        this.props.togglePopUp3State({
+            pop_up_3_state: false
+        });// To make it false
+
+        // console.log(this.props.pop_up_3_state)
+
+        // this.setState({ popUp3Display: false });
 
         const { toggleShowPopUp } = this.props;
 
@@ -175,8 +195,25 @@ class BodyOfApp extends React.Component {
                 return tripData;
 
             } catch (error) {
-                console.log("error", error);
                 //appropriately handle the error
+                // console.log("error", error);
+                this.props.togglePopUp3State({
+                    pop_up_3_state: true
+                });// To make it true
+
+                this.props.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
+
+                // this.togglePopUp3();
+
+                // setTimeout(() => {
+                //     this.props.togglePopUp3State({
+                //         pop_up_3_state: false
+                //     }); // To make it false
+                //     // this.togglePopUp3();
+                //     console.log(this.props.pop_up_3_state)
+                // }, 1000);
+                // this.setState({ popUp3Display: true });
+                return;
             }        
         };
 
@@ -301,7 +338,17 @@ class BodyOfApp extends React.Component {
                     popUpMessage="Check city name" 
                     popUpNumberID="pop-up-3" 
                 /> */}
-
+                {/* {
+                    (this.state.popUp3Display) ?
+                    (
+                            <Pop_Up
+                                popUpMessage="Check city name"
+                                popUpNumberID="pop-up-3"
+                            // style={this.state.popUp3Display ? { display: 'block' } : { display: 'none' }}
+                            />
+                    ) :
+                    null
+                } */}
                 <div className="bg">
                     <label id="app">
                         <div className="headline centerTitle">
@@ -347,7 +394,7 @@ class BodyOfApp extends React.Component {
                             }
                             <div id="allEntryHolders">
                                 {
-                                    (this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
+                                    ( !this.props.pop_up_3_state && this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
                                         (this.props.currentProjectData).map((tripDataItem, index) => {
                                             return <TripCard key={index} trip_id={tripDataItem.trip_id} tripData={tripDataItem}
                                                 onDelete={() => { this.deleteTrip(tripDataItem.trip_id) }}
@@ -380,6 +427,7 @@ const mapDispatchToProps = dispatch => ({
     currentInputs: inputs => dispatch(currentInputs(inputs)),
     toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp)),
     toggleShowPopUp: () => dispatch(toggleShowPopUp()),
+    togglePopUp3State: popUp => dispatch(togglePopUp3State(popUp)),
     currentProjectData_Update_Action: projectData => dispatch(currentProjectData_Update(projectData)),
     currentProjectData_Delete_Action: trip_id => dispatch(currentProjectData_Delete(trip_id)),
     createTripCardsOrNot: tripCards => dispatch(createTripCardsOrNot(tripCards))

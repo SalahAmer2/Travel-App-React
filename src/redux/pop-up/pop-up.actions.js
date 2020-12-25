@@ -10,11 +10,27 @@ export const togglePopUpExit = () => ({// See if you need to use payload in the 
                                                // doing that because we're using the pop-up.reducer.js
 })
 
-export const togglePopUp3State = () => ({
-    type: PopUpActionTypes.TOGGLE_POP_UP_3_STATE
+export const togglePopUp3State = (popUp) => ({
+    type: PopUpActionTypes.TOGGLE_POP_UP_3_STATE,
+    payload: popUp
 })
 
-export const toggleSubmittedOrNot = popUp => ({
+export const toggleSubmittedOrNot = (popUp) => ({
     type: PopUpActionTypes.TOGGLE_SUBMITTED_OR_NOT,
+    payload: popUp
+})
+
+export const displayBlockOrNone_PopUp_1 = (popUp) => ({
+    type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_1,
+    payload: popUp
+})
+
+export const displayBlockOrNone_PopUp_2 = (popUp) => ({
+    type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_2,
+    payload: popUp
+})
+
+export const displayBlockOrNone_PopUp_3 = (popUp) => ({
+    type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_3,
     payload: popUp
 })

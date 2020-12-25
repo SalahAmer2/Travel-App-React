@@ -4,9 +4,13 @@ const INITIAL_STATE = {
     showPopUp: false,
     pop_up_exit: false,
     pop_up_3_state: false,
-    submittedOrNot: false
+    // pop_up_3_state: true,
+    submittedOrNot: false,
+    displayBlockOrNone_PopUp_1: false,
+    displayBlockOrNone_PopUp_2: false,
+    displayBlockOrNone_PopUp_3: false
 }
-//These are true and false so no need for payload just !
+
 const popUpReducer = (state = INITIAL_STATE, action) => {
     switch (action.type) {
         case PopUpActionTypes.TOGGLE_SHOW_POP_UP:
@@ -22,12 +26,27 @@ const popUpReducer = (state = INITIAL_STATE, action) => {
         case PopUpActionTypes.TOGGLE_POP_UP_3_STATE:
             return {
                 ...state,
-                pop_up_3_state: !state.pop_up_3_state
+                pop_up_3_state: action.payload
             }
         case PopUpActionTypes.TOGGLE_SUBMITTED_OR_NOT:
             return {
                 ...state,
                 submittedOrNot: action.payload
+            }
+        case PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_1:
+            return {
+                ...state,
+                displayBlockOrNone_PopUp_1: action.payload
+            }
+        case PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_2:
+            return {
+                ...state,
+                displayBlockOrNone_PopUp_1: action.payload
+            }
+        case PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_3:
+            return {
+                ...state,
+                displayBlockOrNone_PopUp_1: action.payload
             }
         default:
             return state;
