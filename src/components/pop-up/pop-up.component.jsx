@@ -1,6 +1,14 @@
 import React from "react";
 import { connect } from "react-redux";
-import { toggleShowPopUp, togglePopUpExit, toggleSubmittedOrNot, togglePopUp3State } from "../../redux/pop-up/pop-up.actions";
+import { 
+    toggleShowPopUp, 
+    togglePopUpExit, 
+    toggleSubmittedOrNot, 
+    togglePopUp3State, 
+    displayBlockOrNone_PopUp_1, 
+    displayBlockOrNone_PopUp_2, 
+    displayBlockOrNone_PopUp_3 
+} from "../../redux/pop-up/pop-up.actions";
 
 import './pop-up.styles.scss'
 
@@ -17,7 +25,16 @@ class Pop_Up extends React.Component {
             togglePopUp3State({
                 pop_up_3_state: false
             }); // To make it false
-            console.log(this.props.pop_up_3_state)
+            console.log(this.props.pop_up_3_state);
+            this.props.displayBlockOrNone_PopUp_1({
+                displayBlockOrNone_PopUp_1: false
+            });
+            this.props.displayBlockOrNone_PopUp_1({
+                displayBlockOrNone_PopUp_2: false
+            });
+            this.props.displayBlockOrNone_PopUp_1({
+                displayBlockOrNone_PopUp_3: false
+            });
             toggleShowPopUp();
             togglePopUpExit();
             toggleSubmittedOrNot({
@@ -55,7 +72,10 @@ const mapDispatchToProps = dispatch => ({
     toggleShowPopUp: () => dispatch(toggleShowPopUp()),
     togglePopUpExit: () => dispatch(togglePopUpExit()),
     togglePopUp3State: popUp => dispatch(togglePopUp3State(popUp)),
-    toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp))
+    toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp)),
+    displayBlockOrNone_PopUp_1: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
+    displayBlockOrNone_PopUp_2: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
+    displayBlockOrNone_PopUp_3: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pop_Up);

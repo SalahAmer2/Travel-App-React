@@ -26,6 +26,31 @@ class App extends React.Component {
     super();
   }
 
+  displayBlockOrNone_PopUp = (popUpNum) => {
+    switch (popUpNum) {
+      case 1:
+        this.props.displayBlockOrNone_PopUp_1(
+          {
+            displayBlockOrNone_PopUp_1: true
+          }
+        )   
+      case 1:
+        this.props.displayBlockOrNone_PopUp_2(
+          {
+            displayBlockOrNone_PopUp_2: true
+          }
+        )   
+      case 3:
+        this.props.displayBlockOrNone_PopUp_3(
+          {
+            displayBlockOrNone_PopUp_3: true
+          }
+        )   
+      default:
+        break;
+    }
+  }
+
   render(){
     
     const city = this.props.currentInputs.city;
@@ -100,11 +125,7 @@ class App extends React.Component {
               (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
             ) ? (
                   // <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/>//THE REASON POPUP3 KEEPS APPEARING IS BECAUSE ANY POPUP CREATED STAYS THERE AFTER BEING CREATED, AND ONLY DISAPPEARS BY BECOMING DISPLAY: NONE (EVEN CHECK THE ELEMENTS PAGE IN INSPECT, CHECK THE DOM)
-                  this.props.displayBlockOrNone_PopUp_2(
-                    {
-                      displayBlockOrNone_PopUp_2: true
-                    } 
-                  )
+                  this.displayBlockOrNone_PopUp(2)
                 )
               : 
                 (
@@ -112,11 +133,7 @@ class App extends React.Component {
                   ? 
                     (
                       // <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>
-                      this.props.displayBlockOrNone_PopUp_1(
-                        {
-                          displayBlockOrNone_PopUp_1: true
-                        } 
-                      )
+                      this.displayBlockOrNone_PopUp(1)
                     )
                   :
                     (
@@ -124,11 +141,7 @@ class App extends React.Component {
                         ?
                         (
                           // <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
-                          this.props.displayBlockOrNone_PopUp_3(
-                            {
-                              displayBlockOrNone_PopUp_3: true
-                            } 
-                          )
+                          this.displayBlockOrNone_PopUp(3)
                         )
                         :
                         null
