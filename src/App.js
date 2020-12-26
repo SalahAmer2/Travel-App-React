@@ -101,7 +101,9 @@ class App extends React.Component {
             ) ? (
                   // <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/>//THE REASON POPUP3 KEEPS APPEARING IS BECAUSE ANY POPUP CREATED STAYS THERE AFTER BEING CREATED, AND ONLY DISAPPEARS BY BECOMING DISPLAY: NONE (EVEN CHECK THE ELEMENTS PAGE IN INSPECT, CHECK THE DOM)
                   this.props.displayBlockOrNone_PopUp_2(
-
+                    {
+                      displayBlockOrNone_PopUp_2: true
+                    } 
                   )
                 )
               : 
@@ -111,7 +113,9 @@ class App extends React.Component {
                     (
                       // <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>
                       this.props.displayBlockOrNone_PopUp_1(
-
+                        {
+                          displayBlockOrNone_PopUp_1: true
+                        } 
                       )
                     )
                   :
@@ -121,7 +125,9 @@ class App extends React.Component {
                         (
                           // <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
                           this.props.displayBlockOrNone_PopUp_3(
-
+                            {
+                              displayBlockOrNone_PopUp_3: true
+                            } 
                           )
                         )
                         :
@@ -132,6 +138,22 @@ class App extends React.Component {
             :
             null
         }
+
+        <Pop_Up 
+          popUpMessage="Empty city name / dates" 
+          popUpNumberID="pop-up-2" 
+          style={(this.props.displayBlockOrNone_PopUp_2 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }}
+        />
+        <Pop_Up 
+          popUpMessage="Invalid Dates" 
+          popUpNumberID="pop-up-1" 
+          style={(this.props.displayBlockOrNone_PopUp_1 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }}
+        />
+        <Pop_Up 
+          popUpMessage="Check city name" 
+          popUpNumberID="pop-up-3" 
+          style={(this.props.displayBlockOrNone_PopUp_3 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }}
+        />
 
         {/* <div className="bg">
           <label id="app"> */}

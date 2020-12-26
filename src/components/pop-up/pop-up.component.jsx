@@ -27,12 +27,12 @@ class Pop_Up extends React.Component {
     }
 
     render() {
-        const style = this.props.showPopUp ? { display: 'block' } : { display: 'none' };
+        // const style = this.props.showPopUp ? { display: 'block' } : { display: 'none' };
 
         return (
             <div 
                 id={this.props.popUpNumberID} 
-                style={style} 
+                // style={style} 
                 className={`pop-up pop-up-drop ${this.props.pop_up_exit ? "pop-up-swing" : ""}`}
             >
                 <div className="container">
