@@ -135,7 +135,7 @@ class App extends React.Component {
 
     const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
-    const popUp3DisplayOrNot = this.props.pop_up_3_state;
+    //const popUp3DisplayOrNot = this.props.pop_up_3_state;
 
     const style_1 = (this.props.displayBlockOrNone_PopUp_1 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
     const style_2 = (this.props.displayBlockOrNone_PopUp_2 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
@@ -336,13 +336,13 @@ class App extends React.Component {
                     )
                     :
                     (
-                      (this.props.pop_up_3_state)
+                      (this.props.pop_up_3_state.pop_up_3_state)
                         ?
                         (
                           // <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
                           // () => { displayBlockOrNone_PopUp(3) }
-                          // displayBlockOrNone_PopUp(3)
-                          null
+                          displayBlockOrNone_PopUp(3)
+                          //null
                         )
                         :
                         null
