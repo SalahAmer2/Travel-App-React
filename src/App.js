@@ -26,6 +26,53 @@ class App extends React.Component {
     super();
   }
 
+  displayBlockOrNone_PopUp = (popUpNum) => {
+    switch (popUpNum) {
+      case 1:
+        console.log("popup1 read in switch")
+        this.props.displayBlockOrNone_PopUp_1(
+          {
+            displayBlockOrNone_PopUp_1: true
+          }
+          //null
+        )
+        // return <Pop_Up
+        //   popUpMessage="Invalid Dates"
+        //   popUpNumberID="pop-up-1"
+        //   style={style_1}
+        // />
+        break;
+      case 2:
+        console.log("popup2 read in switch")
+        this.props.displayBlockOrNone_PopUp_2(
+          {
+            displayBlockOrNone_PopUp_2: true
+          }
+        )
+        // return <Pop_Up
+        //   popUpMessage="Empty city name / dates"
+        //   popUpNumberID="pop-up-2"
+        //   style={style_2}
+        // />
+        break;
+      case 3:
+        console.log("popup3 read in switch")
+        this.props.displayBlockOrNone_PopUp_3(
+          {
+            displayBlockOrNone_PopUp_3: true
+          }
+        )
+        // return <Pop_Up
+        //   popUpMessage="Check city name"
+        //   popUpNumberID="pop-up-3"
+        //   style={style_3}
+        // />
+        break;
+      default:
+        return null;
+    }
+  }
+
   // style_1 = (this.props.displayBlockOrNone_PopUp_1 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
   // style_2 = (this.props.displayBlockOrNone_PopUp_2 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
   // style_3 = (this.props.displayBlockOrNone_PopUp_3 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
@@ -137,53 +184,56 @@ class App extends React.Component {
 
     //const popUp3DisplayOrNot = this.props.pop_up_3_state;
 
-    const style_1 = (this.props.displayBlockOrNone_PopUp_1 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
-    const style_2 = (this.props.displayBlockOrNone_PopUp_2 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
-    const style_3 = (this.props.displayBlockOrNone_PopUp_3 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
+    // const style_1 = (this.props.displayBlockOrNone_PopUp_1 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
+    // const style_2 = (this.props.displayBlockOrNone_PopUp_2 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
+    // const style_3 = (this.props.displayBlockOrNone_PopUp_3 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
 
-    const displayBlockOrNone_PopUp = (popUpNum) => {
-      switch (popUpNum) {
-        case 1:
-          console.log("popup1 read in switch")
-          this.props.displayBlockOrNone_PopUp_1(
-            {
-              displayBlockOrNone_PopUp_1: true
-            }
-            //null
-          )
-          // return <Pop_Up
-          //   popUpMessage="Invalid Dates"
-          //   popUpNumberID="pop-up-1"
-          //   style={style_1}
-          // />
-        case 2:
-          console.log("popup2 read in switch")
-          this.props.displayBlockOrNone_PopUp_2(
-            {
-              displayBlockOrNone_PopUp_2: true
-            }
-          )
-          // return <Pop_Up
-          //   popUpMessage="Empty city name / dates"
-          //   popUpNumberID="pop-up-2"
-          //   style={style_2}
-          // />
-        case 3:
-          console.log("popup3 read in switch")
-          this.props.displayBlockOrNone_PopUp_3(
-            {
-              displayBlockOrNone_PopUp_3: true
-            }
-          )
-          // return <Pop_Up
-          //   popUpMessage="Check city name"
-          //   popUpNumberID="pop-up-3"
-          //   style={style_3}
-          // />
-        default:
-          return null;
-      }
-    }
+    // const displayBlockOrNone_PopUp = (popUpNum) => {
+    //   switch (popUpNum) {
+    //     case 1:
+    //       console.log("popup1 read in switch")
+    //       this.props.displayBlockOrNone_PopUp_1(
+    //         {
+    //           displayBlockOrNone_PopUp_1: true
+    //         }
+    //         //null
+    //       )
+    //       // return <Pop_Up
+    //       //   popUpMessage="Invalid Dates"
+    //       //   popUpNumberID="pop-up-1"
+    //       //   style={style_1}
+    //       // />
+    //       break;
+    //     case 2:
+    //       console.log("popup2 read in switch")
+    //       this.props.displayBlockOrNone_PopUp_2(
+    //         {
+    //           displayBlockOrNone_PopUp_2: true
+    //         }
+    //       )
+    //       // return <Pop_Up
+    //       //   popUpMessage="Empty city name / dates"
+    //       //   popUpNumberID="pop-up-2"
+    //       //   style={style_2}
+    //       // />
+    //       break;
+    //     case 3:
+    //       console.log("popup3 read in switch")
+    //       this.props.displayBlockOrNone_PopUp_3(
+    //         {
+    //           displayBlockOrNone_PopUp_3: true
+    //         }
+    //       )
+    //       // return <Pop_Up
+    //       //   popUpMessage="Check city name"
+    //       //   popUpNumberID="pop-up-3"
+    //       //   style={style_3}
+    //       // />
+    //       break;
+    //     default:
+    //       return null;
+    //   }
+    // }
 
     // const body =( 
     //   (this.props.submittedOrNot && this.props.showPopUp)
@@ -323,7 +373,7 @@ class App extends React.Component {
                   // <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/>//THE REASON POPUP3 KEEPS APPEARING IS BECAUSE ANY POPUP CREATED STAYS THERE AFTER BEING CREATED, AND ONLY DISAPPEARS BY BECOMING DISPLAY: NONE (EVEN CHECK THE ELEMENTS PAGE IN INSPECT, CHECK THE DOM)
                   // () => { displayBlockOrNone_PopUp(2) }
                   console.log("City: " + city),
-                  displayBlockOrNone_PopUp(2) 
+                  this.displayBlockOrNone_PopUp(2) 
                 )
                 :
                 (
@@ -332,7 +382,7 @@ class App extends React.Component {
                     (
                       // <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>
                       // () => { displayBlockOrNone_PopUp(1) }
-                      displayBlockOrNone_PopUp(1)
+                      this.displayBlockOrNone_PopUp(1)
                     )
                     :
                     (
@@ -341,7 +391,7 @@ class App extends React.Component {
                         (
                           // <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
                           // () => { displayBlockOrNone_PopUp(3) }
-                          displayBlockOrNone_PopUp(3)
+                          this.displayBlockOrNone_PopUp(3)
                           //null
                         )
                         :
