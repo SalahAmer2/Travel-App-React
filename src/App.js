@@ -21,16 +21,27 @@ import { createTripCardsOrNot } from "./redux/createTripCards/createTripCards.ac
 import Pop_Up from "./components/pop-up/pop-up.component";
 import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
 
-class App extends React.Component {
-  constructor() {
-    super();
-  }
+// class App extends React.Component {
+//   constructor() {
+//     super();
+//   }
 
-  displayBlockOrNone_PopUp = (popUpNum) => {
+const App = (
+    // submittedOrNot,
+    // pop_up_3_state,
+    // currentInputs,
+    // showPopUp,
+    // displayBlockOrNone_PopUp_1,
+    // displayBlockOrNone_PopUp_2,
+    // displayBlockOrNone_PopUp_3
+    props
+  ) => {
+
+  const displayBlockOrNone_PopUp = (popUpNum) => {
     switch (popUpNum) {
       case 1:
         console.log("popup1 read in switch")
-        this.props.displayBlockOrNone_PopUp_1(
+        props.displayBlockOrNone_PopUp_1(
           {
             displayBlockOrNone_PopUp_1: true
           }
@@ -44,7 +55,7 @@ class App extends React.Component {
         break;
       case 2:
         console.log("popup2 read in switch")
-        this.props.displayBlockOrNone_PopUp_2(
+        props.displayBlockOrNone_PopUp_2(
           {
             displayBlockOrNone_PopUp_2: true
           }
@@ -57,7 +68,7 @@ class App extends React.Component {
         break;
       case 3:
         console.log("popup3 read in switch")
-        this.props.displayBlockOrNone_PopUp_3(
+        props.displayBlockOrNone_PopUp_3(
           {
             displayBlockOrNone_PopUp_3: true
           }
@@ -170,11 +181,15 @@ class App extends React.Component {
   //   popUpsFunc();
   // }
 
-  render(){
+  // render(){
     
-    const city = this.props.currentInputs.city;
-    const depDateFromUser = this.props.currentInputs.depDateFromUser;
-    const retDateFromUser = this.props.currentInputs.retDateFromUser; 
+    // const city = props.currentInputs.city;
+    // const depDateFromUser = props.currentInputs.depDateFromUser;
+    // const retDateFromUser = props.currentInputs.retDateFromUser; 
+
+  const city = props.currentInputs.city;
+  const depDateFromUser = props.currentInputs.depDateFromUser;
+  const retDateFromUser = props.currentInputs.retDateFromUser; 
 
     // Create a new date instance dynamically with JS
     const d = new Date();
@@ -362,7 +377,7 @@ class App extends React.Component {
         {/* CHECK POPUP EXIT */}
 
         {
-          (this.props.submittedOrNot && this.props.showPopUp)
+          (props.submittedOrNot && props.showPopUp)
             ?
             (
               (
@@ -373,7 +388,7 @@ class App extends React.Component {
                   // <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/>//THE REASON POPUP3 KEEPS APPEARING IS BECAUSE ANY POPUP CREATED STAYS THERE AFTER BEING CREATED, AND ONLY DISAPPEARS BY BECOMING DISPLAY: NONE (EVEN CHECK THE ELEMENTS PAGE IN INSPECT, CHECK THE DOM)
                   // () => { displayBlockOrNone_PopUp(2) }
                   console.log("City: " + city),
-                  this.displayBlockOrNone_PopUp(2) 
+                  displayBlockOrNone_PopUp(2) 
                 )
                 :
                 (
@@ -382,16 +397,16 @@ class App extends React.Component {
                     (
                       // <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>
                       // () => { displayBlockOrNone_PopUp(1) }
-                      this.displayBlockOrNone_PopUp(1)
+                      displayBlockOrNone_PopUp(1)
                     )
                     :
                     (
-                      (this.props.pop_up_3_state.pop_up_3_state)
+                      (props.pop_up_3_state.pop_up_3_state)
                         ?
                         (
                           // <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
                           // () => { displayBlockOrNone_PopUp(3) }
-                          this.displayBlockOrNone_PopUp(3)
+                          displayBlockOrNone_PopUp(3)
                           //null
                         )
                         :
@@ -406,29 +421,29 @@ class App extends React.Component {
         <Pop_Up 
           popUpMessage="Empty city name / dates" 
           popUpNumberID="pop-up-2" 
-          style={(this.props.displayBlockOrNone_PopUp_2.displayBlockOrNone_PopUp_2 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }}
+          style={(props.displayBlockOrNone_PopUp_2.displayBlockOrNone_PopUp_2 && props.showPopUp) ? { display: 'block' } : { display: 'none' }}
         />
         <Pop_Up 
           popUpMessage="Invalid Dates" 
           popUpNumberID="pop-up-1" 
-          style={(this.props.displayBlockOrNone_PopUp_1.displayBlockOrNone_PopUp_1 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }}
+          style={(props.displayBlockOrNone_PopUp_1.displayBlockOrNone_PopUp_1 && props.showPopUp) ? { display: 'block' } : { display: 'none' }}
         />
         <Pop_Up 
           popUpMessage="Check city name" 
           popUpNumberID="pop-up-3" 
-          style={(this.props.displayBlockOrNone_PopUp_3.displayBlockOrNone_PopUp_3 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }}
+          style={(props.displayBlockOrNone_PopUp_3.displayBlockOrNone_PopUp_3 && props.showPopUp) ? { display: 'block' } : { display: 'none' }}
         />
 
         {/* {body} */}
 
         {
-          this.props.displayBlockOrNone_PopUp_1.displayBlockOrNone_PopUp_1 ? (console.log('Pop Up 1: Block')) : (console.log('Pop Up 1: None'))
+          props.displayBlockOrNone_PopUp_1.displayBlockOrNone_PopUp_1 ? (console.log('Pop Up 1: Block')) : (console.log('Pop Up 1: None'))
         }
         {
-          this.props.displayBlockOrNone_PopUp_2.displayBlockOrNone_PopUp_2 ? (console.log('Pop Up 2: Block')) : (console.log('Pop Up 2: None'))
+          props.displayBlockOrNone_PopUp_2.displayBlockOrNone_PopUp_2 ? (console.log('Pop Up 2: Block')) : (console.log('Pop Up 2: None'))
         }
         {
-          this.props.displayBlockOrNone_PopUp_3.displayBlockOrNone_PopUp_3 ? (console.log('Pop Up 3: Block')) : (console.log('Pop Up 3: None'))
+          props.displayBlockOrNone_PopUp_3.displayBlockOrNone_PopUp_3 ? (console.log('Pop Up 3: Block')) : (console.log('Pop Up 3: None'))
         }
 
         {/* <Pop_Up
@@ -461,7 +476,7 @@ class App extends React.Component {
       </div>
     );
 
-  }    
+  // }    
 }
 
 const mapStateToProps = state => ({
