@@ -201,7 +201,7 @@ class BodyOfApp extends React.Component {
                     pop_up_3_state: true
                 });// To make it true
 
-                this.props.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
+                this.props.pop_up_3_state.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
 
                 // this.togglePopUp3();
 
@@ -222,7 +222,7 @@ class BodyOfApp extends React.Component {
             (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
             (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
             (daysLeft === "Error: invalid dates") ||
-            (this.props.pop_up_3_state)
+            (this.props.pop_up_3_state.pop_up_3_state)
         ) {
             return;
         }
@@ -394,7 +394,7 @@ class BodyOfApp extends React.Component {
                             }
                             <div id="allEntryHolders">
                                 {
-                                    ( !this.props.pop_up_3_state && this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
+                                    (!this.props.pop_up_3_state.pop_up_3_state && this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
                                         (this.props.currentProjectData).map((tripDataItem, index) => {
                                             return <TripCard key={index} trip_id={tripDataItem.trip_id} tripData={tripDataItem}
                                                 onDelete={() => { this.deleteTrip(tripDataItem.trip_id) }}
