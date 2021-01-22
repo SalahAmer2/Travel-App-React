@@ -38,25 +38,25 @@ import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
       props
       ) => {
         
-        const displayBlockOrNone_PopUp = (popUpNum) => {
-          switch (popUpNum) {
-            case 1:
-              console.log("popup1 read in switch")
-              props.displayBlockOrNone_PopUp_1()
-              break;
-            case 2:
-              console.log("popup2 read in switch")
-              props.displayBlockOrNone_PopUp_2()
-              break;
-            case 3:
-              console.log("popup3 read in switch")
-              props.displayBlockOrNone_PopUp_3()
-              break;
-            default:
-              return null;
-          }
-          // return;
-        }
+        // const displayBlockOrNone_PopUp = (popUpNum) => {
+        //   switch (popUpNum) {
+        //     case 1:
+        //       console.log("popup1 read in switch")
+        //       props.displayBlockOrNone_PopUp_1_Action()
+        //       break;
+        //     case 2:
+        //       console.log("popup2 read in switch")
+        //       props.displayBlockOrNone_PopUp_2_Action()
+        //       break;
+        //     case 3:
+        //       console.log("popup3 read in switch")
+        //       props.displayBlockOrNone_PopUp_3_Action()
+        //       break;
+        //     default:
+        //       return null;
+        //   }
+        //   // return;
+        // }
 
         
         // const [setdisplayBlockOrNone_PopUp_1, setdisplayBlockOrNone_PopUp_2, setdisplayBlockOrNone_PopUp_3] = useState({
@@ -104,9 +104,9 @@ import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
   // }
 
 
-  // style_1 = (this.props.displayBlockOrNone_PopUp_1 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
-  // style_2 = (this.props.displayBlockOrNone_PopUp_2 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
-  // style_3 = (this.props.displayBlockOrNone_PopUp_3 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
+      // const style_1 = (props.displayBlockOrNone_PopUp_1 && props.showPopUp) ? { display: 'block' } : { display: 'none' }
+      // const style_2 = (props.displayBlockOrNone_PopUp_2 && props.showPopUp) ? { display: 'block' } : { display: 'none' }
+      // const style_3 = (props.displayBlockOrNone_PopUp_3 && props.showPopUp) ? { display: 'block' } : { display: 'none' }
 
   // displayBlockOrNone_PopUp = (popUpNum) => {
   //   switch (popUpNum) {
@@ -216,6 +216,82 @@ import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
     const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
 
     const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
+
+
+      // const displayPopUps = () => {
+      //   //{
+      //   (props.submittedOrNot && props.showPopUp)
+      //     ?
+      //     (
+      //       (
+      //         (city === "" || city === null || city === undefined) ||
+      //         (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+      //         (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
+      //       ) ? (
+      //           // <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/>//THE REASON POPUP3 KEEPS APPEARING IS BECAUSE ANY POPUP CREATED STAYS THERE AFTER BEING CREATED, AND ONLY DISAPPEARS BY BECOMING DISPLAY: NONE (EVEN CHECK THE ELEMENTS PAGE IN INSPECT, CHECK THE DOM)
+      //           // () => { displayBlockOrNone_PopUp(2) }
+      //           console.log("City: " + city),
+      //           displayBlockOrNone_PopUp(2)
+      //         )
+      //         :
+      //         (
+      //           (daysLeft === "Error: invalid dates")
+      //             ?
+      //             (
+      //               // <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>
+      //               // () => { displayBlockOrNone_PopUp(1) }
+      //               displayBlockOrNone_PopUp(1)
+      //             )
+      //             :
+      //             (
+      //               (props.pop_up_3_state.pop_up_3_state)
+      //                 ?
+      //                 (
+      //                   // <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
+      //                   // () => { displayBlockOrNone_PopUp(3) }
+      //                   displayBlockOrNone_PopUp(3)
+      //                   //null
+      //                 )
+      //                 :
+      //                 null
+      //             )
+      //         )
+      //     )
+      //     // popUpConditionals()
+      //     // (
+      //     //   (
+      //     //     (city === "" || city === null || city === undefined) ||
+      //     //     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+      //     //     (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
+      //     //   ) ? (
+      //     //       console.log("City: " + city),
+      //     //       popUpNumber = 2
+      //     //     )
+      //     //     :
+      //     //     (
+      //     //       (daysLeft === "Error: invalid dates")
+      //     //         ?
+      //     //         (
+      //     //           popUpNumber = 1
+      //     //         )
+      //     //         :
+      //     //         (
+      //     //           (props.pop_up_3_state.pop_up_3_state)
+      //     //             ?
+      //     //             (
+      //     //               popUpNumber = 3
+      //     //             )
+      //     //             :
+      //     //             popUpNumber = null
+      //     //         )
+      //     //     )
+      //     // )
+      //     :
+      //     null
+      // //}
+      // }
+      
+      // displayPopUps();
 
     //const popUp3DisplayOrNot = this.props.pop_up_3_state;
 
@@ -435,7 +511,7 @@ import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
 
         {/* CHECK POPUP EXIT */}
 
-        {
+        {/* {
           (props.submittedOrNot && props.showPopUp)
             ?
             (
@@ -504,7 +580,7 @@ import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
             // )
             :
             null
-        }
+        } */}
 
         {/* {displayBlockOrNone_PopUp(popUpNumber)} */}
 
@@ -538,6 +614,10 @@ import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
 
         {/* {body} */}
 
+        {/* {
+          console.log(props.showPopUp)
+        } */}
+
         {
           console.log(props.displayBlockOrNone_PopUp_1)  
         }
@@ -548,15 +628,15 @@ import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
           console.log(props.displayBlockOrNone_PopUp_3)  
         }
 
-        {/* {
-          props.displayBlockOrNone_PopUp_1.displayBlockOrNone_PopUp_1 ? (console.log('Pop Up 1: Block')) : (console.log('Pop Up 1: None'))
+        {
+          props.displayBlockOrNone_PopUp_1 ? (console.log('Pop Up 1: Block')) : (console.log('Pop Up 1: None'))
         }
         {
-          props.displayBlockOrNone_PopUp_2.displayBlockOrNone_PopUp_2 ? (console.log('Pop Up 2: Block')) : (console.log('Pop Up 2: None'))
+          props.displayBlockOrNone_PopUp_2 ? (console.log('Pop Up 2: Block')) : (console.log('Pop Up 2: None'))
         }
         {
-          props.displayBlockOrNone_PopUp_3.displayBlockOrNone_PopUp_3 ? (console.log('Pop Up 3: Block')) : (console.log('Pop Up 3: None'))
-        } */}
+          props.displayBlockOrNone_PopUp_3 ? (console.log('Pop Up 3: Block')) : (console.log('Pop Up 3: None'))
+        }
 
         {/* <Pop_Up
           popUpMessage="Empty city name / dates"
@@ -607,9 +687,9 @@ const mapDispatchToProps = dispatch => ({
   // displayBlockOrNone_PopUp_1: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
   // displayBlockOrNone_PopUp_2: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
   // displayBlockOrNone_PopUp_3: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp))
-  displayBlockOrNone_PopUp_1: () => dispatch(displayBlockOrNone_PopUp_1()),
-  displayBlockOrNone_PopUp_2: () => dispatch(displayBlockOrNone_PopUp_2()),
-  displayBlockOrNone_PopUp_3: () => dispatch(displayBlockOrNone_PopUp_3())
+  displayBlockOrNone_PopUp_1_Action: () => dispatch(displayBlockOrNone_PopUp_1()),
+  displayBlockOrNone_PopUp_2_Action: () => dispatch(displayBlockOrNone_PopUp_2()),
+  displayBlockOrNone_PopUp_3_Action: () => dispatch(displayBlockOrNone_PopUp_3())
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

@@ -9,6 +9,9 @@ import { togglePopUp3State } from "../../redux/pop-up/pop-up.actions";
 import { currentProjectData_Update } from "../../redux/projectData/projectData.actions";
 import { currentProjectData_Delete } from "../../redux/projectData/projectData.actions";
 import { createTripCardsOrNot } from "../../redux/createTripCards/createTripCards.actions";
+import { displayBlockOrNone_PopUp_1 } from "../../redux/pop-up/pop-up.actions";
+import { displayBlockOrNone_PopUp_2 } from "../../redux/pop-up/pop-up.actions";
+import { displayBlockOrNone_PopUp_3 } from "../../redux/pop-up/pop-up.actions";
 
 import Pop_Up from "../pop-up/pop-up.component";
 
@@ -113,6 +116,53 @@ class BodyOfApp extends React.Component {
         
         // let dataOfTripCard = {};
     
+        const displayBlockOrNone_PopUp = (popUpNum) => {
+            switch (popUpNum) {
+                case 1:
+                    console.log("popup1 read in switch")
+                    this.props.displayBlockOrNone_PopUp_1_Action()
+                    break;
+                case 2:
+                    console.log("popup2 read in switch")
+                    this.props.displayBlockOrNone_PopUp_2_Action()
+                    break;
+                case 3:
+                    console.log("popup3 read in switch")
+                    this.props.displayBlockOrNone_PopUp_3_Action()
+                    break;
+                default:
+                    return null;
+            }
+            // return;
+        }
+
+        //{
+        if(this.props.submittedOrNot && this.props.showPopUp)
+            {
+                if(
+                    (city === "" || city === null || city === undefined) ||
+                    (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+                    (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
+                  )   
+                    {
+                        console.log("City: " + city);
+                        displayBlockOrNone_PopUp(2);
+                    } 
+                else if(daysLeft === "Error: invalid dates")
+                            
+                    {
+                        displayBlockOrNone_PopUp(1);
+                    }
+                else if(this.props.pop_up_3_state.pop_up_3_state)
+                    {
+                        displayBlockOrNone_PopUp(3);
+                    }
+                else {
+                    console.log("No errors, so no pop-ups to be displayed.");
+                }
+            }
+
+
         const getFunc = async () => {
 
             const create_UUID = () => {
@@ -420,7 +470,11 @@ const mapStateToProps = state => ({
     submittedOrNot: state.popUp.submittedOrNot,
     createTripCardsOrNot: state.tripCards.createTripCardsOrNot,
     currentInputs: state.inputs.currentInputs,
-    pop_up_3_state: state.popUp.pop_up_3_state
+    pop_up_3_state: state.popUp.pop_up_3_state,
+    displayBlockOrNone_PopUp_1: state.popUp.displayBlockOrNone_PopUp_1,
+    displayBlockOrNone_PopUp_2: state.popUp.displayBlockOrNone_PopUp_2,
+    displayBlockOrNone_PopUp_3: state.popUp.displayBlockOrNone_PopUp_3,
+    showPopUp: state.popUp.showPopUp
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -430,7 +484,10 @@ const mapDispatchToProps = dispatch => ({
     togglePopUp3State: popUp => dispatch(togglePopUp3State(popUp)),
     currentProjectData_Update_Action: projectData => dispatch(currentProjectData_Update(projectData)),
     currentProjectData_Delete_Action: trip_id => dispatch(currentProjectData_Delete(trip_id)),
-    createTripCardsOrNot: tripCards => dispatch(createTripCardsOrNot(tripCards))
+    createTripCardsOrNot: tripCards => dispatch(createTripCardsOrNot(tripCards)),
+    displayBlockOrNone_PopUp_1_Action: () => dispatch(displayBlockOrNone_PopUp_1()),
+    displayBlockOrNone_PopUp_2_Action: () => dispatch(displayBlockOrNone_PopUp_2()),
+    displayBlockOrNone_PopUp_3_Action: () => dispatch(displayBlockOrNone_PopUp_3())
 })
 
 //Notice that referring to the state with mapStateToProps is light BLUE and updating the state with mapDispatchToProps is YELLOW
