@@ -1,4 +1,5 @@
 import React from 'react';
+// import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.scss';
 import { render } from '@testing-library/react';
@@ -22,67 +23,114 @@ import Pop_Up from "./components/pop-up/pop-up.component";
 import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
 
 // class App extends React.Component {
-//   constructor() {
-//     super();
-//   }
+  //   constructor() {
+    //     super();
+    //   }
+    
+    const App = (
+      // submittedOrNot,
+      // pop_up_3_state,
+      // currentInputs,
+      // showPopUp,
+      // displayBlockOrNone_PopUp_1,
+      // displayBlockOrNone_PopUp_2,
+      // displayBlockOrNone_PopUp_3
+      props
+      ) => {
+        
+        const displayBlockOrNone_PopUp = (popUpNum) => {
+          switch (popUpNum) {
+            case 1:
+              console.log("popup1 read in switch")
+              props.displayBlockOrNone_PopUp_1(
+                {
+                  displayBlockOrNone_PopUp_1: true
+                }
+                //null
+              )
+              // return <Pop_Up
+              //   popUpMessage="Invalid Dates"
+              //   popUpNumberID="pop-up-1"
+              //   style={style_1}
+              // />
+              break;
+            case 2:
+              console.log("popup2 read in switch")
+              props.displayBlockOrNone_PopUp_2(
+                {
+                  displayBlockOrNone_PopUp_2: true
+                }
+              )
+              // return <Pop_Up
+              //   popUpMessage="Empty city name / dates"
+              //   popUpNumberID="pop-up-2"
+              //   style={style_2}
+              // />
+              break;
+            case 3:
+              console.log("popup3 read in switch")
+              props.displayBlockOrNone_PopUp_3(
+                {
+                  displayBlockOrNone_PopUp_3: true
+                }
+              )
+              // return <Pop_Up
+              //   popUpMessage="Check city name"
+              //   popUpNumberID="pop-up-3"
+              //   style={style_3}
+              // />
+              break;
+            default:
+              return null;
+          }
+          // return;
+        }
 
-const App = (
-    // submittedOrNot,
-    // pop_up_3_state,
-    // currentInputs,
-    // showPopUp,
-    // displayBlockOrNone_PopUp_1,
-    // displayBlockOrNone_PopUp_2,
-    // displayBlockOrNone_PopUp_3
-    props
-  ) => {
+        
+        // const [setdisplayBlockOrNone_PopUp_1, setdisplayBlockOrNone_PopUp_2, setdisplayBlockOrNone_PopUp_3] = useState({
+          //   popUp_1: false,
+          //   popUp_2: false,
+          //   popUp_3: false,
+  // });
 
-  const displayBlockOrNone_PopUp = (popUpNum) => {
-    switch (popUpNum) {
-      case 1:
-        console.log("popup1 read in switch")
-        props.displayBlockOrNone_PopUp_1(
-          {
-            displayBlockOrNone_PopUp_1: true
-          }
-          //null
-        )
-        // return <Pop_Up
-        //   popUpMessage="Invalid Dates"
-        //   popUpNumberID="pop-up-1"
-        //   style={style_1}
-        // />
-        break;
-      case 2:
-        console.log("popup2 read in switch")
-        props.displayBlockOrNone_PopUp_2(
-          {
-            displayBlockOrNone_PopUp_2: true
-          }
-        )
-        // return <Pop_Up
-        //   popUpMessage="Empty city name / dates"
-        //   popUpNumberID="pop-up-2"
-        //   style={style_2}
-        // />
-        break;
-      case 3:
-        console.log("popup3 read in switch")
-        props.displayBlockOrNone_PopUp_3(
-          {
-            displayBlockOrNone_PopUp_3: true
-          }
-        )
-        // return <Pop_Up
-        //   popUpMessage="Check city name"
-        //   popUpNumberID="pop-up-3"
-        //   style={style_3}
-        // />
-        break;
-      default:
-        return null;
-    }
-  }
+  // const displayBlockOrNone_PopUp = (popUpNum) => {
+  //   switch (popUpNum) {
+  //     case 1:
+  //       console.log("popup1 read in switch")
+  //       setdisplayBlockOrNone_PopUp_1({ popUp_1: true });
+  //       break;
+  //     case 2:
+  //       console.log("popup2 read in switch")
+  //       props.displayBlockOrNone_PopUp_2(
+  //         {
+  //           displayBlockOrNone_PopUp_2: true
+  //         }
+  //       )
+  //       // return <Pop_Up
+  //       //   popUpMessage="Empty city name / dates"
+  //       //   popUpNumberID="pop-up-2"
+  //       //   style={style_2}
+  //       // />
+  //       break;
+  //     case 3:
+  //       console.log("popup3 read in switch")
+  //       props.displayBlockOrNone_PopUp_3(
+  //         {
+  //           displayBlockOrNone_PopUp_3: true
+  //         }
+  //       )
+  //       // return <Pop_Up
+  //       //   popUpMessage="Check city name"
+  //       //   popUpNumberID="pop-up-3"
+  //       //   style={style_3}
+  //       // />
+  //       break;
+  //     default:
+  //       return null;
+  //   }
+  //   // return;
+  // }
+
 
   // style_1 = (this.props.displayBlockOrNone_PopUp_1 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
   // style_2 = (this.props.displayBlockOrNone_PopUp_2 && this.props.showPopUp) ? { display: 'block' } : { display: 'none' }
@@ -286,6 +334,45 @@ const App = (
     //     :
     //     null);
     
+    // const popUpConditionals = () => {
+    //   for (let index = 0; index < 1; index++) {
+    //     (
+    //       (city === "" || city === null || city === undefined) ||
+    //       (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+    //       (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
+    //     ) ? (
+    //         // <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/>//THE REASON POPUP3 KEEPS APPEARING IS BECAUSE ANY POPUP CREATED STAYS THERE AFTER BEING CREATED, AND ONLY DISAPPEARS BY BECOMING DISPLAY: NONE (EVEN CHECK THE ELEMENTS PAGE IN INSPECT, CHECK THE DOM)
+    //         // () => { displayBlockOrNone_PopUp(2) }
+    //         console.log("City: " + city),
+    //         displayBlockOrNone_PopUp(2)
+    //       )
+    //       :
+    //       (
+    //         (daysLeft === "Error: invalid dates")
+    //           ?
+    //           (
+    //             // <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>
+    //             // () => { displayBlockOrNone_PopUp(1) }
+    //             displayBlockOrNone_PopUp(1)
+    //           )
+    //           :
+    //           (
+    //             (props.pop_up_3_state.pop_up_3_state)
+    //               ?
+    //               (
+    //                 // <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
+    //                 // () => { displayBlockOrNone_PopUp(3) }
+    //                 displayBlockOrNone_PopUp(3)
+    //                 //null
+    //               )
+    //               :
+    //               null
+    //           )
+    //       )
+    //   }
+    // }
+
+    let popUpNumber;
 
     return ( 
       <div className='App'>
@@ -379,44 +466,87 @@ const App = (
         {
           (props.submittedOrNot && props.showPopUp)
             ?
+            // // (
+            // //   (
+            // //     (city === "" || city === null || city === undefined) ||
+            // //     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+            // //     (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
+            // //   ) ? (
+            // //       // <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/>//THE REASON POPUP3 KEEPS APPEARING IS BECAUSE ANY POPUP CREATED STAYS THERE AFTER BEING CREATED, AND ONLY DISAPPEARS BY BECOMING DISPLAY: NONE (EVEN CHECK THE ELEMENTS PAGE IN INSPECT, CHECK THE DOM)
+            // //       // () => { displayBlockOrNone_PopUp(2) }
+            // //       console.log("City: " + city),
+            // //       displayBlockOrNone_PopUp(2)
+            // //     )
+            // //     :
+            // //     (
+            // //       (daysLeft === "Error: invalid dates")
+            // //         ?
+            // //         (
+            // //           // <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>
+            // //           // () => { displayBlockOrNone_PopUp(1) }
+            // //           displayBlockOrNone_PopUp(1)
+            // //         )
+            // //         :
+            // //         (
+            // //           (props.pop_up_3_state.pop_up_3_state)
+            // //             ?
+            // //             (
+            // //               // <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
+            // //               // () => { displayBlockOrNone_PopUp(3) }
+            // //               displayBlockOrNone_PopUp(3)
+            // //               //null
+            // //             )
+            // //             :
+            // //             null
+            // //         )
+            // //     )
+            // // )
+            // popUpConditionals()
             (
               (
                 (city === "" || city === null || city === undefined) ||
                 (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
                 (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
               ) ? (
-                  // <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2"/>//THE REASON POPUP3 KEEPS APPEARING IS BECAUSE ANY POPUP CREATED STAYS THERE AFTER BEING CREATED, AND ONLY DISAPPEARS BY BECOMING DISPLAY: NONE (EVEN CHECK THE ELEMENTS PAGE IN INSPECT, CHECK THE DOM)
-                  // () => { displayBlockOrNone_PopUp(2) }
                   console.log("City: " + city),
-                  displayBlockOrNone_PopUp(2) 
+                  popUpNumber = 2
                 )
                 :
                 (
                   (daysLeft === "Error: invalid dates")
                     ?
                     (
-                      // <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1"/>
-                      // () => { displayBlockOrNone_PopUp(1) }
-                      displayBlockOrNone_PopUp(1)
+                      popUpNumber = 1
                     )
                     :
                     (
                       (props.pop_up_3_state.pop_up_3_state)
                         ?
                         (
-                          // <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
-                          // () => { displayBlockOrNone_PopUp(3) }
-                          displayBlockOrNone_PopUp(3)
-                          //null
+                          popUpNumber = 3
                         )
                         :
-                        null
+                        popUpNumber = null
                     )
                 )
             )
             :
             null
         }
+
+        {displayBlockOrNone_PopUp(popUpNumber)}
+
+        {/* {
+          (props.submittedOrNot && props.showPopUp) ?
+            (this.props.currentProjectData).map((tripDataItem, index) => {
+              return <Pop_Up
+                popUpMessage="Empty city name / dates"
+                popUpNumberID="pop-up-2"
+                style={(props.displayBlockOrNone_PopUp_2.displayBlockOrNone_PopUp_2 && props.showPopUp) ? { display: 'block' } : { display: 'none' }}
+              />
+            })
+            : null
+        } */}
 
         <Pop_Up 
           popUpMessage="Empty city name / dates" 
@@ -437,6 +567,16 @@ const App = (
         {/* {body} */}
 
         {
+          console.log(props.displayBlockOrNone_PopUp_1.displayBlockOrNone_PopUp_1)  
+        }
+        {
+          console.log(props.displayBlockOrNone_PopUp_2.displayBlockOrNone_PopUp_2)  
+        }
+        {
+          console.log(props.displayBlockOrNone_PopUp_3.displayBlockOrNone_PopUp_3)  
+        }
+
+        {/* {
           props.displayBlockOrNone_PopUp_1.displayBlockOrNone_PopUp_1 ? (console.log('Pop Up 1: Block')) : (console.log('Pop Up 1: None'))
         }
         {
@@ -444,7 +584,7 @@ const App = (
         }
         {
           props.displayBlockOrNone_PopUp_3.displayBlockOrNone_PopUp_3 ? (console.log('Pop Up 3: Block')) : (console.log('Pop Up 3: None'))
-        }
+        } */}
 
         {/* <Pop_Up
           popUpMessage="Empty city name / dates"

@@ -17,14 +17,15 @@ import './tripCard.styles.scss'
 export const TripCard = ({ tripData, trip_id, onDelete}) => {
 
     const [item, setItem] = useState(false);
-
-    const trueOrFalse = tripData.temp.trueOrFalse;
-
+    
     // let deleteTripTrueOrFalseValue = false;
-
+    
     const deleteTripTrueOrFalse = () => {
         setItem(true)
     }
+    
+    // this trueOrFalse is for temp input
+    const trueOrFalse = tripData.temp.trueOrFalse;
 
     return(
         <div className={`entryHolder${item ? ' entryHolder-drop' : ''}`} id={`${trip_id}`}>
