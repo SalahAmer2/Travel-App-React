@@ -36,6 +36,21 @@ const popUpReducer = (state = INITIAL_STATE, action) => {
         case PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_1:
             return {
                 ...state,
+                displayBlockOrNone_PopUp_1: !state.displayBlockOrNone_PopUp_1
+            }
+        case PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_2:
+            return {
+                ...state,
+                displayBlockOrNone_PopUp_1: !state.displayBlockOrNone_PopUp_2
+            }
+        case PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_3:
+            return {
+                ...state,
+                displayBlockOrNone_PopUp_1: !state.displayBlockOrNone_PopUp_3
+            }
+        case PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_1:
+            return {
+                ...state,
                 displayBlockOrNone_PopUp_1: action.payload
             }
         case PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_2:

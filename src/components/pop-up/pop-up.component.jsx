@@ -110,15 +110,18 @@ class Pop_Up extends React.Component {
                 pop_up_3_state: false
             }); // To make it false
             console.log(this.props.pop_up_3_state);
-            this.props.displayBlockOrNone_PopUp_1({
-                displayBlockOrNone_PopUp_1: false
-            });
-            this.props.displayBlockOrNone_PopUp_1({
-                displayBlockOrNone_PopUp_2: false
-            });
-            this.props.displayBlockOrNone_PopUp_1({
-                displayBlockOrNone_PopUp_3: false
-            });
+            this.props.displayBlockOrNone_PopUp_1();
+            this.props.displayBlockOrNone_PopUp_2();
+            this.props.displayBlockOrNone_PopUp_3();
+            // this.props.displayBlockOrNone_PopUp_1({
+            //     displayBlockOrNone_PopUp_1: false
+            // });
+            // this.props.displayBlockOrNone_PopUp_1({
+            //     displayBlockOrNone_PopUp_2: false
+            // });
+            // this.props.displayBlockOrNone_PopUp_1({
+            //     displayBlockOrNone_PopUp_3: false
+            // });
             toggleShowPopUp();
             togglePopUpExit();
             toggleSubmittedOrNot({
@@ -159,7 +162,7 @@ const mapDispatchToProps = dispatch => ({
     toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp)),
     displayBlockOrNone_PopUp_1: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
     displayBlockOrNone_PopUp_2: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
-    displayBlockOrNone_PopUp_3: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp))
+    displayBlockOrNone_PopUp_3: () => dispatch(displayBlockOrNone_PopUp_3())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pop_Up);
