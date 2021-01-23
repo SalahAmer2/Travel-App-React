@@ -48,9 +48,9 @@ class BodyOfApp extends React.Component {
     performAction = (e) => {
         e.preventDefault();
 
-        this.props.togglePopUp3State({
-            pop_up_3_state: false
-        });// To make it false
+        // this.props.togglePopUp3State({
+        //     pop_up_3_state: false
+        // });// To make it false
 
         // console.log(this.props.pop_up_3_state)
 
@@ -62,9 +62,10 @@ class BodyOfApp extends React.Component {
 
         const { toggleSubmittedOrNot } = this.props;
 
-        toggleSubmittedOrNot({
-            submittedOrNot: true
-        });
+        toggleSubmittedOrNot(true);
+        // toggleSubmittedOrNot({
+        //     submittedOrNot: true
+        // });
 
         // const city = this.props.currentInputs.city;
         // const depDateFromUser = this.props.currentInputs.depDateFromUser;
@@ -120,15 +121,15 @@ class BodyOfApp extends React.Component {
             switch (popUpNum) {
                 case 1:
                     console.log("popup1 read in switch")
-                    this.props.displayBlockOrNone_PopUp_1_Action()
+                    this.props.displayBlockOrNone_PopUp_1_Action(true)
                     break;
                 case 2:
                     console.log("popup2 read in switch")
-                    this.props.displayBlockOrNone_PopUp_2_Action()
+                    this.props.displayBlockOrNone_PopUp_2_Action(true)
                     break;
                 case 3:
                     console.log("popup3 read in switch")
-                    this.props.displayBlockOrNone_PopUp_3_Action()
+                    this.props.displayBlockOrNone_PopUp_3_Action(true)
                     break;
                 default:
                     return null;
@@ -137,8 +138,8 @@ class BodyOfApp extends React.Component {
         }
 
         //{
-        if(this.props.submittedOrNot && this.props.showPopUp)
-            {
+        // if(this.props.submittedOrNot && this.props.showPopUp)
+        //     {
                 if(
                     (city === "" || city === null || city === undefined) ||
                     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
@@ -148,20 +149,33 @@ class BodyOfApp extends React.Component {
                         console.log("City: " + city);
                         displayBlockOrNone_PopUp(2);
                     } 
-                else if(daysLeft === "Error: invalid dates")
-                            
+                else if(daysLeft === "Error: invalid dates")      
                     {
+                        console.log(daysLeft);
                         displayBlockOrNone_PopUp(1);
                     }
-                else if(this.props.pop_up_3_state.pop_up_3_state)
-                    {
-                        displayBlockOrNone_PopUp(3);
-                    }
                 else {
-                    console.log("No errors, so no pop-ups to be displayed.");
+                    console.log("Pop-up 1 & 2 not needed to display.");
                 }
-            }
-
+            // }
+        // if (
+        //     (city === "" || city === null || city === undefined) ||
+        //     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+        //     (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
+        // ) {
+        //     console.log("City: " + city);
+        //     displayBlockOrNone_PopUp(2);
+        // }
+        // else if (daysLeft === "Error: invalid dates") {
+        //     console.log(daysLeft);
+        //     displayBlockOrNone_PopUp(1);
+        // }
+        // else if (this.props.pop_up_3_state.pop_up_3_state) {
+        //     displayBlockOrNone_PopUp(3);
+        // }
+        // else {
+        //     console.log("No errors, so no pop-ups to be displayed.");
+        // }
 
         const getFunc = async () => {
 
@@ -247,11 +261,14 @@ class BodyOfApp extends React.Component {
             } catch (error) {
                 //appropriately handle the error
                 // console.log("error", error);
-                this.props.togglePopUp3State({
-                    pop_up_3_state: true
-                });// To make it true
+                // this.props.togglePopUp3State({
+                //     pop_up_3_state: true
+                // });// To make it true
 
-                this.props.pop_up_3_state.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
+                displayBlockOrNone_PopUp(3);
+
+                // this.props.pop_up_3_state.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
+                this.props.displayBlockOrNone_PopUp_3 ? (console.log('PopUp 3 is true')) : (console.log('PopUp 3 is false'))
 
                 // this.togglePopUp3();
 
@@ -272,21 +289,33 @@ class BodyOfApp extends React.Component {
             (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
             (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
             (daysLeft === "Error: invalid dates") ||
-            (this.props.pop_up_3_state.pop_up_3_state)
+            (this.props.displayBlockOrNone_PopUp_3) ||
+            (!this.props.submittedOrNot)//WE ARE NOW TRYING TO PREVENT currentProjectData_Update_Action FROM TRIGGERING WHEN THERE'S POPUP3
+            // (this.props.pop_up_3_state.pop_up_3_state)
         ) {
-            return;
+            return null;
+        } else {
+            getFunc().then((dataOfTripCard) => {
+                this.props.currentProjectData_Update_Action(
+                    [
+                        ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
+                        // {...dataOfTripCard}
+                        dataOfTripCard
+                    ]
+                )
+            });
         }
 
 
-        getFunc().then((dataOfTripCard) => {
-            this.props.currentProjectData_Update_Action(
-                [
-                    ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
-                    // {...dataOfTripCard}
-                    dataOfTripCard
-                ]
-            )
-        });
+        // getFunc().then((dataOfTripCard) => {
+        //     this.props.currentProjectData_Update_Action(
+        //         [
+        //             ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
+        //             // {...dataOfTripCard}
+        //             dataOfTripCard
+        //         ]
+        //     )
+        // });
     }
     
     render() {
@@ -444,7 +473,7 @@ class BodyOfApp extends React.Component {
                             }
                             <div id="allEntryHolders">
                                 {
-                                    (!this.props.pop_up_3_state.pop_up_3_state && this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
+                                    (!this.props.displayBlockOrNone_PopUp_3 && this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
                                         (this.props.currentProjectData).map((tripDataItem, index) => {
                                             return <TripCard key={index} trip_id={tripDataItem.trip_id} tripData={tripDataItem}
                                                 onDelete={() => { this.deleteTrip(tripDataItem.trip_id) }}
@@ -454,6 +483,18 @@ class BodyOfApp extends React.Component {
                                         : null    
                                 }
                             </div>
+                            {/* <div id="allEntryHolders">
+                                {
+                                    (!this.props.pop_up_3_state.pop_up_3_state && this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
+                                        (this.props.currentProjectData).map((tripDataItem, index) => {
+                                            return <TripCard key={index} trip_id={tripDataItem.trip_id} tripData={tripDataItem}
+                                                onDelete={() => { this.deleteTrip(tripDataItem.trip_id) }}
+                                                // ref={this.currentTripCard}
+                                                />
+                                        })
+                                        : null    
+                                }
+                            </div> */}
                         </div>
                     </label>
                     {/* <footer>
@@ -485,9 +526,12 @@ const mapDispatchToProps = dispatch => ({
     currentProjectData_Update_Action: projectData => dispatch(currentProjectData_Update(projectData)),
     currentProjectData_Delete_Action: trip_id => dispatch(currentProjectData_Delete(trip_id)),
     createTripCardsOrNot: tripCards => dispatch(createTripCardsOrNot(tripCards)),
-    displayBlockOrNone_PopUp_1_Action: () => dispatch(displayBlockOrNone_PopUp_1()),
-    displayBlockOrNone_PopUp_2_Action: () => dispatch(displayBlockOrNone_PopUp_2()),
-    displayBlockOrNone_PopUp_3_Action: () => dispatch(displayBlockOrNone_PopUp_3())
+    // displayBlockOrNone_PopUp_1_Action: () => dispatch(displayBlockOrNone_PopUp_1()),
+    // displayBlockOrNone_PopUp_2_Action: () => dispatch(displayBlockOrNone_PopUp_2()),
+    // displayBlockOrNone_PopUp_3_Action: () => dispatch(displayBlockOrNone_PopUp_3())
+    displayBlockOrNone_PopUp_1_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
+    displayBlockOrNone_PopUp_2_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
+    displayBlockOrNone_PopUp_3_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp))
 })
 
 //Notice that referring to the state with mapStateToProps is light BLUE and updating the state with mapDispatchToProps is YELLOW

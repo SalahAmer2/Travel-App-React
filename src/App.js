@@ -596,15 +596,30 @@ import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
             : null
         } */}
 
-        <Pop_Up 
-          popUpMessage="Empty city name / dates" 
-          popUpNumberID="pop-up-2" 
-          style={(props.displayBlockOrNone_PopUp_2 && props.showPopUp) ? { display: 'block' } : { display: 'none' }}
+        {/* <Pop_Up 
+          popUpMessage="Invalid Dates" 
+          popUpNumberID="pop-up-1" 
+          style={(props.displayBlockOrNone_PopUp_1) ? { display: 'block' } : { display: 'none' }}
+        />
+        <Pop_Up
+          popUpMessage="Empty city name / dates"
+          popUpNumberID="pop-up-2"
+          style={(props.displayBlockOrNone_PopUp_2) ? { display: 'block' } : { display: 'none' }}
         />
         <Pop_Up 
+          popUpMessage="Check city name" 
+          popUpNumberID="pop-up-3" 
+          style={(props.displayBlockOrNone_PopUp_3) ? { display: 'block' } : { display: 'none' }}
+        /> */}
+        {/* <Pop_Up 
           popUpMessage="Invalid Dates" 
           popUpNumberID="pop-up-1" 
           style={(props.displayBlockOrNone_PopUp_1 && props.showPopUp) ? { display: 'block' } : { display: 'none' }}
+        /> */}
+        <Pop_Up
+          popUpMessage="Empty city name / dates"
+          popUpNumberID="pop-up-2"
+          style={(props.displayBlockOrNone_PopUp_2 && props.showPopUp) ? { display: 'block' } : { display: 'none' }}
         />
         <Pop_Up 
           popUpMessage="Check city name" 
@@ -687,9 +702,12 @@ const mapDispatchToProps = dispatch => ({
   // displayBlockOrNone_PopUp_1: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
   // displayBlockOrNone_PopUp_2: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
   // displayBlockOrNone_PopUp_3: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp))
-  displayBlockOrNone_PopUp_1_Action: () => dispatch(displayBlockOrNone_PopUp_1()),
-  displayBlockOrNone_PopUp_2_Action: () => dispatch(displayBlockOrNone_PopUp_2()),
-  displayBlockOrNone_PopUp_3_Action: () => dispatch(displayBlockOrNone_PopUp_3())
+  // displayBlockOrNone_PopUp_1_Action: () => dispatch(displayBlockOrNone_PopUp_1()),
+  // displayBlockOrNone_PopUp_2_Action: () => dispatch(displayBlockOrNone_PopUp_2()),
+  // displayBlockOrNone_PopUp_3_Action: () => dispatch(displayBlockOrNone_PopUp_3())
+  displayBlockOrNone_PopUp_1_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
+  displayBlockOrNone_PopUp_2_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
+  displayBlockOrNone_PopUp_3_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

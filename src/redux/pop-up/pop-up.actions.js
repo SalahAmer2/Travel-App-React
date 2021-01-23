@@ -20,28 +20,28 @@ export const toggleSubmittedOrNot = (popUp) => ({
     payload: popUp
 })
 
-export const displayBlockOrNone_PopUp_1 = () => ({
-    type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_1
-})
-
-export const displayBlockOrNone_PopUp_2 = () => ({
-    type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_2
-})
-
-export const displayBlockOrNone_PopUp_3 = () => ({
-    type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_3
-})
-// export const displayBlockOrNone_PopUp_1 = (popUp) => ({
-//     type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_1,
-//     payload: popUp
+// export const displayBlockOrNone_PopUp_1 = () => ({
+//     type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_1
 // })
 
-// export const displayBlockOrNone_PopUp_2 = (popUp) => ({
-//     type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_2,
-//     payload: popUp
+// export const displayBlockOrNone_PopUp_2 = () => ({
+//     type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_2
 // })
 
-// export const displayBlockOrNone_PopUp_3 = (popUp) => ({
-//     type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_3,
-//     payload: popUp
+// export const displayBlockOrNone_PopUp_3 = () => ({
+//     type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_3
 // })
+export const displayBlockOrNone_PopUp_1 = (popUp) => ({
+    type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_1,
+    payload: popUp
+})
+
+export const displayBlockOrNone_PopUp_2 = (popUp) => ({
+    type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_2,
+    payload: popUp
+})
+
+export const displayBlockOrNone_PopUp_3 = (popUp) => ({
+    type: PopUpActionTypes.DISPLAY_BLOCK_OR_NONE_POP_UP_3,
+    payload: popUp
+})

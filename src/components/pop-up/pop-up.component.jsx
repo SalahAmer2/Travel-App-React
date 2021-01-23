@@ -106,27 +106,22 @@ class Pop_Up extends React.Component {
 
         togglePopUpExit();
         setTimeout(() => {
-            togglePopUp3State({
-                pop_up_3_state: false
-            }); // To make it false
-            console.log(this.props.pop_up_3_state);
-            this.props.displayBlockOrNone_PopUp_1();
-            this.props.displayBlockOrNone_PopUp_2();
-            this.props.displayBlockOrNone_PopUp_3();
-            // this.props.displayBlockOrNone_PopUp_1({
-            //     displayBlockOrNone_PopUp_1: false
-            // });
-            // this.props.displayBlockOrNone_PopUp_1({
-            //     displayBlockOrNone_PopUp_2: false
-            // });
-            // this.props.displayBlockOrNone_PopUp_1({
-            //     displayBlockOrNone_PopUp_3: false
-            // });
+            // togglePopUp3State({
+            //     pop_up_3_state: false
+            // }); // To make it false
+            // console.log(this.props.pop_up_3_state);
+            // this.props.displayBlockOrNone_PopUp_1();
+            // this.props.displayBlockOrNone_PopUp_2();
+            // this.props.displayBlockOrNone_PopUp_3();
+            this.props.displayBlockOrNone_PopUp_1_Action(false);
+            this.props.displayBlockOrNone_PopUp_2_Action(false);
+            this.props.displayBlockOrNone_PopUp_3_Action(false);
             toggleShowPopUp();
             togglePopUpExit();
-            toggleSubmittedOrNot({
-                submittedOrNot: false
-            });
+            toggleSubmittedOrNot(false);
+            // toggleSubmittedOrNot({
+            //     submittedOrNot: false
+            // });
         }, 1000)
     }
 
@@ -160,9 +155,12 @@ const mapDispatchToProps = dispatch => ({
     togglePopUpExit: () => dispatch(togglePopUpExit()),
     togglePopUp3State: popUp => dispatch(togglePopUp3State(popUp)),
     toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp)),
-    displayBlockOrNone_PopUp_1: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
-    displayBlockOrNone_PopUp_2: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
-    displayBlockOrNone_PopUp_3: () => dispatch(displayBlockOrNone_PopUp_3())
+    // displayBlockOrNone_PopUp_1_Action: () => dispatch(displayBlockOrNone_PopUp_1()),
+    // displayBlockOrNone_PopUp_2_Action: () => dispatch(displayBlockOrNone_PopUp_2()),
+    // displayBlockOrNone_PopUp_3_Action: () => dispatch(displayBlockOrNone_PopUp_3())
+    displayBlockOrNone_PopUp_1_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
+    displayBlockOrNone_PopUp_2_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
+    displayBlockOrNone_PopUp_3_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Pop_Up);
