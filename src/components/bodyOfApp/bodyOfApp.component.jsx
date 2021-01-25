@@ -57,8 +57,6 @@ class BodyOfApp extends React.Component {
 
         const { toggleShowPopUp } = this.props;
 
-        toggleShowPopUp();
-
         const { toggleSubmittedOrNot } = this.props;
 
         toggleSubmittedOrNot(true);
@@ -89,11 +87,13 @@ class BodyOfApp extends React.Component {
             {
                 console.log("City: " + city);
                 this.displayBlockOrNone_PopUp(2);
+                toggleShowPopUp();
             } 
         else if(daysLeft === "Error: invalid dates")      
             {
                 console.log(daysLeft);
                 this.displayBlockOrNone_PopUp(1);
+                toggleShowPopUp();
             }
         else {
             console.log("Pop-up 1 & 2 not needed to display.");
@@ -182,6 +182,7 @@ class BodyOfApp extends React.Component {
             } catch (error) {
                 //appropriately handle the error
                 this.displayBlockOrNone_PopUp(3);
+                toggleShowPopUp()
                 this.props.displayBlockOrNone_PopUp_3 ? (console.log('PopUp 3 is true')) : (console.log('PopUp 3 is false'))
             }        
         };
