@@ -611,11 +611,11 @@ import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
           popUpNumberID="pop-up-3" 
           style={(props.displayBlockOrNone_PopUp_3) ? { display: 'block' } : { display: 'none' }}
         /> */}
-        {/* <Pop_Up 
+        <Pop_Up 
           popUpMessage="Invalid Dates" 
           popUpNumberID="pop-up-1" 
           style={(props.displayBlockOrNone_PopUp_1 && props.showPopUp) ? { display: 'block' } : { display: 'none' }}
-        /> */}
+        />
         <Pop_Up
           popUpMessage="Empty city name / dates"
           popUpNumberID="pop-up-2"

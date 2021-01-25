@@ -45,6 +45,26 @@ class BodyOfApp extends React.Component {
         setTimeout(() => { this.props.currentProjectData_Delete_Action(trip_id) }, 400); 
     };
 
+    displayBlockOrNone_PopUp = (popUpNum) => {
+        switch (popUpNum) {
+            case 1:
+                console.log("popup1 read in switch")
+                this.props.displayBlockOrNone_PopUp_1_Action(true)
+                break;
+            case 2:
+                console.log("popup2 read in switch")
+                this.props.displayBlockOrNone_PopUp_2_Action(true)
+                break;
+            case 3:
+                console.log("popup3 read in switch")
+                this.props.displayBlockOrNone_PopUp_3_Action(true)
+                break;
+            default:
+                return null;
+        }
+        // return;
+    }
+
     performAction = (e) => {
         e.preventDefault();
 
@@ -117,25 +137,25 @@ class BodyOfApp extends React.Component {
         
         // let dataOfTripCard = {};
     
-        const displayBlockOrNone_PopUp = (popUpNum) => {
-            switch (popUpNum) {
-                case 1:
-                    console.log("popup1 read in switch")
-                    this.props.displayBlockOrNone_PopUp_1_Action(true)
-                    break;
-                case 2:
-                    console.log("popup2 read in switch")
-                    this.props.displayBlockOrNone_PopUp_2_Action(true)
-                    break;
-                case 3:
-                    console.log("popup3 read in switch")
-                    this.props.displayBlockOrNone_PopUp_3_Action(true)
-                    break;
-                default:
-                    return null;
-            }
-            // return;
-        }
+        // const displayBlockOrNone_PopUp = (popUpNum) => {
+        //     switch (popUpNum) {
+        //         case 1:
+        //             console.log("popup1 read in switch")
+        //             this.props.displayBlockOrNone_PopUp_1_Action(true)
+        //             break;
+        //         case 2:
+        //             console.log("popup2 read in switch")
+        //             this.props.displayBlockOrNone_PopUp_2_Action(true)
+        //             break;
+        //         case 3:
+        //             console.log("popup3 read in switch")
+        //             this.props.displayBlockOrNone_PopUp_3_Action(true)
+        //             break;
+        //         default:
+        //             return null;
+        //     }
+        //     // return;
+        // }
 
         //{
         // if(this.props.submittedOrNot && this.props.showPopUp)
@@ -147,12 +167,12 @@ class BodyOfApp extends React.Component {
                   )   
                     {
                         console.log("City: " + city);
-                        displayBlockOrNone_PopUp(2);
+                        this.displayBlockOrNone_PopUp(2);
                     } 
                 else if(daysLeft === "Error: invalid dates")      
                     {
                         console.log(daysLeft);
-                        displayBlockOrNone_PopUp(1);
+                        this.displayBlockOrNone_PopUp(1);
                     }
                 else {
                     console.log("Pop-up 1 & 2 not needed to display.");
@@ -265,7 +285,7 @@ class BodyOfApp extends React.Component {
                 //     pop_up_3_state: true
                 // });// To make it true
 
-                displayBlockOrNone_PopUp(3);
+                this.displayBlockOrNone_PopUp(3);
 
                 // this.props.pop_up_3_state.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
                 this.props.displayBlockOrNone_PopUp_3 ? (console.log('PopUp 3 is true')) : (console.log('PopUp 3 is false'))
@@ -280,7 +300,7 @@ class BodyOfApp extends React.Component {
                 //     console.log(this.props.pop_up_3_state)
                 // }, 1000);
                 // this.setState({ popUp3Display: true });
-                return;
+                // return;
             }        
         };
 
@@ -289,22 +309,65 @@ class BodyOfApp extends React.Component {
             (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
             (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
             (daysLeft === "Error: invalid dates") ||
-            (this.props.displayBlockOrNone_PopUp_3) ||
-            (!this.props.submittedOrNot)//WE ARE NOW TRYING TO PREVENT currentProjectData_Update_Action FROM TRIGGERING WHEN THERE'S POPUP3
-            // (this.props.pop_up_3_state.pop_up_3_state)
-        ) {
+            (!this.props.submittedOrNot)
+        ){
             return null;
         } else {
             getFunc().then((dataOfTripCard) => {
-                this.props.currentProjectData_Update_Action(
-                    [
-                        ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
-                        // {...dataOfTripCard}
-                        dataOfTripCard
-                    ]
-                )
-            });
+                if (!(this.props.displayBlockOrNone_PopUp_3)) {
+                    this.props.currentProjectData_Update_Action(
+                        [
+                            ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
+                            // {...dataOfTripCard}
+                            dataOfTripCard
+                        ]
+                    )
+                }
+                // if (
+                //     (city === "" || city === null || city === undefined) ||
+                //     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+                //     (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
+                //     (daysLeft === "Error: invalid dates") ||
+                //     (this.props.displayBlockOrNone_PopUp_3) ||
+                //     (!this.props.submittedOrNot)//WE ARE NOW TRYING TO PREVENT currentProjectData_Update_Action FROM TRIGGERING WHEN THERE'S POPUP3
+                //     // (this.props.pop_up_3_state.pop_up_3_state)
+                // ) {
+                //     return null;
+                // } else {
+                //     this.props.currentProjectData_Update_Action(
+                //         [
+                //             ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
+                //             // {...dataOfTripCard}
+                //             dataOfTripCard
+                //         ]
+                //     )
+                // }
+            })
         }
+
+        // if (
+        //     (city === "" || city === null || city === undefined) ||
+        //     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+        //     (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
+        //     (daysLeft === "Error: invalid dates") ||
+        //     (this.props.displayBlockOrNone_PopUp_3) ||
+        //     (!this.props.submittedOrNot)//WE ARE NOW TRYING TO PREVENT currentProjectData_Update_Action FROM TRIGGERING WHEN THERE'S POPUP3
+        //     // (this.props.pop_up_3_state.pop_up_3_state)
+        // ) {
+        //     return null;
+        // } else {
+        //     //if (!(this.props.displayBlockOrNone_PopUp_3)){
+        //         getFunc().then((dataOfTripCard) => {
+        //             this.props.currentProjectData_Update_Action(
+        //                 [
+        //                     ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
+        //                     // {...dataOfTripCard}
+        //                     dataOfTripCard
+        //                 ]
+        //             )
+        //         });
+        //     //}
+        // }
 
 
         // getFunc().then((dataOfTripCard) => {
