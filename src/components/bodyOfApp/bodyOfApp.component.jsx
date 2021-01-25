@@ -190,10 +190,9 @@ class BodyOfApp extends React.Component {
             (city === "" || city === null || city === undefined) ||
             (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
             (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
-            (daysLeft === "Error: invalid dates") ||
-            (!this.props.submittedOrNot)
+            (daysLeft === "Error: invalid dates")
         ){
-            return null;
+            console.log("getFunc has not been called.")
         } else {
             getFunc().then((dataOfTripCard) => {
                 if (!(this.props.displayBlockOrNone_PopUp_3)) {
@@ -256,7 +255,7 @@ class BodyOfApp extends React.Component {
                             }
                             <div id="allEntryHolders">
                                 {
-                                    (!this.props.displayBlockOrNone_PopUp_3 && this.props.submittedOrNot && this.props.currentProjectData && this.props.currentProjectData.length > 0) ?
+                                    (this.props.currentProjectData.length > 0) ?
                                         (this.props.currentProjectData).map((tripDataItem, index) => {
                                             return <TripCard key={index} trip_id={tripDataItem.trip_id} tripData={tripDataItem}
                                                 onDelete={() => { this.deleteTrip(tripDataItem.trip_id) }}
