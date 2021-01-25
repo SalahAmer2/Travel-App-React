@@ -3,11 +3,6 @@ import './App.scss';
 
 import { connect } from "react-redux";
 
-import { toggleShowPopUp } from "./redux/pop-up/pop-up.actions";
-import { displayBlockOrNone_PopUp_1 } from "./redux/pop-up/pop-up.actions";
-import { displayBlockOrNone_PopUp_2 } from "./redux/pop-up/pop-up.actions";
-import { displayBlockOrNone_PopUp_3 } from "./redux/pop-up/pop-up.actions";
-
 import Pop_Up from "./components/pop-up/pop-up.component";
 import BodyOfApp from "./components/bodyOfApp/bodyOfApp.component";
 
@@ -55,20 +50,10 @@ const App = (props) => {
 }
 
 const mapStateToProps = state => ({
-  submittedOrNot: state.popUp.submittedOrNot,
-  pop_up_3_state: state.popUp.pop_up_3_state,
-  currentInputs: state.inputs.currentInputs,
   showPopUp: state.popUp.showPopUp,
   displayBlockOrNone_PopUp_1: state.popUp.displayBlockOrNone_PopUp_1,
   displayBlockOrNone_PopUp_2: state.popUp.displayBlockOrNone_PopUp_2,
   displayBlockOrNone_PopUp_3: state.popUp.displayBlockOrNone_PopUp_3
 });
 
-const mapDispatchToProps = dispatch => ({
-  toggleShowPopUp: () => dispatch(toggleShowPopUp()),
-  displayBlockOrNone_PopUp_1_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
-  displayBlockOrNone_PopUp_2_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
-  displayBlockOrNone_PopUp_3_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp))
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

@@ -249,14 +249,14 @@ class BodyOfApp extends React.Component {
                             </div>
                         </div>       
                         <div>
-                            {   this.props.submittedOrNot ?
+                            {(this.props.currentProjectData.length > 0) ?
                                 <div className="title centerTitle">My Trips</div>
                                 :
                                 null
                             }
                             <div id="allEntryHolders">
                                 {
-                                    (!this.props.displayBlockOrNone_PopUp_3 && this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
+                                    (!this.props.displayBlockOrNone_PopUp_3 && this.props.submittedOrNot && this.props.currentProjectData && this.props.currentProjectData.length > 0) ?
                                         (this.props.currentProjectData).map((tripDataItem, index) => {
                                             return <TripCard key={index} trip_id={tripDataItem.trip_id} tripData={tripDataItem}
                                                 onDelete={() => { this.deleteTrip(tripDataItem.trip_id) }}
