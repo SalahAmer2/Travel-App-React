@@ -13,8 +13,6 @@ import { displayBlockOrNone_PopUp_1 } from "../../redux/pop-up/pop-up.actions";
 import { displayBlockOrNone_PopUp_2 } from "../../redux/pop-up/pop-up.actions";
 import { displayBlockOrNone_PopUp_3 } from "../../redux/pop-up/pop-up.actions";
 
-import Pop_Up from "../pop-up/pop-up.component";
-
 import { TripCard } from "../tripCard/tripCard.component";
 
 import timeDiff from "../../timeDiff";
@@ -28,18 +26,7 @@ class BodyOfApp extends React.Component {
         this.city = React.createRef();
         this.departureDate = React.createRef();
         this.returnDate = React.createRef();
-        // this.showPopUp3 = false;
-        // this.state = {
-        //     showPopUp3: false
-        // }
-        // this.state = { popUp3Display: false };
     }
-    
-    // togglePopUp3 = () => {
-    //     this.setState({
-    //         showPopUp3: !this.state.showPopUp3
-    //     })
-    // }
 
     deleteTrip = (trip_id) => {
         setTimeout(() => { this.props.currentProjectData_Delete_Action(trip_id) }, 400); 
@@ -62,19 +49,11 @@ class BodyOfApp extends React.Component {
             default:
                 return null;
         }
-        // return;
+
     }
 
     performAction = (e) => {
         e.preventDefault();
-
-        // this.props.togglePopUp3State({
-        //     pop_up_3_state: false
-        // });// To make it false
-
-        // console.log(this.props.pop_up_3_state)
-
-        // this.setState({ popUp3Display: false });
 
         const { toggleShowPopUp } = this.props;
 
@@ -83,25 +62,12 @@ class BodyOfApp extends React.Component {
         const { toggleSubmittedOrNot } = this.props;
 
         toggleSubmittedOrNot(true);
-        // toggleSubmittedOrNot({
-        //     submittedOrNot: true
-        // });
-
-        // const city = this.props.currentInputs.city;
-        // const depDateFromUser = this.props.currentInputs.depDateFromUser;
-        // const retDateFromUser = this.props.currentInputs.retDateFromUser;
 
         const city = this.city.current.value
         const depDateFromUser = this.departureDate.current.value
         const retDateFromUser = this.returnDate.current.value
 
         const { currentInputs } = this.props;
-
-        // currentInputs({
-        //     city: this.city.current.value,
-        //     depDateFromUser: this.departureDate.current.value,
-        //     retDateFromUser: this.returnDate.current.value
-        // })
 
         currentInputs({
             city: city,
@@ -115,87 +81,23 @@ class BodyOfApp extends React.Component {
 
         const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
 
-        // if(
-        //     (city === "" || city === null || city === undefined) ||
-        //     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
-        //     (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
-        //     (daysLeft === "Error: invalid dates") ||
-        //     (this.props.pop_up_3_state)
-        // ) {
-        //     return;
-        // }
-
-        // const { toggleShowPopUp } = this.props;
-
-        // toggleShowPopUp();
-
-        // const { toggleSubmittedOrNot } = this.props;
-
-        // toggleSubmittedOrNot({
-        //     submittedOrNot: true
-        // });
-        
-        // let dataOfTripCard = {};
-    
-        // const displayBlockOrNone_PopUp = (popUpNum) => {
-        //     switch (popUpNum) {
-        //         case 1:
-        //             console.log("popup1 read in switch")
-        //             this.props.displayBlockOrNone_PopUp_1_Action(true)
-        //             break;
-        //         case 2:
-        //             console.log("popup2 read in switch")
-        //             this.props.displayBlockOrNone_PopUp_2_Action(true)
-        //             break;
-        //         case 3:
-        //             console.log("popup3 read in switch")
-        //             this.props.displayBlockOrNone_PopUp_3_Action(true)
-        //             break;
-        //         default:
-        //             return null;
-        //     }
-        //     // return;
-        // }
-
-        //{
-        // if(this.props.submittedOrNot && this.props.showPopUp)
-        //     {
-                if(
-                    (city === "" || city === null || city === undefined) ||
-                    (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
-                    (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
-                  )   
-                    {
-                        console.log("City: " + city);
-                        this.displayBlockOrNone_PopUp(2);
-                    } 
-                else if(daysLeft === "Error: invalid dates")      
-                    {
-                        console.log(daysLeft);
-                        this.displayBlockOrNone_PopUp(1);
-                    }
-                else {
-                    console.log("Pop-up 1 & 2 not needed to display.");
-                }
-            // }
-        // if (
-        //     (city === "" || city === null || city === undefined) ||
-        //     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
-        //     (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
-        // ) {
-        //     console.log("City: " + city);
-        //     displayBlockOrNone_PopUp(2);
-        // }
-        // else if (daysLeft === "Error: invalid dates") {
-        //     console.log(daysLeft);
-        //     displayBlockOrNone_PopUp(1);
-        // }
-        // else if (this.props.pop_up_3_state.pop_up_3_state) {
-        //     displayBlockOrNone_PopUp(3);
-        // }
-        // else {
-        //     console.log("No errors, so no pop-ups to be displayed.");
-        // }
+        if(
+            (city === "" || city === null || city === undefined) ||
+            (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
+            (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
+            )   
+            {
+                console.log("City: " + city);
+                this.displayBlockOrNone_PopUp(2);
+            } 
+        else if(daysLeft === "Error: invalid dates")      
+            {
+                console.log(daysLeft);
+                this.displayBlockOrNone_PopUp(1);
+            }
+        else {
+            console.log("Pop-up 1 & 2 not needed to display.");
+        }
 
         const getFunc = async () => {
 
@@ -265,42 +167,22 @@ class BodyOfApp extends React.Component {
                     temp: (daysLeft > 7) ? {
                         low_temp: low_temp,
                         max_temp: max_temp,
-                        trueOrFalse: true //For the if statement in updateUI in the client side
+                        trueOrFalse: true
                     } : {
                             temp: temp,
-                            trueOrFalse: false //For the if statement in updateUI in the client side
+                            trueOrFalse: false
                         },
                     lat: latitude,
                     lng: longitude,
                     trip_id: currentId
-                    // trip_id: null
                 };
 
                 return tripData;
 
             } catch (error) {
                 //appropriately handle the error
-                // console.log("error", error);
-                // this.props.togglePopUp3State({
-                //     pop_up_3_state: true
-                // });// To make it true
-
                 this.displayBlockOrNone_PopUp(3);
-
-                // this.props.pop_up_3_state.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
                 this.props.displayBlockOrNone_PopUp_3 ? (console.log('PopUp 3 is true')) : (console.log('PopUp 3 is false'))
-
-                // this.togglePopUp3();
-
-                // setTimeout(() => {
-                //     this.props.togglePopUp3State({
-                //         pop_up_3_state: false
-                //     }); // To make it false
-                //     // this.togglePopUp3();
-                //     console.log(this.props.pop_up_3_state)
-                // }, 1000);
-                // this.setState({ popUp3Display: true });
-                // return;
             }        
         };
 
@@ -317,180 +199,18 @@ class BodyOfApp extends React.Component {
                 if (!(this.props.displayBlockOrNone_PopUp_3)) {
                     this.props.currentProjectData_Update_Action(
                         [
-                            ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
-                            // {...dataOfTripCard}
+                            ...this.props.currentProjectData,
                             dataOfTripCard
                         ]
                     )
                 }
-                // if (
-                //     (city === "" || city === null || city === undefined) ||
-                //     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
-                //     (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
-                //     (daysLeft === "Error: invalid dates") ||
-                //     (this.props.displayBlockOrNone_PopUp_3) ||
-                //     (!this.props.submittedOrNot)//WE ARE NOW TRYING TO PREVENT currentProjectData_Update_Action FROM TRIGGERING WHEN THERE'S POPUP3
-                //     // (this.props.pop_up_3_state.pop_up_3_state)
-                // ) {
-                //     return null;
-                // } else {
-                //     this.props.currentProjectData_Update_Action(
-                //         [
-                //             ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
-                //             // {...dataOfTripCard}
-                //             dataOfTripCard
-                //         ]
-                //     )
-                // }
             })
         }
-
-        // if (
-        //     (city === "" || city === null || city === undefined) ||
-        //     (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
-        //     (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined) ||
-        //     (daysLeft === "Error: invalid dates") ||
-        //     (this.props.displayBlockOrNone_PopUp_3) ||
-        //     (!this.props.submittedOrNot)//WE ARE NOW TRYING TO PREVENT currentProjectData_Update_Action FROM TRIGGERING WHEN THERE'S POPUP3
-        //     // (this.props.pop_up_3_state.pop_up_3_state)
-        // ) {
-        //     return null;
-        // } else {
-        //     //if (!(this.props.displayBlockOrNone_PopUp_3)){
-        //         getFunc().then((dataOfTripCard) => {
-        //             this.props.currentProjectData_Update_Action(
-        //                 [
-        //                     ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
-        //                     // {...dataOfTripCard}
-        //                     dataOfTripCard
-        //                 ]
-        //             )
-        //         });
-        //     //}
-        // }
-
-
-        // getFunc().then((dataOfTripCard) => {
-        //     this.props.currentProjectData_Update_Action(
-        //         [
-        //             ...this.props.currentProjectData,//previous state //Note: While we still only have one trip card so far, here we'll spread, (or simply put), the previous trip card
-        //             // {...dataOfTripCard}
-        //             dataOfTripCard
-        //         ]
-        //     )
-        // });
     }
     
     render() {
-   
-        // const deleteTrip = (trip_id) => {
-        //     // document.getElementById(trip_id).classList.add("entryHolder-drop");
-        //     this.currentTripCard.current.classList.add("entryHolder-drop");
-        //     setTimeout(this.props.currentProjectData_Delete_Action(trip_id), 100);
-        // };
-
-        // const city = this.props.currentInputs.city;
-        // const depDateFromUser = this.props.currentInputs.depDateFromUser;
-        // const retDateFromUser = this.props.currentInputs.retDateFromUser;
-
-        // const city = this.city.current.value;
-        // const depDateFromUser = this.departureDate.current.value;
-        // const retDateFromUser = this.returnDate.current.value;
-
-        // // Create a new date instance dynamically with JS
-        // const d = new Date();
-        // const newDate = d.getMonth() + 1 + '/' + d.getDate() + '/' + d.getFullYear();
-
-        // const daysLeft = timeDiff(newDate, depDateFromUser, retDateFromUser);
-
         return (
             <div>
-                {/* {
-                    this.props.submittedOrNot ? (console.log('submittedOrNot is true')) : (console.log('submittedOrNot is false'))
-                }
-                {
-                    this.props.pop_up_3_state ? (console.log('pop_up_3_state is true')) : (console.log('pop_up_3_state is false'))
-                }
-                {
-                    this.props.submittedOrNot
-                        ?
-                        (
-                            (
-                                (city === "" || city === null || city === undefined) ||
-                                (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
-                                (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
-                            ) ? (
-                                    <Pop_Up popUpMessage="Empty city name / dates" popUpNumberID="pop-up-2" />
-                                )
-                                :
-                                (
-                                    (daysLeft === "Error: invalid dates")
-                                        ?
-                                        (
-                                            <Pop_Up popUpMessage="Invalid Dates" popUpNumberID="pop-up-1" />
-                                        )
-                                        :
-                                        (
-                                            (this.props.pop_up_3_state)
-                                                ?
-                                                (
-                                                    <Pop_Up popUpMessage="Check city name" popUpNumberID="pop-up-3" />
-                                                )
-                                                :
-                                                null
-                                        )
-                                )
-                        )
-                        :
-                        null
-                } */}
-
-                {/* <Pop_Up
-                    className={
-                        (
-                            (city === "" || city === null || city === undefined) ||
-                            (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
-                            (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
-                        )
-                        ? '' 
-                        : 'hidden'
-                    } 
-                    popUpMessage="Empty city name / dates" 
-                    popUpNumberID="pop-up-2" 
-                />
-                <Pop_Up 
-                    className={
-                        (
-                            (daysLeft === "Error: invalid dates")
-                        )
-                        ? ''
-                        : 'hidden'
-                    }
-                    popUpMessage="Invalid Dates" 
-                    popUpNumberID="pop-up-1" 
-                />
-                <Pop_Up 
-                    className={
-                        (
-                            (this.props.pop_up_3_state)
-                        )
-                        ? ''
-                        : 'hidden'
-                    }
-                    popUpMessage="Check city name" 
-                    popUpNumberID="pop-up-3" 
-                /> */}
-                {/* {
-                    (this.state.popUp3Display) ?
-                    (
-                            <Pop_Up
-                                popUpMessage="Check city name"
-                                popUpNumberID="pop-up-3"
-                            // style={this.state.popUp3Display ? { display: 'block' } : { display: 'none' }}
-                            />
-                    ) :
-                    null
-                } */}
                 <div className="bg">
                     <label id="app">
                         <div className="headline centerTitle">
@@ -540,29 +260,13 @@ class BodyOfApp extends React.Component {
                                         (this.props.currentProjectData).map((tripDataItem, index) => {
                                             return <TripCard key={index} trip_id={tripDataItem.trip_id} tripData={tripDataItem}
                                                 onDelete={() => { this.deleteTrip(tripDataItem.trip_id) }}
-                                                // ref={this.currentTripCard}
                                                 />
                                         })
                                         : null    
                                 }
                             </div>
-                            {/* <div id="allEntryHolders">
-                                {
-                                    (!this.props.pop_up_3_state.pop_up_3_state && this.props.submittedOrNot && this.props.currentProjectData &&  this.props.currentProjectData.length > 0) ?
-                                        (this.props.currentProjectData).map((tripDataItem, index) => {
-                                            return <TripCard key={index} trip_id={tripDataItem.trip_id} tripData={tripDataItem}
-                                                onDelete={() => { this.deleteTrip(tripDataItem.trip_id) }}
-                                                // ref={this.currentTripCard}
-                                                />
-                                        })
-                                        : null    
-                                }
-                            </div> */}
                         </div>
                     </label>
-                    {/* <footer>
-                        Background Photo by David Marcu on Unsplash
-                    </footer> */}
                 </div>
             </div>
         )
@@ -589,14 +293,9 @@ const mapDispatchToProps = dispatch => ({
     currentProjectData_Update_Action: projectData => dispatch(currentProjectData_Update(projectData)),
     currentProjectData_Delete_Action: trip_id => dispatch(currentProjectData_Delete(trip_id)),
     createTripCardsOrNot: tripCards => dispatch(createTripCardsOrNot(tripCards)),
-    // displayBlockOrNone_PopUp_1_Action: () => dispatch(displayBlockOrNone_PopUp_1()),
-    // displayBlockOrNone_PopUp_2_Action: () => dispatch(displayBlockOrNone_PopUp_2()),
-    // displayBlockOrNone_PopUp_3_Action: () => dispatch(displayBlockOrNone_PopUp_3())
     displayBlockOrNone_PopUp_1_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
     displayBlockOrNone_PopUp_2_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
     displayBlockOrNone_PopUp_3_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp))
 })
-
-//Notice that referring to the state with mapStateToProps is light BLUE and updating the state with mapDispatchToProps is YELLOW
 
 export default connect(mapStateToProps, mapDispatchToProps)(BodyOfApp);

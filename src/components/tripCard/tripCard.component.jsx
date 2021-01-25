@@ -17,9 +17,7 @@ import './tripCard.styles.scss'
 export const TripCard = ({ tripData, trip_id, onDelete}) => {
 
     const [item, setItem] = useState(false);
-    
-    // let deleteTripTrueOrFalseValue = false;
-    
+        
     const deleteTripTrueOrFalse = () => {
         setItem(true)
     }
