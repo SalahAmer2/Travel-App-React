@@ -26,7 +26,8 @@ export const TripCard = ({ tripData, trip_id, onDelete}) => {
     const trueOrFalse = tripData.temp.trueOrFalse;
 
     return(
-        <div className={`entryHolder${item ? ' entryHolder-drop' : ''}`} id={`${trip_id}`}>
+        // <div className={`entryHolder${item ? ' entryHolder-drop' : ''}`} id={`${trip_id}`}>
+        <div className={`entryHolder`} id={`${trip_id}`}>
             <Button onDelete={onDelete} trip_id={trip_id} deleteTripTrueOrFalse={() => { deleteTripTrueOrFalse() }}/>
             <CityPhoto cityPhoto={tripData.cityPhoto}/>
             <TodaysDate date={tripData.date}/>

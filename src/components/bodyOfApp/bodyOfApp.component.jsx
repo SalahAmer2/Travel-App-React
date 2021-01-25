@@ -83,7 +83,7 @@ class BodyOfApp extends React.Component {
             (city === "" || city === null || city === undefined) ||
             (depDateFromUser === "" || depDateFromUser === null || depDateFromUser === undefined) ||
             (retDateFromUser === "" || retDateFromUser === null || retDateFromUser === undefined)
-            )   
+        )   
             {
                 console.log("City: " + city);
                 this.displayBlockOrNone_PopUp(2);
