@@ -8,10 +8,10 @@ import { toggleShowPopUp } from "../../redux/pop-up/pop-up.actions";
 import { togglePopUp3State } from "../../redux/pop-up/pop-up.actions";
 import { currentProjectData_Update } from "../../redux/projectData/projectData.actions";
 import { currentProjectData_Delete } from "../../redux/projectData/projectData.actions";
-import { createTripCardsOrNot } from "../../redux/createTripCards/createTripCards.actions";
 import { displayBlockOrNone_PopUp_1 } from "../../redux/pop-up/pop-up.actions";
 import { displayBlockOrNone_PopUp_2 } from "../../redux/pop-up/pop-up.actions";
 import { displayBlockOrNone_PopUp_3 } from "../../redux/pop-up/pop-up.actions";
+import { submitBtnText_Update } from "../../redux/submitBtnText/submitBtnText.actions";
 
 import { TripCard } from "../tripCard/tripCard.component";
 
@@ -181,6 +181,7 @@ class BodyOfApp extends React.Component {
 
             } catch (error) {
                 //appropriately handle the error
+                this.props.submitBtnText_Update_Action("Save trip");
                 this.displayBlockOrNone_PopUp(3);
                 toggleShowPopUp()
                 this.props.displayBlockOrNone_PopUp_3 ? (console.log('PopUp 3 is true')) : (console.log('PopUp 3 is false'))
@@ -195,14 +196,21 @@ class BodyOfApp extends React.Component {
         ){
             console.log("getFunc has not been called.")
         } else {
+
+            this.props.submitBtnText_Update_Action("Fetching data. Please wait...");
+            
             getFunc().then((dataOfTripCard) => {
                 if (!(this.props.displayBlockOrNone_PopUp_3)) {
+
                     this.props.currentProjectData_Update_Action(
                         [
                             ...this.props.currentProjectData,
                             dataOfTripCard
                         ]
                     )
+
+                    this.props.submitBtnText_Update_Action("Save trip");
+
                 }
             })
         }
@@ -243,7 +251,8 @@ class BodyOfApp extends React.Component {
                                         </div>
                                     </div>
                                     <div className="holder feel centerBtn">
-                                        <button id="savetripBtn" onClick={this.performAction}>Save Trip</button>
+                                        <button id="savetripBtn" onClick={this.performAction}>{this.props.submitBtnText}</button>
+                                        {/* <button id="savetripBtn" onClick={this.performAction}>Save Trip</button> */}
                                     </div>
                                 </form>
                             </div>
@@ -276,26 +285,24 @@ class BodyOfApp extends React.Component {
 const mapStateToProps = state => ({
     currentProjectData: state.projectData.currentProjectData,
     submittedOrNot: state.popUp.submittedOrNot,
-    createTripCardsOrNot: state.tripCards.createTripCardsOrNot,
     currentInputs: state.inputs.currentInputs,
-    pop_up_3_state: state.popUp.pop_up_3_state,
     displayBlockOrNone_PopUp_1: state.popUp.displayBlockOrNone_PopUp_1,
     displayBlockOrNone_PopUp_2: state.popUp.displayBlockOrNone_PopUp_2,
     displayBlockOrNone_PopUp_3: state.popUp.displayBlockOrNone_PopUp_3,
-    showPopUp: state.popUp.showPopUp
+    showPopUp: state.popUp.showPopUp,
+    submitBtnText: state.text.submitBtnText
 });
 
 const mapDispatchToProps = dispatch => ({
     currentInputs: inputs => dispatch(currentInputs(inputs)),
     toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp)),
     toggleShowPopUp: () => dispatch(toggleShowPopUp()),
-    togglePopUp3State: popUp => dispatch(togglePopUp3State(popUp)),
     currentProjectData_Update_Action: projectData => dispatch(currentProjectData_Update(projectData)),
     currentProjectData_Delete_Action: trip_id => dispatch(currentProjectData_Delete(trip_id)),
-    createTripCardsOrNot: tripCards => dispatch(createTripCardsOrNot(tripCards)),
     displayBlockOrNone_PopUp_1_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
     displayBlockOrNone_PopUp_2_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
-    displayBlockOrNone_PopUp_3_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp))
+    displayBlockOrNone_PopUp_3_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_3(popUp)),
+    submitBtnText_Update_Action: (text) => dispatch(submitBtnText_Update(text))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(BodyOfApp);

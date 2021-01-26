@@ -262,21 +262,19 @@ button:focus {
 //         transform: rotateZ(75deg);
 //     }
 // }
-.entryHolder-drop {
-    transform-origin: 10px 15px;
-    animation: drop2 0.5s ease forwards;
-}
-
-@keyframes drop2 {
-    0% {
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(1000px);
-        opacity: 0;
-    }
-}
-
+// .entryHolder-drop {
+//     transform-origin: 10px 15px;
+//     animation: drop2 0.5s ease forwards;
+// }
+// @keyframes drop2 {
+//     0% {
+//         opacity: 1;
+//     }
+//     100% {
+//         transform: translateY(1000px);
+//         opacity: 0;
+//     }
+// }
 .hidden {
     display: none;
 }

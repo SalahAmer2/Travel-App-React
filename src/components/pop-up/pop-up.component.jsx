@@ -3,8 +3,7 @@ import { connect } from "react-redux";
 import { 
     toggleShowPopUp, 
     togglePopUpExit, 
-    toggleSubmittedOrNot, 
-    togglePopUp3State, 
+    toggleSubmittedOrNot,
     displayBlockOrNone_PopUp_1, 
     displayBlockOrNone_PopUp_2, 
     displayBlockOrNone_PopUp_3 
@@ -52,14 +51,12 @@ class Pop_Up extends React.Component {
 const mapStateToProps = state => ({
     showPopUp: state.popUp.showPopUp,
     pop_up_exit: state.popUp.pop_up_exit,
-    submittedOrNot: state.popUp.submittedOrNot,
-    pop_up_3_state: state.popUp.pop_up_3_state
+    submittedOrNot: state.popUp.submittedOrNot
 });
 
 const mapDispatchToProps = dispatch => ({
     toggleShowPopUp: () => dispatch(toggleShowPopUp()),
     togglePopUpExit: () => dispatch(togglePopUpExit()),
-    togglePopUp3State: popUp => dispatch(togglePopUp3State(popUp)),
     toggleSubmittedOrNot: popUp => dispatch(toggleSubmittedOrNot(popUp)),
     displayBlockOrNone_PopUp_1_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_1(popUp)),
     displayBlockOrNone_PopUp_2_Action: (popUp) => dispatch(displayBlockOrNone_PopUp_2(popUp)),
